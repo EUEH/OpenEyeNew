@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.eueh.openeye.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/fl"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="11" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:checked="true"
+            android:id="@+id/rbt_selection"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/select_selection"
+            android:gravity="center"
+            android:text="精选"
+            android:textColor="@color/select_text_color"
+            android:textSize="11sp" />
+
+        <RadioButton
+            android:id="@+id/rbt_find"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/select_find"
+            android:gravity="center"
+            android:text="发现"
+            android:textColor="@color/select_text_color"
+            android:textSize="11sp" />
+
+        <RadioButton
+            android:id="@+id/rbt_concern"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/select_concern"
+            android:gravity="center"
+            android:text="关注"
+            android:textColor="@color/select_text_color"
+            android:textSize="11sp" />
+
+        <RadioButton
+            android:id="@+id/rbt_mine"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/select_mine"
+            android:gravity="center"
+            android:text="我的"
+            android:textColor="@color/select_text_color"
+            android:textSize="11sp" />
+
+    </RadioGroup>
+</LinearLayout>
