@@ -10,6 +10,8 @@ import com.eueh.openeye.base.BaseFragment;
  */
 
 public class SelectionFragment extends BaseFragment {
+
+
     @Override
     public int setLayout() {
         return R.layout.fragment_selection;
