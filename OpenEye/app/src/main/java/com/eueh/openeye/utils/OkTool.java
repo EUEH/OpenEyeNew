@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.Cache;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -51,6 +52,7 @@ public class OkTool implements NetInterface {
         mClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(final Call call, final IOException e) {
+                //用主线程的Handler  把错误的信息发送
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -62,6 +64,7 @@ public class OkTool implements NetInterface {
             @Override
             public void onResponse(final Call call, Response response) throws IOException {
                 final String result = response.body().string();
+
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -79,6 +82,7 @@ public class OkTool implements NetInterface {
         mClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, final IOException e) {
+
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -101,5 +105,35 @@ public class OkTool implements NetInterface {
         });
     }
 
+    //Post请求的构造方法
+    @Override
+    public <T> void startRequest(String url,String key,String value, final Class<T> tClass, final onHttpCallback<T> callback) {
+        FormBody formBody = new FormBody.Builder().add(key , value).build();
+        Request request = new Request.Builder().url(url).post(formBody).build();
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, final IOException e) {
+
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onError(e);
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String str = response.body().string();
+                final T result = mGson.fromJson(str,tClass);
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onSuccess(result);
+                    }
+                });
+            }
+        });
+    }
 
 }

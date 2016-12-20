@@ -9,4 +9,6 @@ public interface NetInterface {
     //解析Get请求的接口
     <T> void startRequest(String url, Class<T> tClass, onHttpCallback<T> callback);
 
+    //解析Post请求的接口
+    <T> void startRequest(String url, String key, String value, Class<T> tClass, onHttpCallback<T> callback);
 }
