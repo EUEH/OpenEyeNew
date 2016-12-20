@@ -20,6 +20,7 @@ public class FindFragment extends BaseFragment {
     private ListView lvFindG;
     private ArrayList<String>data;
     private Banner bannerHead;
+
     @Override
     public int setLayout() {
         return R.layout.fragment_find;
