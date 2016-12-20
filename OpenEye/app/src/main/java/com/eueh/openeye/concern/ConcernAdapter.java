@@ -62,8 +62,10 @@ public class ConcernAdapter extends BaseAdapter{
                 case ONE:
                     view = LayoutInflater.from(context).inflate(R.layout.item_concern_first_f, viewGroup, false);
                     first = new ConcernViewHolderFirst(view);
+                    view.setTag(first);
                     break;
                 case TWO:
+                    view = LayoutInflater.from(context).inflate(R.layout.item_concern_second_f, viewGroup, false);
                     break;
             }
         }
