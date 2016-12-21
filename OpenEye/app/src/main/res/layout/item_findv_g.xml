@@ -1,28 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="240dp"
+    android:layout_height="340dp"
     android:orientation="vertical">
 
 
     <LinearLayout
-        android:background="#ffffff"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_category_g"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="9dp"
+            android:letterSpacing="0.3"
+            android:text="创意"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_subTitle_g"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="7dp"
+            android:text="技术与审美结合，探索视觉的无限可能"
+            android:textSize="11sp" />
 
         <com.youth.banner.Banner
             android:id="@+id/rv_find_v_g"
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="9dp"
             android:layout_weight="1"
-            android:text="用来盛放轮播图" />
+            android:gravity="center"
+            android:text="用来盛放轮播图"
+            app:image_scale_type="center_crop"
+            app:indicator_height="5dp"
+            app:indicator_width="5dp" />
+
+        <TextView
+
+            android:id="@+id/title_g"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="9dp"
+            android:text="行为艺术家何云昌：身体的力量"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="7dp"
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:id="@+id/tv_left_g"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="创意"
+                android:textSize="11sp" />
+
+            <TextView
+
+                android:id="@+id/tv_right_g"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="0313"
+                android:textSize="11sp" />
+        </LinearLayout>
 
 
     </LinearLayout>
-
 
 
 </LinearLayout>
