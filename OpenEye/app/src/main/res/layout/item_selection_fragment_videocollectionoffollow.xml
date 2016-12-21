@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="209dp">
+
+        <ImageView
+            android:id="@+id/iv_item_videoCollectionOfFollow_selection_cover_d"
+            android:layout_width="match_parent"
+            android:layout_height="209dp"
+            android:background="#000000" />
+
+        <ImageView
+            android:id="@+id/iv_item_videoCollectionOfFollow_selection_iconList_left_d"
+            android:layout_width="47dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="110dp"
+            android:layout_marginTop="52dp"
+            android:background="@drawable/btn_iconlist_shape" />
+
+        <ImageView
+            android:id="@+id/iv_item_videoCollectionOfFollow_selection_iconList_center_d"
+            android:layout_width="47dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="212dp"
+            android:layout_marginTop="52dp"
+            android:background="@drawable/btn_iconlist_shape" />
+
+        <ImageView
+            android:id="@+id/iv_item_videoCollectionOfFollow_selection_iconList_right_d"
+            android:layout_width="47dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="161dp"
+            android:layout_marginTop="52dp"
+            android:background="@drawable/btn_iconlist_shape" />
+
+        <TextView
+            android:id="@+id/iv_item_videoCollectionOfFollow_selection_title_d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="115dp"
+            android:textColor="#ffffff"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/iv_item_videoCollectionOfFollow_selection_description_d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="83dp"
+            android:layout_marginTop="145dp"
+            android:textColor="#ffffff"
+            android:textSize="12dp" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="#ededed"></LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/rv_item_vcof_selection_rv_d"
+        android:layout_height="212dp"
+        android:background="#ffffff"></android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="#ededed"></LinearLayout>
+
+</LinearLayout>
