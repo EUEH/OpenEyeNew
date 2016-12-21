@@ -3,4 +3,48 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_item_second_title_f"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/tv_item_second_subTitle_f"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:layout_below="@+id/tv_item_second_title_f"/>
+        </RelativeLayout>
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:text="+ 关注"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textColor="#444444"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/vp_item_second_f">
+    </android.support.v4.view.ViewPager>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/ll_item_second_f">
+
+    </LinearLayout>
 </LinearLayout>

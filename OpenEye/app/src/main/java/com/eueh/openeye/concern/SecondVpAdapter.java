@@ -1,0 +1,20 @@
+package com.eueh.openeye.concern;
+
+import android.support.v4.view.PagerAdapter;
+import android.view.View;
+
+/**
+ * Created by 陈小飞 on 16/12/21.
+ */
+
+public class SecondVpAdapter extends PagerAdapter{
+    @Override
+    public int getCount() {
+        return 0;
+    }
+
+    @Override
+    public boolean isViewFromObject(View view, Object object) {
+        return false;
+    }
+}
