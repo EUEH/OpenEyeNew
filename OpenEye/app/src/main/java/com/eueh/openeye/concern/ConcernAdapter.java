@@ -116,7 +116,7 @@ public class ConcernAdapter extends BaseAdapter {
 
     }
 
-    //嵌套的Rv
+    //嵌套的Rv  顾彬是逗13
     private void setRv(ConcernViewHolderFirst first, int p) {
         ConcernRvAdapter rvAdapter = new ConcernRvAdapter(context);
         List<ConcernBean.ItemListBeanX.DataBeanX.ItemListBean> bean = list.get(p).getData().getItemList();
