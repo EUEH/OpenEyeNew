@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="240dp"
+    android:layout_height="260dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
@@ -13,7 +13,9 @@
     android:layout_height="match_parent">
 
         <TextView
-
+            android:textStyle="bold"
+            android:letterSpacing="0.3"
+            android:id="@+id/tv_banner_mid"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -26,10 +28,10 @@
             app:indicator_width="5dp"
             app:indicator_height="5dp"
             app:image_scale_type="fit_xy"
-            android:id="@+id/rv_find_r_g"
+            android:id="@+id/banner_r_g"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3" />
+            android:layout_weight="3.5" />
 
 </LinearLayout>
 
