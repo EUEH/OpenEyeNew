@@ -1,6 +1,7 @@
 package com.eueh.openeye.find;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,11 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eueh.openeye.R;
+import com.eueh.openeye.find.detailheadbanner.FindDetailHeadBannerActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
+import com.youth.banner.listener.OnBannerClickListener;
 
 import java.util.ArrayList;
 
@@ -21,6 +25,7 @@ import java.util.ArrayList;
  * Created by Even on 16/12/20.
  */
 
+//整个大的adapter
 public class FindAdapter extends BaseAdapter {
     private Context context;
     private FindBean data;
@@ -87,12 +92,12 @@ public class FindAdapter extends BaseAdapter {
                 return TYPE_TWO;
             } else if (data.getItemList().get(position).getType().equals(THREE)) {
                 return TYPE_THREE;
-            }  else {
+            } else {
                 return TYPE_FOUR;
             }
-        } else if (position ==(data.getItemList().size() + dataNext.getItemList().size()-2)){
+        } else if (position == (data.getItemList().size() + dataNext.getItemList().size() - 2)) {
             return TYPE_FIVE;
-        }else {
+        } else {
             return TYPE_FOUR;
         }
 
@@ -105,7 +110,7 @@ public class FindAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return data.getItemList().size() + dataNext.getItemList().size()-1;
+        return data.getItemList().size() + dataNext.getItemList().size() - 1;
     }
 
     @Override
@@ -119,7 +124,7 @@ public class FindAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         BannerTop bannerTop = null;
         ViewRec viewRec = null;
         ViewBanner viewBanner = null;
@@ -182,7 +187,7 @@ public class FindAdapter extends BaseAdapter {
         switch (getItemViewType(i)) {
             //顶部banner
             case TYPE_ONE:
-
+               //轮播图
                 Banner bannerHead = (Banner) view.findViewById(R.id.banner_head);
                 bannerHead.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE);
                 bannerHead.setImageLoader(new MyImage());
@@ -192,6 +197,19 @@ public class FindAdapter extends BaseAdapter {
                 bannerHead.setDelayTime(3000);
                 bannerHead.setIndicatorGravity(BannerConfig.CENTER);
                 bannerHead.start();
+
+                //传入二级页面
+                bannerHead.setOnBannerClickListener(new OnBannerClickListener() {
+                    @Override
+                    public void OnBannerClick(int position) {
+                        Intent intent = new Intent(context, FindDetailHeadBannerActivity.class);
+                        //position要-1
+                        String webUrl = data.getItemList().get(i).getData().getItemList().get(position-1).getData().getActionUrl();
+                        intent.putExtra("webUrlG",webUrl);
+                        context.startActivity(intent);
+                    }
+                });
+
                 break;
 
             //第二种嵌套rec
@@ -225,11 +243,11 @@ public class FindAdapter extends BaseAdapter {
             //加载17条的那种
             case TYPE_FOUR:
 
-                viewBot.tvCategory.setText(dataNext.getItemList().get(i-4).getData().getHeader().getTitle());
-                viewBot.tvSubTitle.setText(dataNext.getItemList().get(i-4).getData().getHeader().getSubTitle());
-                viewBot.tvTitle.setText(dataNext.getItemList().get(i-4).getData().getItemList().get(0).getData().getTitle());
-                viewBot.tvLeft.setText(dataNext.getItemList().get(i-4).getData().getItemList().get(0).getData().getCategory());
-                viewBot.tvRight.setText(String.valueOf(dataNext.getItemList().get(i-4).getData().getItemList().get(0).getData().getReleaseTime()));
+                viewBot.tvCategory.setText(dataNext.getItemList().get(i - 4).getData().getHeader().getTitle());
+                viewBot.tvSubTitle.setText(dataNext.getItemList().get(i - 4).getData().getHeader().getSubTitle());
+                viewBot.tvTitle.setText(dataNext.getItemList().get(i - 4).getData().getItemList().get(0).getData().getTitle());
+                viewBot.tvLeft.setText(dataNext.getItemList().get(i - 4).getData().getItemList().get(0).getData().getCategory());
+                viewBot.tvRight.setText(String.valueOf(dataNext.getItemList().get(i - 4).getData().getItemList().get(0).getData().getReleaseTime()));
 
                 //每个位置i 对应一个 dataBannerBot 的集合
                 ArrayList<String> dataBannerBot = new ArrayList<>();
@@ -290,7 +308,8 @@ public class FindAdapter extends BaseAdapter {
     //加载17条的那种
     class ViewBot {
 
-        private TextView tvCategory,tvSubTitle,tvTitle,tvLeft,tvRight;
+        private TextView tvCategory, tvSubTitle, tvTitle, tvLeft, tvRight;
+
         public ViewBot(View view) {
 
             tvCategory = (TextView) view.findViewById(R.id.tv_category_g);
