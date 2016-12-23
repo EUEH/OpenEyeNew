@@ -1,4 +1,4 @@
-package com.eueh.openeye.selection;
+package com.eueh.openeye.selection.selection_main;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

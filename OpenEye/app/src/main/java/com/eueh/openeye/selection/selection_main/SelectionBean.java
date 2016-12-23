@@ -1,4 +1,4 @@
-package com.eueh.openeye.selection;
+package com.eueh.openeye.selection.selection_main;
 
 import java.util.ArrayList;
 import java.util.List;

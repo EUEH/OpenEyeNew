@@ -1,9 +1,10 @@
-package com.eueh.openeye.selection;
+package com.eueh.openeye.selection.selection_main;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.eueh.openeye.BuildConfig;
 import com.eueh.openeye.R;
+import com.eueh.openeye.selection.selection_detail.SelectionDetailActivity;
+import com.eueh.openeye.selection.selectiontool.SelectionMyTool;
 
 import java.util.List;
 
@@ -27,6 +29,7 @@ public class SelectionAdapter extends BaseAdapter {
     //为了传值变成static
     private SelectionBean data;
     private Context context;
+
 
     private static final int TYPECOUNT = 50;
     private static final int TYPEVIDEO = 1;
@@ -95,7 +98,7 @@ public class SelectionAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         ViewHolderVideo holderVideo = null;
         ViewHolderNewElse holderNewElse = null;
         ViewHolderTextFooter holderTextFooter = null;
@@ -174,7 +177,21 @@ public class SelectionAdapter extends BaseAdapter {
 
                 holderVideo.tvTitle.setText(data.getItemList().get(i).getData().getTitle());
                 holderVideo.tvCategory.setText("#" + data.getItemList().get(i).getData().getCategory() + "   /");
-                holderVideo.tvReleaseTime.setText((int) data.getItemList().get(i).getData().getReleaseTime() + "");
+                Long titimi = (long) data.getItemList().get(i).getData().getReleaseTime()  ;
+                holderVideo.tvReleaseTime.setText(SelectionMyTool.intoTime(titimi));
+
+
+                holderVideo.ivCover.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, SelectionDetailActivity.class);
+////////////////////////把vp位置 传过去////////////////////////////////////
+                    intent.putExtra("selection_viewpager_item_d" , i);
+                    context.startActivity(intent);
+                }
+            });
+
+
                 break;
             case TYPETEXTFOOTER:
                 holderTextFooter.tvText.setText(data.getItemList().get(i).getData().getText());
@@ -217,7 +234,7 @@ public class SelectionAdapter extends BaseAdapter {
                 List<SelectionBean.ItemListBeanX.DataBeanX.ItemListBean> listVcof = data.getItemList().get(i).getData().getItemList();
                 myAdapterVcof.setData(listVcof);
                 holderVideoCollectionOfFollow.rv.setAdapter(myAdapterVcof);
-                holderVideoCollectionOfFollow.rv.setLayoutManager(new LinearLayoutManager(context , 0 , false));
+                holderVideoCollectionOfFollow.rv.setLayoutManager(new LinearLayoutManager(context, 0, false));
 
                 break;
             case TYPENEWELSE:
@@ -279,7 +296,8 @@ public class SelectionAdapter extends BaseAdapter {
     class ViewHolderVideoCollectionOfFollow {
         private ImageView ivCover, ivIconListLeft, ivIconListCenter, ivIconListRight;
         private TextView tvTitle, tvDescription;
-        private RecyclerView rv ;
+        private RecyclerView rv;
+
         public ViewHolderVideoCollectionOfFollow(View view) {
             ivCover = (ImageView) view.findViewById(R.id.iv_item_videoCollectionOfFollow_selection_cover_d);
             ivIconListLeft = (ImageView) view.findViewById(R.id.iv_item_videoCollectionOfFollow_selection_iconList_left_d);

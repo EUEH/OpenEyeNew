@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+
+    <item android:drawable="@mipmap/headview_one_d" android:duration="500"></item>
+    <item android:drawable="@mipmap/headview_two_d" android:duration="500"></item>
+    <item android:drawable="@mipmap/headview_three_d" android:duration="500"></item>
+    <item android:drawable="@mipmap/headview_selection_d" android:duration="500"></item>
+
+
+</animation-list>

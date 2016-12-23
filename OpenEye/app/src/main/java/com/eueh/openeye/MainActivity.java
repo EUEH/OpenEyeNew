@@ -11,7 +11,7 @@ import com.eueh.openeye.base.BaseActivity;
 import com.eueh.openeye.concern.ConcernFragment;
 import com.eueh.openeye.find.FindFragment;
 import com.eueh.openeye.mine.MineFragment;
-import com.eueh.openeye.selection.SelectionFragment;
+import com.eueh.openeye.selection.selection_main.SelectionFragment;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private FrameLayout frameLayout;

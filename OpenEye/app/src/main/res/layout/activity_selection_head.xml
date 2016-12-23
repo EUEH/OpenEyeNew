@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_selection_head"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.eueh.openeye.selection.SelectionHeadActivity">
+    android:layout_height="match_parent">
 
-</RelativeLayout>
+    <com.eueh.openeye.selection.selection_main.SelectionMyStyView
+        android:layout_width="match_parent"
+        android:id="@+id/selection_myview_d"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="209dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:scaleType="fitXY"
+                android:id="@+id/iv_headview_selaty_d"
+                android:layout_width="match_parent"
+                android:layout_height="209dp"
+                android:background="@mipmap/home_page_header_cover"
+                android:src="@mipmap/home_page_header_icon" />
+
+        </RelativeLayout>
+
+    </com.eueh.openeye.selection.selection_main.SelectionMyStyView>
+
+
+</LinearLayout>

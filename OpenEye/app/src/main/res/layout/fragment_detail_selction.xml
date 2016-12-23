@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <ImageView
+            android:id="@+id/iv_detail_fragment_feed_d"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+
+        <Button
+            android:id="@+id/btn_detail_fragment_back_d"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/selection_detail_back_d"
+            android:text="0"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+
+        <Button
+            android:layout_centerInParent="true"
+            android:background="@mipmap/action_start"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            />
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="83dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="282dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_detail_fragment_title_d"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="21dp"
+                android:textColor="#ffffff"
+                android:textSize="17dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/tv_detail_fragment_categor_d"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/tv_detail_fragment_releaseTime_d"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#ffffff"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@null"
+            android:text=">"
+            android:textSize="30dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="337dp"
+        android:layout_height="95dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="35dp"
+        android:orientation="vertical">
+
+        <!-- 作者有的时候要有作者 -->
+
+
+
+
+        <!--  description  没有作者的时候  -->
+        <TextView
+            android:id="@+id/tv_detail_fragment_description_d"
+            android:layout_width="337dp"
+            android:layout_height="95dp"
+            android:textColor="#ffffff"
+            android:textSize="12dp"
+            android:visibility="visible" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/btn_detail_fragment_collectionCount_d"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/selection_detail_favour_sel"
+            android:button="@null"></CheckBox>
+
+        <TextView
+            android:id="@+id/tv_detail_fragment_collectionCount_d"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:textColor="#ffffff"
+            android:textSize="12dp" />
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="13dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_action_share_without_padding" />
+
+        <TextView
+            android:id="@+id/tv_detail_fragment_shareCount_d"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="#ffffff"
+            android:textSize="12dp" />
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_action_reply_nopadding" />
+
+        <TextView
+            android:id="@+id/tv_detail_fragment_replyCount_d"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="#ffffff"
+            android:textSize="12dp" />
+
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_action_offline_without_padding" />
+
+        <TextView
+            android:id="@+id/tv_detail_fragment_offline_d"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:text="缓存"
+            android:textColor="#ffffff"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
