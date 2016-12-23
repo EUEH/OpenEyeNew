@@ -1,15 +1,18 @@
 package com.eueh.openeye.concern;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.eueh.openeye.R;
+import com.eueh.openeye.concern.concerndetails.concernimage.ConcernImageActivity;
 
 import java.util.List;
 
@@ -39,11 +42,18 @@ public class ConcernRvAdapter extends RecyclerView.Adapter<ConcernRvAdapter.Conc
 
     @Override
     public void onBindViewHolder(ConcernViewHolder holder, int position) {
-        holder.tvConcernRvCategory.setText("#" + list.get(position).getData().getCategory() + "    /");
-        holder.tvConcernRvTitle.setText(list.get(position).getData().getTitle());
+        holder.tvConcernRvCategoryF.setText("#" + list.get(position).getData().getCategory() + "    /");
+        holder.tvConcernRvTitleF.setText(list.get(position).getData().getTitle());
         String min = TimeConversion.conversionTime(list.get(position).getData().getReleaseTime()).substring(14, 19);
-        holder.tvConcernRvTime.setText(min);
-        Glide.with(context).load(list.get(position).getData().getCover().getFeed()).into(holder.ivConcernRvFeed);
+        holder.tvConcernRvTimeF.setText(min);
+        Glide.with(context).load(list.get(position).getData().getCover().getFeed()).into(holder.ivConcernRvFeedF);
+        holder.llConcernF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ConcernImageActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -53,17 +63,19 @@ public class ConcernRvAdapter extends RecyclerView.Adapter<ConcernRvAdapter.Conc
 
     public class ConcernViewHolder extends RecyclerView.ViewHolder {
 
-        private final ImageView ivConcernRvFeed;
-        private final TextView tvConcernRvTitle;
-        private final TextView tvConcernRvCategory;
-        private final TextView tvConcernRvTime;
+        private final ImageView ivConcernRvFeedF;
+        private final TextView tvConcernRvTitleF;
+        private final TextView tvConcernRvCategoryF;
+        private final TextView tvConcernRvTimeF;
+        private final LinearLayout llConcernF;
 
         public ConcernViewHolder(View itemView) {
             super(itemView);
-            ivConcernRvFeed = (ImageView) itemView.findViewById(R.id.iv_item_concern_first_rv_feed);
-            tvConcernRvTitle = (TextView) itemView.findViewById(R.id.tv_item_concern_first_rv_title);
-            tvConcernRvCategory = (TextView) itemView.findViewById(R.id.tv_item_concern_first_rv_category);
-            tvConcernRvTime = (TextView) itemView.findViewById(R.id.tv_item_concern_first_rv_releaseTime);
+            ivConcernRvFeedF = (ImageView) itemView.findViewById(R.id.iv_item_concern_first_rv_feed);
+            tvConcernRvTitleF = (TextView) itemView.findViewById(R.id.tv_item_concern_first_rv_title);
+            tvConcernRvCategoryF = (TextView) itemView.findViewById(R.id.tv_item_concern_first_rv_category);
+            tvConcernRvTimeF = (TextView) itemView.findViewById(R.id.tv_item_concern_first_rv_releaseTime);
+            llConcernF = (LinearLayout) itemView.findViewById(R.id.ll_item_concern_first);
         }
     }
 

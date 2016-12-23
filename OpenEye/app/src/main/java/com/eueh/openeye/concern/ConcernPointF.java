@@ -8,11 +8,9 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * Created by 陈小飞 on 16/12/20.
+ * Created by 陈小飞 on 16/12/21.
  */
-
-public class ConcernPoint extends View{
-
+public class ConcernPointF extends View{
     int r = 10;
     private boolean isSelected = false;
 
@@ -22,11 +20,11 @@ public class ConcernPoint extends View{
         invalidate();
     }
 
-    public ConcernPoint(Context context) {
+    public ConcernPointF(Context context) {
         super(context);
     }
 
-    public ConcernPoint(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ConcernPointF(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -40,6 +38,6 @@ public class ConcernPoint extends View{
         }else {
             paint.setColor(Color.BLACK);
         }
-        canvas.drawCircle(getWidth() / 2 , getHeight() / 2, r , paint);
+        canvas.drawCircle(getWidth() / 2, getHeight() / 2, r, paint);
     }
 }
