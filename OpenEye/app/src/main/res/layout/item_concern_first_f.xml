@@ -7,7 +7,8 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:id="@+id/ll_item_first_f">
 
         <ImageView
             android:id="@+id/item_iv_first_icon_f"

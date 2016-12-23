@@ -22,6 +22,8 @@
             android:theme="@style/myTransparent"
             />
         <activity android:name=".selection.SelectionDailySelectActivity"></activity>
+        <activity android:name=".concern.concerndetails.concerntitle.ConcernTitleActivity"/>
+        <activity android:name=".concern.concerndetails.concernimage.ConcernImageActivity"/>
     </application>
 
 </manifest>
