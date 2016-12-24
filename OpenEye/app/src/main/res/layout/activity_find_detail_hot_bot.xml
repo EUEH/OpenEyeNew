@@ -1,12 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_find_detail_hot_bot"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.eueh.openeye.find.detailhotbot.FindDetailHotBotActivity">
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="3"/>
-</LinearLayout>
+    android:background="@android:color/white"
+    android:fitsSystemWindows="true">
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_find_hot_bot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/fragment_menu_list_detail_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="225dp"
+        android:background="@android:color/white"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/fragment_menu_list_detail_toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="#0005b1ef"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/iv_find_hot_bot"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/tv_find_hot_bot_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+
+                    android:textColor="#000" />
+
+                <TextView
+                    android:id="@+id/tv_find_hot_bot_mid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+
+                    android:textColor="#000" />
+
+                <TextView
+                    android:id="@+id/tv_find_hot_bot_bot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+
+                    android:textColor="#000" />
+            </LinearLayout>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tb_find_hot_bot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                app:tabIndicatorColor="@color/select_text_color"
+                app:tabSelectedTextColor="#000"
+                app:tabTextColor="#000">
+
+            </android.support.design.widget.TabLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/fragment_menu_list_detail_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+</android.support.design.widget.CoordinatorLayout>
+
+

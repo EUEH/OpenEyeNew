@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="220dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_background_even"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+
+            android:id="@+id/iv_find_hot_even_g"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:textColor="#ffffff"
+                android:id="@+id/tv_find_hot_even_top_g"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="78979"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textColor="#ffffff"
+                    android:id="@+id/tv_find_hot_even_left_g"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ww" />
+
+                <TextView
+                    android:textColor="#ffffff"
+                    android:id="@+id/tv_find_hot_even_right_g"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:text="123"
+
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:textColor="#ffffff"
+                android:id="@+id/tv_find_hot_even_bot_g"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:gravity="center"
+                android:text="789" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>
