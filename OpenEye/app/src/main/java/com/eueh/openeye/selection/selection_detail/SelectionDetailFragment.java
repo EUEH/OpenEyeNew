@@ -194,7 +194,7 @@ public class SelectionDetailFragment extends BaseFragment {
                 .asBitmap().into(new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                ivBackgroundGauss.setImageBitmap(fastblur(getContext(), resource, 200));
+                ivBackgroundGauss.setImageBitmap(fastblur(getContext(), resource, 50));
              }
         });
 
