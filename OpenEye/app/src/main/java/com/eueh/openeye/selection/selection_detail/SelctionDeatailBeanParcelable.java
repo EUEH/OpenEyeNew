@@ -18,6 +18,16 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
     private String authorName;
     private String authorIcon;
     private String authorDescription;
+    private String blurred ;
+
+    public String getBlurred() {
+        return blurred;
+    }
+
+    public SelctionDeatailBeanParcelable setBlurred(String blurred) {
+        this.blurred = blurred;
+        return this;
+    }
 
     public String getAuthorName() {
         return authorName;
@@ -59,6 +69,7 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
         authorName = in.readString();
         authorDescription = in.readString();
         authorIcon = in.readString();
+        blurred = in.readString();
     }
 
     public SelctionDeatailBeanParcelable() {
@@ -180,5 +191,6 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
         parcel.writeString(authorName);
         parcel.writeString(authorDescription);
         parcel.writeString(authorIcon);
+        parcel.writeString(blurred);
     }
 }

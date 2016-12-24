@@ -39,7 +39,7 @@ public class SelectionDetailActivity extends FragmentActivity {
 ////////////////////////在这里面改变  把传过来的位置的值设置上 需要写在设置适配器之后
                 Intent intent = getIntent() ;
                 int vpItem = intent.getIntExtra("selection_viewpager_item_d" , 1 );
-                vp.setCurrentItem(vp.getCurrentItem()+vpItem-1);
+                vp.setCurrentItem(vp.getCurrentItem()+vpItem);
 
             }
 

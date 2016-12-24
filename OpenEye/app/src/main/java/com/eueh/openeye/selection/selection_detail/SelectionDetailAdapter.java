@@ -34,6 +34,7 @@ public class SelectionDetailAdapter extends FragmentStatePagerAdapter {
             bean.setShareCount(data.getIssueList().get(0).getItemList().get(pos).getData().getConsumption().getShareCount());
             bean.setReplyCount(data.getIssueList().get(0).getItemList().get(pos).getData().getConsumption().getReplyCount());
             bean.setCollectionCount(data.getIssueList().get(0).getItemList().get(pos).getData().getConsumption().getCollectionCount());
+            bean.setBlurred(data.getIssueList().get(0).getItemList().get(pos).getData().getCover().getBlurred());
             return bean ;
         }else {
             SelctionDeatailBeanParcelable bean = new SelctionDeatailBeanParcelable();

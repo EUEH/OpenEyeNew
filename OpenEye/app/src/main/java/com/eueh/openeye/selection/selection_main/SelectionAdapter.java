@@ -1,5 +1,7 @@
 package com.eueh.openeye.selection.selection_main;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,6 +40,7 @@ public class SelectionAdapter extends BaseAdapter {
     private static final int TYPENEWELSE = 5;
     private static final int TYPEBANNER = 6;
     private static final int TYPEVIDEOCOLLECTIONOFFOLLOW = 7;
+    private ViewHolderVideo holderVideo;
 
 
     public SelectionAdapter(Context context) {
@@ -98,7 +101,7 @@ public class SelectionAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
-        ViewHolderVideo holderVideo = null;
+        holderVideo = null;
         ViewHolderNewElse holderNewElse = null;
         ViewHolderTextFooter holderTextFooter = null;
         ViewHolderVideoCollectionWithCover holderVideoCollectionWithCover = null;
@@ -171,21 +174,23 @@ public class SelectionAdapter extends BaseAdapter {
         switch (getItemViewType(i)) {
             case TYPEVIDEO:
                 //最常见的
-
                 Glide.with(context).load(data.getItemList().get(i).getData().getCover().getFeed()).into(holderVideo.ivCover);
                 holderVideo.tvTitle.setText(data.getItemList().get(i).getData().getTitle());
                 holderVideo.tvCategory.setText("#" + data.getItemList().get(i).getData().getCategory() + "   /");
                 Long titimi = (long) data.getItemList().get(i).getData().getReleaseTime()  ;
                 holderVideo.tvReleaseTime.setText(SelectionMyTool.intoTime(titimi));
 
-
+                //点击图片跳转到详情页
+                //开了一个线程 设置动画
                 holderVideo.ivCover.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     Intent intent = new Intent(context, SelectionDetailActivity.class);
 ////////////////////////把vp位置 传过去////////////////////////////////////
                     intent.putExtra("selection_viewpager_item_d" , i);
                     context.startActivity(intent);
+
                 }
             });
 
