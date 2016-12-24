@@ -3,16 +3,25 @@ package com.eueh.openeye.selection.selection_detail;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.eueh.openeye.R;
 import com.eueh.openeye.base.BaseFragment;
 
@@ -26,10 +35,14 @@ public class SelectionDetailFragment extends BaseFragment {
             tvCollectionCount, tvShareCount, tvReplyCount;
 
     private Handler handler;
-    private boolean isPlay ;
+    private boolean isPlay;
 
-    private Button btnBack ;
+    private Button btnBack;
+    private CheckBox btnCollectionCount;
+    private boolean isCollectionCount;
+    private SelctionDeatailBeanParcelable bean;
 
+    private ImageView ivBackgroundGauss;
 
     @Override
     public int setLayout() {
@@ -48,12 +61,16 @@ public class SelectionDetailFragment extends BaseFragment {
         tvReplyCount = (TextView) view.findViewById(R.id.tv_detail_fragment_replyCount_d);
         isPlay = false;
         btnBack = (Button) view.findViewById(R.id.btn_detail_fragment_back_d);
+        btnCollectionCount = (CheckBox) view.findViewById(R.id.btn_detail_fragment_collectionCount_d);
+        isCollectionCount = false;
+        ivBackgroundGauss = (ImageView) view.findViewById(R.id.selection_detail_background_d);
     }
 
     @Override
     public void initData() {
         //第一次进入加载的数据
         initMyData();
+        //背景高斯模糊---毛玻璃效果 ----  在上面那个方法里面写了----因为Glide需要网络解析需要时间
         //给图片设置动画
         animatethepicture();
         //点击左上角退出
@@ -64,8 +81,45 @@ public class SelectionDetailFragment extends BaseFragment {
 
     }
 
+
+
     private void clifavouraddone() {
 
+//111    用数据库存  这样可以有一个id  这样就不会用户重复了
+//        SharedPreferences sp = getContext().getSharedPreferences("section_menu_d" , Context.MODE_PRIVATE);
+//        boolean iscoll = sp.getBoolean("isCollection" , false ) ;
+//        tvCollectionCount.setText(sp.getString("collectionCount" , bean.getCollectionCount() + ""));
+//        btnCollectionCount.setChecked(iscoll);
+
+        btnCollectionCount.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                //b最开始是ture   ture------没收藏   false-----收藏
+                if (b) {
+                    String collStr = tvCollectionCount.getText().toString();
+                    int collAgo = Integer.parseInt(collStr);
+                    int collAfter = collAgo + 1;
+                    tvCollectionCount.setText(collAfter + "");
+///222
+//                    SharedPreferences.Editor editor = getContext().getSharedPreferences("section_menu_d" , Context.MODE_PRIVATE).edit();
+//                    editor.putBoolean("isCollection" , b );
+//                    editor.putString("collectionCount" , collAfter+"" );
+//                    editor.commit();
+
+                } else {
+                    String collStr = tvCollectionCount.getText().toString();
+                    int collAgo = Integer.parseInt(collStr);
+                    int collAfter = collAgo - 1;
+                    tvCollectionCount.setText(collAfter + "");
+//333
+//                    SharedPreferences.Editor editor = getContext().getSharedPreferences("section_menu_d" , Context.MODE_PRIVATE).edit();
+//                    editor.putBoolean("isCollection" , b );
+//                    editor.putString("collectionCount" , collAfter+"" );
+//                    editor.commit();
+
+                }
+            }
+        });
 
     }
 
@@ -82,13 +136,6 @@ public class SelectionDetailFragment extends BaseFragment {
     }
 
     private void animatethepicture() {
-
-//        ObjectAnimator animtionX = ObjectAnimator.ofFloat(ivFeed, "scaleX", 1, 1.05f ,1).ofFloat(ivFeed, "scaleY", 1, 1.05f ,1);
-//        animtionX.setRepeatCount(-1);
-//        animtionX.setDuration(5000);
-//        animtionX.start();
-
-
 
         AnimatorSet set = new AnimatorSet();
         set.playTogether(
@@ -132,7 +179,7 @@ public class SelectionDetailFragment extends BaseFragment {
 
     private void initMyData() {
         Bundle bundle = getArguments();
-        SelctionDeatailBeanParcelable bean = new SelctionDeatailBeanParcelable();
+        bean = new SelctionDeatailBeanParcelable();
         bean = bundle.getParcelable("detail_data_bean_d");
         Glide.with(getContext()).load(bean.getImageFeed()).into(ivFeed);
         tvTitle.setText(bean.getTitle());
@@ -142,6 +189,15 @@ public class SelectionDetailFragment extends BaseFragment {
         tvCollectionCount.setText(bean.getCollectionCount() + "");
         tvShareCount.setText(bean.getShareCount() + "");
         tvReplyCount.setText(bean.getReplyCount() + "");
+        //Gilde.asBiemap.into(new Sim)  里面的resource就是那个结果
+        Glide.with(getContext()).load(bean.getBlurred())
+                .asBitmap().into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                ivBackgroundGauss.setImageBitmap(fastblur(getContext(), resource, 200));
+             }
+        });
+
     }
 
 
@@ -153,6 +209,209 @@ public class SelectionDetailFragment extends BaseFragment {
         SelectionDetailFragment fragment = new SelectionDetailFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    //高斯模糊   毛玻璃   传入东西实现高斯模糊
+    public Bitmap fastblur(Context context, Bitmap sentBitmap, int radius) {
+
+        Bitmap bitmap = sentBitmap.copy(sentBitmap.getConfig(), true);
+
+        if (radius < 1) {
+            return (null);
+        }
+
+        int w = bitmap.getWidth();
+        int h = bitmap.getHeight();
+
+        int[] pix = new int[w * h];
+        bitmap.getPixels(pix, 0, w, 0, 0, w, h);
+
+        int wm = w - 1;
+        int hm = h - 1;
+        int wh = w * h;
+        int div = radius + radius + 1;
+
+        int r[] = new int[wh];
+        int g[] = new int[wh];
+        int b[] = new int[wh];
+        int rsum, gsum, bsum, x, y, i, p, yp, yi, yw;
+        int vmin[] = new int[Math.max(w, h)];
+
+        int divsum = (div + 1) >> 1;
+        divsum *= divsum;
+        int temp = 256 * divsum;
+        int dv[] = new int[temp];
+        for (i = 0; i < temp; i++) {
+            dv[i] = (i / divsum);
+        }
+
+        yw = yi = 0;
+
+        int[][] stack = new int[div][3];
+        int stackpointer;
+        int stackstart;
+        int[] sir;
+        int rbs;
+        int r1 = radius + 1;
+        int routsum, goutsum, boutsum;
+        int rinsum, ginsum, binsum;
+
+        for (y = 0; y < h; y++) {
+            rinsum = ginsum = binsum = routsum = goutsum = boutsum = rsum = gsum = bsum = 0;
+            for (i = -radius; i <= radius; i++) {
+                p = pix[yi + Math.min(wm, Math.max(i, 0))];
+                sir = stack[i + radius];
+                sir[0] = (p & 0xff0000) >> 16;
+                sir[1] = (p & 0x00ff00) >> 8;
+                sir[2] = (p & 0x0000ff);
+                rbs = r1 - Math.abs(i);
+                rsum += sir[0] * rbs;
+                gsum += sir[1] * rbs;
+                bsum += sir[2] * rbs;
+                if (i > 0) {
+                    rinsum += sir[0];
+                    ginsum += sir[1];
+                    binsum += sir[2];
+                } else {
+                    routsum += sir[0];
+                    goutsum += sir[1];
+                    boutsum += sir[2];
+                }
+            }
+            stackpointer = radius;
+
+            for (x = 0; x < w; x++) {
+
+                r[yi] = dv[rsum];
+                g[yi] = dv[gsum];
+                b[yi] = dv[bsum];
+
+                rsum -= routsum;
+                gsum -= goutsum;
+                bsum -= boutsum;
+
+                stackstart = stackpointer - radius + div;
+                sir = stack[stackstart % div];
+
+                routsum -= sir[0];
+                goutsum -= sir[1];
+                boutsum -= sir[2];
+
+                if (y == 0) {
+                    vmin[x] = Math.min(x + radius + 1, wm);
+                }
+                p = pix[yw + vmin[x]];
+
+                sir[0] = (p & 0xff0000) >> 16;
+                sir[1] = (p & 0x00ff00) >> 8;
+                sir[2] = (p & 0x0000ff);
+
+                rinsum += sir[0];
+                ginsum += sir[1];
+                binsum += sir[2];
+
+                rsum += rinsum;
+                gsum += ginsum;
+                bsum += binsum;
+
+                stackpointer = (stackpointer + 1) % div;
+                sir = stack[(stackpointer) % div];
+
+                routsum += sir[0];
+                goutsum += sir[1];
+                boutsum += sir[2];
+
+                rinsum -= sir[0];
+                ginsum -= sir[1];
+                binsum -= sir[2];
+
+                yi++;
+            }
+            yw += w;
+        }
+        for (x = 0; x < w; x++) {
+            rinsum = ginsum = binsum = routsum = goutsum = boutsum = rsum = gsum = bsum = 0;
+            yp = -radius * w;
+            for (i = -radius; i <= radius; i++) {
+                yi = Math.max(0, yp) + x;
+
+                sir = stack[i + radius];
+
+                sir[0] = r[yi];
+                sir[1] = g[yi];
+                sir[2] = b[yi];
+
+                rbs = r1 - Math.abs(i);
+
+                rsum += r[yi] * rbs;
+                gsum += g[yi] * rbs;
+                bsum += b[yi] * rbs;
+
+                if (i > 0) {
+                    rinsum += sir[0];
+                    ginsum += sir[1];
+                    binsum += sir[2];
+                } else {
+                    routsum += sir[0];
+                    goutsum += sir[1];
+                    boutsum += sir[2];
+                }
+
+                if (i < hm) {
+                    yp += w;
+                }
+            }
+            yi = x;
+            stackpointer = radius;
+            for (y = 0; y < h; y++) {
+                pix[yi] = (0xff000000 & pix[yi]) | (dv[rsum] << 16)
+                        | (dv[gsum] << 8) | dv[bsum];
+
+                rsum -= routsum;
+                gsum -= goutsum;
+                bsum -= boutsum;
+
+                stackstart = stackpointer - radius + div;
+                sir = stack[stackstart % div];
+
+                routsum -= sir[0];
+                goutsum -= sir[1];
+                boutsum -= sir[2];
+
+                if (x == 0) {
+                    vmin[y] = Math.min(y + r1, hm) * w;
+                }
+                p = x + vmin[y];
+
+                sir[0] = r[p];
+                sir[1] = g[p];
+                sir[2] = b[p];
+
+                rinsum += sir[0];
+                ginsum += sir[1];
+                binsum += sir[2];
+
+                rsum += rinsum;
+                gsum += ginsum;
+                bsum += binsum;
+
+                stackpointer = (stackpointer + 1) % div;
+                sir = stack[stackpointer];
+
+                routsum += sir[0];
+                goutsum += sir[1];
+                boutsum += sir[2];
+
+                rinsum -= sir[0];
+                ginsum -= sir[1];
+                binsum -= sir[2];
+
+                yi += w;
+            }
+        }
+
+        bitmap.setPixels(pix, 0, w, 0, 0, w, h);
+        return (bitmap);
     }
 
 

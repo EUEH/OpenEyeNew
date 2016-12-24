@@ -25,7 +25,7 @@ public class SelectionFragment extends BaseFragment {
     private ListView ls;
     private SelectionAdapter myAdapter;
     private String urlSelection;
-    private View viewHead;
+    private View viewBack;
     private ImageView ivHeadView;
 
     @Override
@@ -38,8 +38,8 @@ public class SelectionFragment extends BaseFragment {
         ls = (ListView) view.findViewById(R.id.ls_selection_fragment);
         myAdapter = new SelectionAdapter(getContext());
         urlSelection = "http://baobab.kaiyanapp.com/api/v4/tabs/selected?udid=a9b538d2cddb40e5abd2424fb94941fedcabfe04&vc=152&vn=3.0.1&deviceModel=Google%20Nexus%205%20-%205.1.0%20-%20API%2022%20-%201080x1920&first_channel=eyepetizer_wandoujia_market&last_channel=eyepetizer_wandoujia_market&system_version_code=22";
-        viewHead = LayoutInflater.from(getContext()).inflate(R.layout.headview_selection_fragment, null);
-        ivHeadView = (ImageView) viewHead.findViewById(R.id.iv_headview_selection_fragment_d);
+        viewBack = LayoutInflater.from(getContext()).inflate(R.layout.headview_selection_fragment, null);
+        ivHeadView = (ImageView) viewBack.findViewById(R.id.iv_headview_selection_fragment_d);
     }
 
 
@@ -51,12 +51,13 @@ public class SelectionFragment extends BaseFragment {
         addLsHeadView();
 
 
+
     }
 
 
 
     private void addLsHeadView() {
-        ls.addHeaderView(viewHead);
+        ls.addHeaderView(viewBack);
         ivHeadView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

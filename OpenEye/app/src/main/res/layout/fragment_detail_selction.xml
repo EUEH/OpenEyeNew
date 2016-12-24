@@ -35,7 +35,23 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/selection_detail_background_d"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#00000000">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="83dp"
@@ -189,5 +205,11 @@
             android:textSize="12dp" />
 
     </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    </RelativeLayout>
 
 </LinearLayout>
