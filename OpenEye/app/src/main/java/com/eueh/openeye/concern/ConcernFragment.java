@@ -52,9 +52,10 @@ public class ConcernFragment extends BaseFragment implements View.OnClickListene
         NetTool.getInstance().startRequest(CONCERN_URL, ConcernBean.class, new onHttpCallback<ConcernBean>() {
             @Override
             public void onSuccess(ConcernBean response) {
-                List<ConcernBean.ItemListBeanX> list = response.getItemList();
+                final List<ConcernBean.ItemListBeanX> list = response.getItemList();
                 concernAdapter.setList(list);
                 lvConcernF.setAdapter(concernAdapter);
+
             }
 
             @Override

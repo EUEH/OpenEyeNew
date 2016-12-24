@@ -2,7 +2,6 @@ package com.eueh.openeye.selection.selection_main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -174,7 +173,6 @@ public class SelectionAdapter extends BaseAdapter {
                 //最常见的
 
                 Glide.with(context).load(data.getItemList().get(i).getData().getCover().getFeed()).into(holderVideo.ivCover);
-
                 holderVideo.tvTitle.setText(data.getItemList().get(i).getData().getTitle());
                 holderVideo.tvCategory.setText("#" + data.getItemList().get(i).getData().getCategory() + "   /");
                 Long titimi = (long) data.getItemList().get(i).getData().getReleaseTime()  ;

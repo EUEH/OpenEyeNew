@@ -1,20 +1,13 @@
 package com.eueh.openeye.selection.selection_detail;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 
 import com.eueh.openeye.R;
-import com.eueh.openeye.base.BaseActivity;
 import com.eueh.openeye.utils.NetTool;
 import com.eueh.openeye.utils.onHttpCallback;
-
-import java.util.ArrayList;
 
 public class SelectionDetailActivity extends FragmentActivity {
     private String url;

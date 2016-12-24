@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="209dp"
-    android:orientation="vertical">
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="209dp">
 
     <ImageView
-        android:id="@+id/iv_item_time_feed_f"
+        android:id="@+id/iv_item_share_feed_f"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY" />
 
     <TextView
-        android:id="@+id/tv_item_time_title_f"
+        android:id="@+id/tv_item_share_title_f"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -21,7 +20,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tv_item_time_category_f"
+        android:id="@+id/tv_item_share_category_f"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="137dp"
@@ -30,7 +29,7 @@
         android:textSize="12dp" />
 
     <TextView
-        android:id="@+id/tv_item_time_latest_release_time_f"
+        android:id="@+id/tv_item_share_latest_release_share_f"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="189dp"
@@ -39,10 +38,10 @@
         android:textSize="12dp" />
 
     <TextView
-        android:id="@+id/tv_item_time_name_f"
+        android:id="@+id/tv_item_share_name_f"
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:gravity="center"
         android:textColor="#ffffff"
-        android:layout_below="@+id/tv_item_time_latest_release_time_f"/>
+        android:layout_below="@+id/tv_item_share_latest_release_share_f"/>
 </RelativeLayout>

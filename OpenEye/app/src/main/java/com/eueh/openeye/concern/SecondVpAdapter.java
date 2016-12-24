@@ -3,7 +3,6 @@ package com.eueh.openeye.concern;
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +42,6 @@ public class SecondVpAdapter extends PagerAdapter implements ViewPager.OnPageCha
 
     public SecondVpAdapter setList(List<ConcernBean.ItemListBeanX.DataBeanX.ItemListBean> list) {
         this.list = list;
-        Log.d("--------------", "list.size():" + list.size());
         notifyDataSetChanged();
         return this;
     }
@@ -71,7 +69,7 @@ public class SecondVpAdapter extends PagerAdapter implements ViewPager.OnPageCha
         String min = TimeConversion.conversionTime(list.get(position % list.size()).getData().getReleaseTime()).substring(14, 19);
         tvReleaseTimeF.setText(min);
         container.addView(view);
-//        viewPager.addOnPageChangeListener(this);
+        viewPager.addOnPageChangeListener(this);
         return view;
     }
 
@@ -89,7 +87,6 @@ public class SecondVpAdapter extends PagerAdapter implements ViewPager.OnPageCha
 
     @Override
     public void onPageSelected(int position) {
-        Log.d("SecondVpAdapter", "123:" + 123);
         int a = position % list.size();
         for (ConcernPointF point : points) {
             point.setSelected(false);

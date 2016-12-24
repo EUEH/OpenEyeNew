@@ -10,8 +10,6 @@ import java.util.List;
 
 public class SelectionDetailBean {
 
-
-
     private String nextPageUrl;
     private long nextPublishTime;
     private String newestIssueType;

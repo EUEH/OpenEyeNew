@@ -10,7 +10,7 @@
         android:layout_marginTop="10dp"
         android:id="@+id/ll_item_first_f">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/item_iv_first_icon_f"
             android:layout_width="80dp"
             android:layout_height="match_parent" />

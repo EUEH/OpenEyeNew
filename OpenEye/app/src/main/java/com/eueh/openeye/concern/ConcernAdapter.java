@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,6 +19,8 @@ import com.eueh.openeye.concern.concerndetails.concerntitle.ConcernTitleActivity
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by 陈小飞 on 16/12/20.
@@ -165,14 +166,14 @@ public class ConcernAdapter extends BaseAdapter {
 
     private class ConcernViewHolderFirst {
 
-        private final ImageView firstIconF;
+        private final CircleImageView firstIconF;
         private final TextView firstTitleF;
         private final TextView firstDescriptionF;
         private final RecyclerView rvConcernF;
         private final LinearLayout ll;
 
         public ConcernViewHolderFirst(View view) {
-            firstIconF = (ImageView) view.findViewById(R.id.item_iv_first_icon_f);
+            firstIconF = (CircleImageView) view.findViewById(R.id.item_iv_first_icon_f);
             firstTitleF = (TextView) view.findViewById(R.id.item_tv_first_header_title_f);
             firstDescriptionF = (TextView) view.findViewById(R.id.item_tv_first_header_description_f);
             rvConcernF = (RecyclerView) view.findViewById(R.id.rv_item_concern);

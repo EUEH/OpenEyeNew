@@ -41,7 +41,7 @@ public class ConcernRvAdapter extends RecyclerView.Adapter<ConcernRvAdapter.Conc
     }
 
     @Override
-    public void onBindViewHolder(ConcernViewHolder holder, int position) {
+    public void onBindViewHolder(ConcernViewHolder holder, final int position) {
         holder.tvConcernRvCategoryF.setText("#" + list.get(position).getData().getCategory() + "    /");
         holder.tvConcernRvTitleF.setText(list.get(position).getData().getTitle());
         String min = TimeConversion.conversionTime(list.get(position).getData().getReleaseTime()).substring(14, 19);
@@ -51,6 +51,7 @@ public class ConcernRvAdapter extends RecyclerView.Adapter<ConcernRvAdapter.Conc
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, ConcernImageActivity.class);
+                intent.putExtra("position", position);
                 context.startActivity(intent);
             }
         });

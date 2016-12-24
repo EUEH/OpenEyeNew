@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,10 +29,11 @@ public class ConcernTitleActivity extends BaseActivity implements View.OnClickLi
     private TextView nameF;
     private TextView briefF;
     private TextView descriptionF;
-    private String FRONT_URL = "http://baobab.kaiyanapp.com/api/v3/pgc/videos?pgcId=";
-    private String BACK_URL = "&strategy=date&udid=67c75fadad7140dd8d3d3c40cf87685971fd4523&vc=152&vn=3.0.1&deviceModel=Google%20Nexus%205%20-%205.1.0%20-%20API%2022%20-%201080x1920&first_channel=eyepetizer_wandoujia_market&last_channel=eyepetizer_wandoujia_market&system_version_code=22";
-    private int id;
-    private String url;
+    private static  String FRONT_URL = "http://baobab.kaiyanapp.com/api/v3/pgc/videos?pgcId=";
+    private static String BACK_URL = "&strategy=date&udid=67c75fadad7140dd8d3d3c40cf87685971fd4523&vc=152&vn=3.0.1&deviceModel=Google%20Nexus%205%20-%205.1.0%20-%20API%2022%20-%201080x1920&first_channel=eyepetizer_wandoujia_market&last_channel=eyepetizer_wandoujia_market&system_version_code=22";
+    public static int id;
+    public static String url;
+    private ConcernTitleVpAdapter vpAdapter;
 
 
     @Override
@@ -60,19 +60,17 @@ public class ConcernTitleActivity extends BaseActivity implements View.OnClickLi
         url = FRONT_URL + id + BACK_URL;
 
         ArrayList<Fragment> arrayList = new ArrayList<>();
-        arrayList.add(new TimeFragment());
-        arrayList.add(new ShareFragment());
-        ConcernTitleVpAdapter vpAdapter = new ConcernTitleVpAdapter(getSupportFragmentManager());
+        arrayList.add(new ConcernTimeFragment());
+        arrayList.add(new ConcernShareFragment());
+        vpAdapter = new ConcernTitleVpAdapter(getSupportFragmentManager());
+        tabF.setupWithViewPager(vpF);
         vpAdapter.setArrayList(arrayList);
         vpF.setAdapter(vpAdapter);
-        tabF.setupWithViewPager(vpF);
     }
 
     private void getId() {
         Intent intent = getIntent();
-        id = intent.getIntExtra("id",200);
-
-        Log.d("ConcernTitleActivity", "id:" + id);
+        id = intent.getIntExtra("id", 200);
     }
 
     @Override
@@ -99,7 +97,7 @@ public class ConcernTitleActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.iv_activity_title_back_f:
                 finish();
                 break;

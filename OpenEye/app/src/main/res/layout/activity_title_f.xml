@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -11,58 +13,105 @@
             android:id="@+id/iv_activity_title_back_f"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@mipmap/ic_action_back"/>
+            android:src="@mipmap/ic_action_back" />
 
         <ImageView
             android:id="@+id/iv_activity_title_share_f"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:src="@mipmap/ic_action_share_grey"/>
+            android:src="@mipmap/ic_action_share_grey" />
     </RelativeLayout>
 
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:id="@+id/iv_activity_title_icon_f"/>
-    <TextView
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:gravity="center"
-        android:id="@+id/tv_activity_title_name_f"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:gravity="center"
-        android:id="@+id/tv_activity_title_brief_f"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_activity_title_follow_f"
-        android:layout_width="50dp"
-        android:layout_height="20dp"
-        android:text="+ 关注"
-        android:layout_gravity="center"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:gravity="center"
-        android:id="@+id/tv_activity_title_description_f"/>
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <android.support.design.widget.TabLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:id="@+id/tab_activity_title_f">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    </android.support.design.widget.TabLayout>
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_activity_title_f"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp" />
+            </LinearLayout>
 
-    <android.support.v4.view.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/vp_activity_title_f">
-    </android.support.v4.view.ViewPager>
+        </android.support.v4.widget.NestedScrollView>
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="230dp">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="#fff"
+                app:collapsedTitleGravity="right"
+                app:expandedTitleGravity="left|bottom"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed|exitUntilCollapsed">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_activity_title_icon_f"
+                        android:layout_width="80dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center" />
+
+                    <TextView
+                        android:id="@+id/tv_activity_title_name_f"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/tv_activity_title_brief_f"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/tv_activity_title_follow_f"
+                        android:layout_width="50dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:text="+ 关注" />
+
+                    <TextView
+                        android:id="@+id/tv_activity_title_description_f"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center" />
+                </LinearLayout>
+
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_activity_title_f"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#fff">
+
+            </android.support.design.widget.TabLayout>
+        </android.support.design.widget.AppBarLayout>
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
 </LinearLayout>
