@@ -1,6 +1,10 @@
 [
     {
+<<<<<<< HEAD
         "outputFile": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values/values.xml",
+=======
+        "outputFile": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values/values.xml",
+>>>>>>> feature/AAAA陈小飞
         "map": [
             {
                 "to": {
@@ -11,7 +15,7 @@
                     "endOffset": 1719
                 },
                 "from": {
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
+                    "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
@@ -30,7 +34,7 @@
                     "endOffset": 1783
                 },
                 "from": {
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
+                    "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,
@@ -49,7 +53,7 @@
                     "endOffset": 1838
                 },
                 "from": {
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
+                    "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,
@@ -68,7 +72,7 @@
                     "endOffset": 1895
                 },
                 "from": {
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
+                    "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
@@ -87,7 +91,7 @@
                     "endOffset": 1950
                 },
                 "from": {
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
+                    "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
@@ -106,7 +110,7 @@
                     "endOffset": 1988
                 },
                 "from": {
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
+                    "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 21,
                         "startColumn": 4,
@@ -125,7 +129,7 @@
                     "endOffset": 2028
                 },
                 "from": {
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
+                    "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 22,
                         "startColumn": 4,
@@ -144,7 +148,7 @@
                     "endOffset": 2065
                 },
                 "from": {
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
+                    "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 23,
                         "startColumn": 4,
@@ -163,7 +167,7 @@
                     "endOffset": 2167
                 },
                 "from": {
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
+                    "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 24,
                         "startColumn": 4,
@@ -182,7 +186,7 @@
                     "endOffset": 2281
                 },
                 "from": {
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
+                    "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 25,
                         "startColumn": 4,
@@ -201,7 +205,7 @@
                     "endOffset": 2389
                 },
                 "from": {
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
+                    "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 26,
                         "startColumn": 4,
@@ -220,7 +224,7 @@
                     "endOffset": 2461
                 },
                 "from": {
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
+                    "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 27,
                         "startColumn": 4,
@@ -239,7 +243,7 @@
                     "endOffset": 2531
                 },
                 "from": {
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
+                    "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 28,
                         "startColumn": 4,
@@ -258,7 +262,7 @@
                     "endOffset": 2609
                 },
                 "from": {
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
+                    "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 29,
                         "startColumn": 4,

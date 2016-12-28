@@ -19,14 +19,14 @@ import java.util.List;
  */
 
 public class ConcernTimeLvAdapter extends BaseAdapter{
-    List<ConcernTitleBean.ItemListBean> list;
+    List<ConcernItemBean.ItemListBean> list;
     Context context;
 
     public ConcernTimeLvAdapter(Context context) {
         this.context = context;
     }
 
-    public ConcernTimeLvAdapter setList(List<ConcernTitleBean.ItemListBean> list) {
+    public ConcernTimeLvAdapter setList(List<ConcernItemBean.ItemListBean> list) {
         this.list = list;
         notifyDataSetChanged();
         return this;
