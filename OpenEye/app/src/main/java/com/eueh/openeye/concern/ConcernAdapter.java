@@ -164,6 +164,8 @@ public class ConcernAdapter extends BaseAdapter {
         first.rvConcernF.setAdapter(rvAdapter);
     }
 
+
+
     private class ConcernViewHolderFirst {
 
         private final CircleImageView firstIconF;
