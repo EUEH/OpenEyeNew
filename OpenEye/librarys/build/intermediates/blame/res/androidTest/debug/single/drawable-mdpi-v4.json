@@ -4,12 +4,20 @@
         "source": "/Users/lishuo/课程/my/A段/0301班级/A段答辩/浦晏铭/AutoHome/librarys/build/intermediates/bundles/debug/res/drawable-mdpi-v4/default_ptr_flip.png"
     },
     {
+        "merged": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/default_ptr_rotate.png",
+        "source": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/drawable-mdpi-v4/default_ptr_rotate.png"
+    },
+    {
         "merged": "/Users/dllo/Desktop/A段答辩/浦晏铭/AutoHome/librarys/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/default_ptr_rotate.png",
         "source": "/Users/dllo/Desktop/A段答辩/浦晏铭/AutoHome/librarys/build/intermediates/bundles/debug/res/drawable-mdpi-v4/default_ptr_rotate.png"
     },
     {
         "merged": "/Users/dllo/Desktop/A段答辩/浦晏铭/AutoHome/librarys/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/indicator_arrow.png",
         "source": "/Users/dllo/Desktop/A段答辩/浦晏铭/AutoHome/librarys/build/intermediates/bundles/debug/res/drawable-mdpi-v4/indicator_arrow.png"
+    },
+    {
+        "merged": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/indicator_arrow.png",
+        "source": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/drawable-mdpi-v4/indicator_arrow.png"
     },
     {
         "merged": "/Users/dllo/Desktop/AutoHome/librarys/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/indicator_arrow.png",
@@ -34,6 +42,10 @@
     {
         "merged": "/Users/dllo/Desktop/AutoHome/librarys/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/default_ptr_rotate.png",
         "source": "/Users/dllo/Desktop/AutoHome/librarys/build/intermediates/bundles/debug/res/drawable-mdpi-v4/default_ptr_rotate.png"
+    },
+    {
+        "merged": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/default_ptr_flip.png",
+        "source": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/drawable-mdpi-v4/default_ptr_flip.png"
     },
     {
         "merged": "/Users/lishuo/课程/my/A段/0301班级/A段答辩/浦晏铭/AutoHome/librarys/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/default_ptr_rotate.png",
