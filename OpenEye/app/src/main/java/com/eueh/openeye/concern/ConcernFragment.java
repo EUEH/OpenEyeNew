@@ -98,6 +98,7 @@ public class ConcernFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onLoadMore() {
 
+        //0.0..
         num += 2;
         NetTool.getInstance().startRequest(url, ConcernBean.class, new onHttpCallback<ConcernBean>() {
             @Override
