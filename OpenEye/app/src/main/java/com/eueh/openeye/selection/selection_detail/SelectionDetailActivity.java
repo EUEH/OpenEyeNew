@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 
 import com.eueh.openeye.R;
 import com.eueh.openeye.utils.NetTool;
 import com.eueh.openeye.utils.onHttpCallback;
 
-public class SelectionDetailActivity extends FragmentActivity {
+public class SelectionDetailActivity extends AppCompatActivity {
     private String url;
     private SelectionDetailAdapter myAdapter;
     private ViewPager vp ;
@@ -39,7 +40,7 @@ public class SelectionDetailActivity extends FragmentActivity {
 ////////////////////////在这里面改变  把传过来的位置的值设置上 需要写在设置适配器之后
                 Intent intent = getIntent() ;
                 int vpItem = intent.getIntExtra("selection_viewpager_item_d" , 1 );
-                vp.setCurrentItem(vp.getCurrentItem()+vpItem);
+                vp.setCurrentItem(vp.getCurrentItem()+vpItem-1);
 
             }
 

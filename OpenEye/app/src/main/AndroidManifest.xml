@@ -18,19 +18,22 @@
             </intent-filter>
         </activity>
         <activity android:name=".selection.SelectionHeadActivity" />
-
-        <activity android:name=".selection.selection_detail.SelectionDetailActivity"
-            android:theme="@style/myTransparent"
-            />
-        <activity android:name=".selection.SelectionDailySelectActivity"></activity>
-        <activity android:name=".concern.concerndetails.concerntitle.ConcernTitleActivity"/>
-        <activity android:name=".concern.concerndetails.concernimage.ConcernImageActivity"/>
-
+        <activity
+            android:name=".selection.selection_detail.SelectionDetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity android:name=".selection.SelectionDailySelectActivity" />
+        <activity android:name=".concern.concerndetails.concerntitle.ConcernTitleActivity" />
+        <activity android:name=".concern.concerndetails.concernimage.ConcernImageActivity" />
         <activity android:name=".find.detailheadbanner.FindDetailHeadBannerActivity" />
         <activity android:name=".find.detailrechot.FindDetailHotActivity" />
         <activity android:name=".find.detailhotmid.FindDetailHotMidActivity" />
-        <activity android:name=".find.detailhotbot.FindDetailHotBotActivity"></activity>
-
+        <activity android:name=".find.detailhotbot.FindDetailHotBotActivity" />
+        <activity
+            android:name=".find.finddetailplayer.FindDetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity android:name=".search.SearchActivity"></activity>
     </application>
 
 </manifest>

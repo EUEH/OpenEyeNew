@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,6 +18,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,12 +28,22 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.eueh.openeye.R;
 import com.eueh.openeye.base.BaseFragment;
 
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
+
+import static android.content.Context.SENSOR_SERVICE;
+
 /**
  * Created by 陈焕栋 on 16/12/22.
  */
 
 public class SelectionDetailFragment extends BaseFragment {
-    private ImageView ivFeed;
+   // private ImageView ivFeed;
+    private JCVideoPlayerStandard ivFeed;
+
+    private JCVideoPlayer.JCAutoFullscreenListener sensorEventListener;
+    private SensorManager sensorManager;
+
     private TextView tvTitle, tvCategor, tvReleaseTime, tvDescription,
             tvCollectionCount, tvShareCount, tvReplyCount;
 
@@ -51,7 +64,14 @@ public class SelectionDetailFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
-        ivFeed = (ImageView) view.findViewById(R.id.iv_detail_fragment_feed_d);
+
+
+        sensorManager = (SensorManager) getContext().getSystemService(SENSOR_SERVICE);
+        sensorEventListener = new JCVideoPlayer.JCAutoFullscreenListener();
+
+    //    ivFeed = (ImageView) view.findViewById(R.id.iv_detail_fragment_feed_d);
+
+        ivFeed = (JCVideoPlayerStandard) view.findViewById(R.id.iv_detail_fragment_feed_d);
         tvTitle = (TextView) view.findViewById(R.id.tv_detail_fragment_title_d);
         tvCategor = (TextView) view.findViewById(R.id.tv_detail_fragment_categor_d);
         tvReleaseTime = (TextView) view.findViewById(R.id.tv_detail_fragment_releaseTime_d);
@@ -60,7 +80,7 @@ public class SelectionDetailFragment extends BaseFragment {
         tvShareCount = (TextView) view.findViewById(R.id.tv_detail_fragment_shareCount_d);
         tvReplyCount = (TextView) view.findViewById(R.id.tv_detail_fragment_replyCount_d);
         isPlay = false;
-        btnBack = (Button) view.findViewById(R.id.btn_detail_fragment_back_d);
+        //btnBack = (Button) view.findViewById(R.id.btn_detail_fragment_back_d);
         btnCollectionCount = (CheckBox) view.findViewById(R.id.btn_detail_fragment_collectionCount_d);
         isCollectionCount = false;
         ivBackgroundGauss = (ImageView) view.findViewById(R.id.selection_detail_background_d);
@@ -124,15 +144,15 @@ public class SelectionDetailFragment extends BaseFragment {
     }
 
     private void cliBack() {
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //getContext不行  getActivity才可以
-                getActivity().finish();
-
-
-            }
-        });
+//        btnBack.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //getContext不行  getActivity才可以
+//                getActivity().finish();
+//
+//
+//            }
+//        });
     }
 
     private void animatethepicture() {
@@ -181,7 +201,10 @@ public class SelectionDetailFragment extends BaseFragment {
         Bundle bundle = getArguments();
         bean = new SelctionDeatailBeanParcelable();
         bean = bundle.getParcelable("detail_data_bean_d");
-        Glide.with(getContext()).load(bean.getImageFeed()).into(ivFeed);
+   //     Glide.with(getContext()).load(bean.getImageFeed()).into(ivFeed);
+
+        ivFeed.setUp(bean.getPalyUrl(),ivFeed.SCREEN_LAYOUT_NORMAL,bean.getTitle());
+
         tvTitle.setText(bean.getTitle());
         tvCategor.setText("#" + bean.getCategory() + "  /");
         tvReleaseTime.setText(bean.getReleaseTime() + "");
@@ -190,13 +213,18 @@ public class SelectionDetailFragment extends BaseFragment {
         tvShareCount.setText(bean.getShareCount() + "");
         tvReplyCount.setText(bean.getReplyCount() + "");
         //Gilde.asBiemap.into(new Sim)  里面的resource就是那个结果
-        Glide.with(getContext()).load(bean.getBlurred())
-                .asBitmap().into(new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                ivBackgroundGauss.setImageBitmap(fastblur(getContext(), resource, 50));
-             }
-        });
+//        Glide.with(getContext()).load(bean.getBlurred())
+//                .asBitmap().into(new SimpleTarget<Bitmap>() {
+//            @Override
+//            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+//                ivBackgroundGauss.setImageBitmap(fastblur(getContext(), resource, 50));
+//             }
+//        });
+
+        Glide.with(getContext()).load(bean.getBlurred()).into(ivBackgroundGauss);
+
+        ivFeed.thumbImageView.setMaxWidth(LinearLayout.LayoutParams.MATCH_PARENT);
+        Glide.with(getContext()).load(bean.getImageFeed()).into(ivFeed.thumbImageView);
 
     }
 
@@ -414,5 +442,19 @@ public class SelectionDetailFragment extends BaseFragment {
         return (bitmap);
     }
 
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        JCVideoPlayer.releaseAllVideos();
+        sensorManager.unregisterListener(sensorEventListener);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Sensor accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorManager.registerListener(sensorEventListener, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+    }
 
 }
