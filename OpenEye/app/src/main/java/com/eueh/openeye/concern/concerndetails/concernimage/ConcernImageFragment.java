@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.eueh.openeye.R;
 import com.eueh.openeye.base.BaseFragment;
+import com.eueh.openeye.concern.ConcernBean;
 import com.eueh.openeye.concern.TimeConversion;
 import com.eueh.openeye.utils.NetTool;
 import com.eueh.openeye.utils.onHttpCallback;
@@ -23,6 +25,7 @@ import com.eueh.openeye.utils.onHttpCallback;
 public class ConcernImageFragment extends BaseFragment implements View.OnClickListener {
 
     private static String urlme;
+    private static String rvUrl;
     private ImageView ivFeedF;
     private TextView tvTitleF;
     private TextView tvCategoryF;
@@ -31,14 +34,19 @@ public class ConcernImageFragment extends BaseFragment implements View.OnClickLi
     private TextView tvCollectionCountF;
     private TextView tvShareCountF;
     private TextView tvReplyCountF;
-    private static int pos;
+
     private boolean isPlay;
     private Handler handler;
     private ImageView ivBackF;
     private ImageView ivBackgroundF;
 
+
+    private int a;
+    private static ConcernBean.ItemListBeanX.DataBeanX.ItemListBean data;
+
     @Override
     public int setLayout() {
+
         return R.layout.fragment_concern_image_f;
     }
 
@@ -59,9 +67,29 @@ public class ConcernImageFragment extends BaseFragment implements View.OnClickLi
 
     @Override
     public void initData() {
-        getData();
+        Bundle bundle = getArguments();
+        a = bundle.getInt("key");
+        data = bundle.getParcelable("data");
+
         //图片变大变小
         getChange();
+        if (urlme == null){
+            setView();
+        }else {
+            getData();
+        }
+    }
+
+    private void setView() {
+        Glide.with(getContext()).load(data.getData().getCover().getFeed()).into(ivFeedF);
+        Glide.with(getActivity()).load(data.getData().getCover().getBlurred()).into(ivBackgroundF);
+        tvTitleF.setText(data.getData().getTitle());
+        tvCategoryF.setText("#" + data.getData().getCategory());
+        tvReleaseTimeF.setText(TimeConversion.conversionTime(data.getData().getReleaseTime()).substring(14, 19));
+        tvDescriptionF.setText(data.getData().getDescription());
+        tvCollectionCountF.setText(data.getData().getConsumption().getCollectionCount()+"");
+        tvShareCountF.setText(data.getData().getConsumption().getShareCount()+"");
+        tvReplyCountF.setText(data.getData().getConsumption().getReplyCount()+"");
     }
 
     private void getChange() {
@@ -105,30 +133,40 @@ public class ConcernImageFragment extends BaseFragment implements View.OnClickLi
     }
 
     private void getData() {
-        NetTool.getInstance().startRequest(urlme, ConcernImageBean.class, new onHttpCallback<ConcernImageBean>() {
-            @Override
-            public void onSuccess(ConcernImageBean response) {
-                Glide.with(getActivity()).load(response.getItemList().get(pos).getData().getCover().getFeed()).into(ivFeedF);
-                Glide.with(getActivity()).load(response.getItemList().get(pos).getData().getCover().getBlurred()).into(ivBackgroundF);
-                tvTitleF.setText(response.getItemList().get(pos).getData().getTitle());
-                tvCategoryF.setText("#" + response.getItemList().get(pos).getData().getCategory());
-                tvReleaseTimeF.setText(TimeConversion.conversionTime(response.getItemList().get(pos).getData().getReleaseTime()).substring(14, 19));
-                tvDescriptionF.setText(response.getItemList().get(pos).getData().getDescription());
-                tvCollectionCountF.setText(response.getItemList().get(pos).getData().getConsumption().getCollectionCount()+"");
-                tvShareCountF.setText(response.getItemList().get(pos).getData().getConsumption().getShareCount()+"");
-                tvReplyCountF.setText(response.getItemList().get(pos).getData().getConsumption().getReplyCount()+"");
-            }
 
-            @Override
-            public void onError(Throwable e) {
 
-            }
-        });
+
+            NetTool.getInstance().startRequest(urlme, ConcernImageBean.class, new onHttpCallback<ConcernImageBean>() {
+                @Override
+                public void onSuccess(ConcernImageBean response) {
+                    Glide.with(getActivity()).load(response.getItemList().get(a).getData().getCover().getFeed()).into(ivFeedF);
+                    Glide.with(getActivity()).load(response.getItemList().get(a).getData().getCover().getBlurred()).into(ivBackgroundF);
+                    tvTitleF.setText(response.getItemList().get(a).getData().getTitle());
+                    tvCategoryF.setText("#" + response.getItemList().get(a).getData().getCategory());
+                    tvReleaseTimeF.setText(TimeConversion.conversionTime(response.getItemList().get(a).getData().getReleaseTime()).substring(14, 19));
+                    tvDescriptionF.setText(response.getItemList().get(a).getData().getDescription());
+                    tvCollectionCountF.setText(response.getItemList().get(a).getData().getConsumption().getCollectionCount()+"");
+                    tvShareCountF.setText(response.getItemList().get(a).getData().getConsumption().getShareCount()+"");
+                    tvReplyCountF.setText(response.getItemList().get(a).getData().getConsumption().getReplyCount()+"");
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+            });
+
+
     }
 
-    public static ConcernImageFragment newInstance(int position) {
+    public static ConcernImageFragment newInstance(int a) {
         Bundle args = new Bundle();
-        pos = ConcernImageAdapter.sendPos();
+
+        data = ConcernImageAdapter.getData(a);
+        Log.d("ConcernImageFragment", data.getData().getCover().getFeed());
+
+
+        args.putParcelable("data",data);
         ConcernImageFragment fragment = new ConcernImageFragment();
         fragment.setArguments(args);
         return fragment;
@@ -140,6 +178,9 @@ public class ConcernImageFragment extends BaseFragment implements View.OnClickLi
         return url;
     }
 
+
+
+
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -148,4 +189,7 @@ public class ConcernImageFragment extends BaseFragment implements View.OnClickLi
                 break;
         }
     }
+
+
+
 }

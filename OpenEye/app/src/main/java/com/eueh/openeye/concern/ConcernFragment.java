@@ -10,7 +10,9 @@ import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.eueh.openeye.R;
+import com.eueh.openeye.concern.author.ConcernAuthorActivity;
 import com.eueh.openeye.base.BaseFragment;
+import com.eueh.openeye.search.SearchActivity;
 import com.eueh.openeye.utils.NetTool;
 import com.eueh.openeye.utils.onHttpCallback;
 
@@ -60,6 +62,8 @@ public class ConcernFragment extends BaseFragment implements View.OnClickListene
     public void initData() {
         //解析数据
         getData();
+
+        ConcernRvAdapter.getConcernUrl(CONCERN_URL);
     }
 
     private void getData() {
@@ -83,29 +87,28 @@ public class ConcernFragment extends BaseFragment implements View.OnClickListene
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_concern_f:
-                Intent intent = new Intent();
+                Intent intent = new Intent(getActivity(), ConcernAuthorActivity.class);
+                startActivity(intent);
                 break;
             case R.id.iv_concern_search_f:
+                Intent intent1 = new Intent(getActivity(), SearchActivity.class);
+                startActivity(intent1);
                 break;
         }
     }
 
+
+
+    //刷新
     @Override
     public void onRefresh() {
-
-    }
-
-    @Override
-    public void onLoadMore() {
-
-        //0.0..
-        num += 2;
-        NetTool.getInstance().startRequest(url, ConcernBean.class, new onHttpCallback<ConcernBean>() {
+        //必须要写这个
+        swipeToLoadLayout.setRefreshing(false);
+        NetTool.getInstance().startRequest(CONCERN_URL, ConcernBean.class, new onHttpCallback<ConcernBean>() {
             @Override
             public void onSuccess(ConcernBean response) {
-//                List<ConcernBean.ItemListBeanX> list = response.getItemList();
+                list = response.getItemList();
                 concernAdapter.setList(list);
-                lvConcernF.setAdapter(concernAdapter);
             }
 
             @Override
@@ -114,4 +117,25 @@ public class ConcernFragment extends BaseFragment implements View.OnClickListene
             }
         });
     }
+
+    //加载
+    @Override
+    public void onLoadMore() {
+        swipeToLoadLayout.setLoadingMore(false);
+        NetTool.getInstance().startRequest(url, ConcernBean.class, new onHttpCallback<ConcernBean>() {
+            @Override
+            public void onSuccess(ConcernBean response) {
+                list.addAll(response.getItemList());
+                concernAdapter.setList(list);
+                num += 2;
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        });
+    }
+
+
 }

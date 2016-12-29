@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +45,7 @@ public class ConcernAdapter extends BaseAdapter {
         notifyDataSetChanged();
         return this;
     }
+
 
     @Override
     public int getCount() {
@@ -115,7 +115,8 @@ public class ConcernAdapter extends BaseAdapter {
                     public void onClick(View view) {
                         Intent intent = new Intent(context, ConcernTitleActivity.class);
                         intent.putExtra("id", list.get(i).getData().getHeader().getId());
-                        Log.d("ConcernAdapter", "list.get(i).getData().getHeader().getId():" + list.get(i).getData().getHeader().getId());
+
+
                         context.startActivity(intent);
                     }
                 });
@@ -159,6 +160,8 @@ public class ConcernAdapter extends BaseAdapter {
         ConcernRvAdapter rvAdapter = new ConcernRvAdapter(context);
         List<ConcernBean.ItemListBeanX.DataBeanX.ItemListBean> bean = list.get(p).getData().getItemList();
         rvAdapter.setList(bean);
+        ConcernBean.ItemListBeanX.DataBeanX newBean = list.get(p).getData();
+        rvAdapter.setNewList(newBean);
         LinearLayoutManager manager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         first.rvConcernF.setLayoutManager(manager);
         first.rvConcernF.setAdapter(rvAdapter);

@@ -40,13 +40,12 @@ public class LoadMoreFooterView extends TextView implements SwipeTrigger, SwipeL
                 setText("SWIPE TO LOAD MORE");
             }
         } else {
-            setText("LOAD MORE RETURNING");
         }
     }
 
     @Override
     public void onRelease() {
-        setText("LOADING MORE");
+        setText("");
     }
 
     @Override

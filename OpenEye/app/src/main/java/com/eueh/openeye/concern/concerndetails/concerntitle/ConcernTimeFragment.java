@@ -50,6 +50,7 @@ public class ConcernTimeFragment extends BaseFragment{
                 Intent intent1 = new Intent(getActivity(), ConcernImageActivity.class);
 
                 intent1.putExtra("urlMe",url);
+                intent1.putExtra("myPos",i);
                 Log.d("ConcernTimeFragment", url);
                 startActivity(intent1);
             }
