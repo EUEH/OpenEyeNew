@@ -20,6 +20,19 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
     private String authorDescription;
     private String blurred ;
 
+    //以后复用最好把pos传过去!!!
+    private int pos ;
+
+
+    public int getPos() {
+        return pos;
+    }
+
+    public SelctionDeatailBeanParcelable setPos(int pos) {
+        this.pos = pos;
+        return this;
+    }
+
     public String getBlurred() {
         return blurred;
     }
@@ -70,6 +83,7 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
         authorDescription = in.readString();
         authorIcon = in.readString();
         blurred = in.readString();
+        pos = in.readInt();
     }
 
     public SelctionDeatailBeanParcelable() {
@@ -192,5 +206,6 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
         parcel.writeString(authorDescription);
         parcel.writeString(authorIcon);
         parcel.writeString(blurred);
+        parcel.writeInt(pos);
     }
 }

@@ -2,6 +2,7 @@ package com.eueh.openeye.utils;
 
 import com.eueh.openeye.base.MyApp;
 import com.litesuits.orm.LiteOrm;
+import com.litesuits.orm.db.assit.QueryBuilder;
 import com.litesuits.orm.db.assit.WhereBuilder;
 
 import java.util.List;
@@ -44,14 +45,30 @@ public class LiteTool {
         mLiteOrm.deleteAll(T);
     }
 
-    //根据年龄删除一个    第二个参数是要删除的那个属性 第三个是要删除根据的值
+    //根据  删除一个    第二个参数是要删除的那个属性 第三个是要删除根据的值
     public void deleteOne(Class T, String deleteKey, String age) {
         mLiteOrm.delete(new WhereBuilder(T).where(deleteKey + " = ?", new Object[]{age}));
     }
 
     //查询所有  返回结果是list  <T>是声明T
-    public <T> List<T> queryAll(Class T){
+    public <T> List<T> queryAll(Class T) {
         List<T> list = mLiteOrm.query(T);
-        return list ;
+        return list;
     }
+
+
+    //查询一个返回值为boolean
+    public <T> boolean queryOne(Class<T> t, String queryKey, String key) {
+        QueryBuilder<T> queryBuilder =
+                new QueryBuilder<>(t).columns(new
+                        String[]{queryKey}).where(queryKey + " = ?", new Object[]{key});
+        return mLiteOrm.query(queryBuilder).size() > 0 ? true : false;
+    }
+
+    //把数据库删除 删除表  这样id就会再从1开始
+    public void cleanTable () {
+        mLiteOrm.deleteDatabase();
+    }
+
+
 }

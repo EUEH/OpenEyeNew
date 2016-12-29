@@ -19,6 +19,7 @@ import com.eueh.openeye.R;
 import com.eueh.openeye.selection.selection_detail.SelectionDetailActivity;
 import com.eueh.openeye.selection.selectiontool.SelectionMyTool;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
@@ -29,7 +30,7 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 public class SelectionAdapter extends BaseAdapter {
     //为了传值变成static
-    private SelectionBean data;
+    private static ArrayList<SelectionBean.ItemListBeanX> data;
     private Context context;
 
 
@@ -44,11 +45,21 @@ public class SelectionAdapter extends BaseAdapter {
     private ViewHolderVideo holderVideo;
 
 
+    private int count = 0;
+    private ArrayList<Integer> dataCount;
+
+
+    //对外提供一个clean方法
+    public static void cleanData() {
+        data.clear();
+    }
+
+
     public SelectionAdapter(Context context) {
         this.context = context;
     }
 
-    public SelectionAdapter setData(SelectionBean data) {
+    public SelectionAdapter setData(ArrayList<SelectionBean.ItemListBeanX> data) {
         this.data = data;
         notifyDataSetChanged();
         return this;
@@ -56,12 +67,12 @@ public class SelectionAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return data.getItemList().size();
+        return data.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return data.getItemList().get(i);
+        return data.get(i);
     }
 
     @Override
@@ -78,17 +89,17 @@ public class SelectionAdapter extends BaseAdapter {
         String typeBanner = "banner";
         String typeVideoCollectionOfFollow = "videoCollectionOfFollow";
 
-        if (data.getItemList().get(position).getType().equals(typeVideo)) {
+        if (data.get(position).getType().equals(typeVideo)) {
             return TYPEVIDEO;
-        } else if (data.getItemList().get(position).getType().equals(typeTextFooter)) {
+        } else if (data.get(position).getType().equals(typeTextFooter)) {
             return TYPETEXTFOOTER;
-        } else if (data.getItemList().get(position).getType().equals(typeVideoCollectionWithCover)) {
+        } else if (data.get(position).getType().equals(typeVideoCollectionWithCover)) {
             return TYPEVIDEOCOLLECTIONWITHCOVER;
-        } else if (data.getItemList().get(position).getType().equals(typeTextHeader)) {
+        } else if (data.get(position).getType().equals(typeTextHeader)) {
             return TYPETEXTHEADER;
-        } else if (data.getItemList().get(position).getType().equals(typeBanner)) {
+        } else if (data.get(position).getType().equals(typeBanner)) {
             return TYPEBANNER;
-        } else if (data.getItemList().get(position).getType().equals(typeVideoCollectionOfFollow)) {
+        } else if (data.get(position).getType().equals(typeVideoCollectionOfFollow)) {
             return TYPEVIDEOCOLLECTIONOFFOLLOW;
         } else {
             return TYPENEWELSE;
@@ -102,6 +113,8 @@ public class SelectionAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
+
+
         holderVideo = null;
         ViewHolderNewElse holderNewElse = null;
         ViewHolderTextFooter holderTextFooter = null;
@@ -111,6 +124,7 @@ public class SelectionAdapter extends BaseAdapter {
         ViewHolderVideoCollectionOfFollow holderVideoCollectionOfFollow = null;
         if (view == null) {
             switch (getItemViewType(i)) {
+
                 case TYPEVIDEO:
                     view = LayoutInflater.from(context).inflate(R.layout.item_selection_fragment_video, viewGroup, false);
                     holderVideo = new ViewHolderVideo(view);
@@ -174,38 +188,52 @@ public class SelectionAdapter extends BaseAdapter {
         }
         switch (getItemViewType(i)) {
             case TYPEVIDEO:
+
+
+
                 //最常见的
-                Glide.with(context).load(data.getItemList().get(i).getData().getCover().getFeed()).into(holderVideo.ivCover);
-                holderVideo.tvTitle.setText(data.getItemList().get(i).getData().getTitle());
-                holderVideo.tvCategory.setText("#" + data.getItemList().get(i).getData().getCategory() + "   /");
-                Long titimi = (long) data.getItemList().get(i).getData().getReleaseTime()  ;
+                Glide.with(context).load(data.get(i).getData().getCover().getFeed()).into(holderVideo.ivCover);
+                holderVideo.tvTitle.setText(data.get(i).getData().getTitle());
+                holderVideo.tvCategory.setText("#" + data.get(i).getData().getCategory() + "   /");
+                Long titimi = (long) data.get(i).getData().getReleaseTime();
                 holderVideo.tvReleaseTime.setText(SelectionMyTool.intoTime(titimi));
 
                 //点击图片跳转到详情页
                 //开了一个线程 设置动画
                 holderVideo.ivCover.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+                    @Override
+                    public void onClick(View view) {
 
-                    Intent intent = new Intent(context, SelectionDetailActivity.class);
-////////////////////////把vp位置 传过去////////////////////////////////////
-                    intent.putExtra("selection_viewpager_item_d" , i);
-                    context.startActivity(intent);
+                        if (i<9){
+                            Intent intent = new Intent(context, SelectionDetailActivity.class);
+////////////////////////把vp位置 传过去   1~7  ////////////////////////////////////
+                            intent.putExtra("selection_viewpager_item_d", i);
+                            context.startActivity(intent);
+                        }else if (i < 18){
+                            Intent intent = new Intent(context, SelectionDetailActivity.class);
+////////////////////////把vp位置 传过去  11~16   ////////////////////////////////////
+                            intent.putExtra("selection_viewpager_item_d", i%11 );
+                            context.startActivity(intent);
+                        }else {
 
-                }
-            });
+                        }
+
+
+
+                    }
+                });
 
 
                 break;
             case TYPETEXTFOOTER:
-                holderTextFooter.tvText.setText(data.getItemList().get(i).getData().getText());
+                holderTextFooter.tvText.setText(data.get(i).getData().getText());
                 break;
             case TYPEVIDEOCOLLECTIONWITHCOVER:
-                Glide.with(context).load(data.getItemList().get(i).getData().getHeader().getCover()).into(holderVideoCollectionWithCover.ivCover);
+                Glide.with(context).load(data.get(i).getData().getHeader().getCover()).into(holderVideoCollectionWithCover.ivCover);
 
 
                 SelectionVCWCRvAdapter myAdapter = new SelectionVCWCRvAdapter(context);
-                List<SelectionBean.ItemListBeanX.DataBeanX.ItemListBean> list = data.getItemList().get(i).getData().getItemList();
+                List<SelectionBean.ItemListBeanX.DataBeanX.ItemListBean> list = data.get(i).getData().getItemList();
                 myAdapter.setData(list);
                 holderVideoCollectionWithCover.rv.setAdapter(myAdapter);
                 holderVideoCollectionWithCover.rv.setLayoutManager(
@@ -214,28 +242,28 @@ public class SelectionAdapter extends BaseAdapter {
 
                 break;
             case TYPETEXTHEADER:
-                holderTextHeader.tvText.setText(data.getItemList().get(i).getData().getText());
+                holderTextHeader.tvText.setText(data.get(i).getData().getText());
                 break;
             case TYPEBANNER:
-                Glide.with(context).load(data.getItemList().get(i).getData().getImage()).into(holderBanner.ivImage);
+                Glide.with(context).load(data.get(i).getData().getImage()).into(holderBanner.ivImage);
                 break;
             case TYPEVIDEOCOLLECTIONOFFOLLOW:
-                Glide.with(context).load(data.getItemList().get(i).getData().getHeader().getCover()).into(holderVideoCollectionOfFollow.ivCover);
-                Glide.with(context).load(data.getItemList().get(i).getData().getHeader().getIconList().get(0))
+                Glide.with(context).load(data.get(i).getData().getHeader().getCover()).into(holderVideoCollectionOfFollow.ivCover);
+                Glide.with(context).load(data.get(i).getData().getHeader().getIconList().get(0))
                         .bitmapTransform(new CropCircleTransformation(context))
                         .into(holderVideoCollectionOfFollow.ivIconListLeft);
-                Glide.with(context).load(data.getItemList().get(i).getData().getHeader().getIconList().get(1))
+                Glide.with(context).load(data.get(i).getData().getHeader().getIconList().get(1))
                         .bitmapTransform(new CropCircleTransformation(context))
                         .into(holderVideoCollectionOfFollow.ivIconListCenter);
-                Glide.with(context).load(data.getItemList().get(i).getData().getHeader().getIconList().get(2))
+                Glide.with(context).load(data.get(i).getData().getHeader().getIconList().get(2))
                         .bitmapTransform(new CropCircleTransformation(context))
                         .into(holderVideoCollectionOfFollow.ivIconListRight);
-                holderVideoCollectionOfFollow.tvTitle.setText(data.getItemList().get(i).getData().getHeader().getTitle());
-                holderVideoCollectionOfFollow.tvDescription.setText(data.getItemList().get(i).getData().getHeader().getDescription());
+                holderVideoCollectionOfFollow.tvTitle.setText(data.get(i).getData().getHeader().getTitle());
+                holderVideoCollectionOfFollow.tvDescription.setText(data.get(i).getData().getHeader().getDescription());
 
 
                 SelectionVCOFRvAdapter myAdapterVcof = new SelectionVCOFRvAdapter(context);
-                List<SelectionBean.ItemListBeanX.DataBeanX.ItemListBean> listVcof = data.getItemList().get(i).getData().getItemList();
+                List<SelectionBean.ItemListBeanX.DataBeanX.ItemListBean> listVcof = data.get(i).getData().getItemList();
                 myAdapterVcof.setData(listVcof);
                 holderVideoCollectionOfFollow.rv.setAdapter(myAdapterVcof);
                 holderVideoCollectionOfFollow.rv.setLayoutManager(new LinearLayoutManager(context, 0, false));

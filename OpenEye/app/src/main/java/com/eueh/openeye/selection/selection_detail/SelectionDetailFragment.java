@@ -19,6 +19,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,16 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.eueh.openeye.R;
 import com.eueh.openeye.base.BaseFragment;
+import com.eueh.openeye.find.toolg.ToolG;
+import com.eueh.openeye.utils.LiteTool;
+import com.litesuits.orm.LiteOrm;
+import com.litesuits.orm.db.assit.QueryBuilder;
+import com.litesuits.orm.db.assit.WhereBuilder;
+
+import org.w3c.dom.ls.LSException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
@@ -38,7 +49,7 @@ import static android.content.Context.SENSOR_SERVICE;
  */
 
 public class SelectionDetailFragment extends BaseFragment {
-   // private ImageView ivFeed;
+    // private ImageView ivFeed;
     private JCVideoPlayerStandard ivFeed;
 
     private JCVideoPlayer.JCAutoFullscreenListener sensorEventListener;
@@ -56,6 +67,12 @@ public class SelectionDetailFragment extends BaseFragment {
     private SelctionDeatailBeanParcelable bean;
 
     private ImageView ivBackgroundGauss;
+    private Bundle bundle;
+
+
+
+    private int a = 0;
+
 
     @Override
     public int setLayout() {
@@ -65,11 +82,10 @@ public class SelectionDetailFragment extends BaseFragment {
     @Override
     public void initView(View view) {
 
-
         sensorManager = (SensorManager) getContext().getSystemService(SENSOR_SERVICE);
         sensorEventListener = new JCVideoPlayer.JCAutoFullscreenListener();
 
-    //    ivFeed = (ImageView) view.findViewById(R.id.iv_detail_fragment_feed_d);
+        //    ivFeed = (ImageView) view.findViewById(R.id.iv_detail_fragment_feed_d);
 
         ivFeed = (JCVideoPlayerStandard) view.findViewById(R.id.iv_detail_fragment_feed_d);
         tvTitle = (TextView) view.findViewById(R.id.tv_detail_fragment_title_d);
@@ -88,6 +104,8 @@ public class SelectionDetailFragment extends BaseFragment {
 
     @Override
     public void initData() {
+
+
         //第一次进入加载的数据
         initMyData();
         //背景高斯模糊---毛玻璃效果 ----  在上面那个方法里面写了----因为Glide需要网络解析需要时间
@@ -95,47 +113,57 @@ public class SelectionDetailFragment extends BaseFragment {
         animatethepicture();
         //点击左上角退出
         cliBack();
-        //点赞赞数量+1
+        //点赞赞数量+1   收藏数据库
         clifavouraddone();
 
 
     }
 
 
-
     private void clifavouraddone() {
-
-//111    用数据库存  这样可以有一个id  这样就不会用户重复了
-//        SharedPreferences sp = getContext().getSharedPreferences("section_menu_d" , Context.MODE_PRIVATE);
-//        boolean iscoll = sp.getBoolean("isCollection" , false ) ;
-//        tvCollectionCount.setText(sp.getString("collectionCount" , bean.getCollectionCount() + ""));
-//        btnCollectionCount.setChecked(iscoll);
+        //设置默认的是否收藏
+        boolean qq = LiteTool.getInstance().queryOne(SelectionCollection.class , "picUrl" , bean.getImageFeed());
+        btnCollectionCount.setChecked(qq);
 
         btnCollectionCount.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 //b最开始是ture   ture------没收藏   false-----收藏
+
                 if (b) {
                     String collStr = tvCollectionCount.getText().toString();
                     int collAgo = Integer.parseInt(collStr);
                     int collAfter = collAgo + 1;
                     tvCollectionCount.setText(collAfter + "");
-///222
-//                    SharedPreferences.Editor editor = getContext().getSharedPreferences("section_menu_d" , Context.MODE_PRIVATE).edit();
-//                    editor.putBoolean("isCollection" , b );
-//                    editor.putString("collectionCount" , collAfter+"" );
-//                    editor.commit();
+                    //点击收藏把数据存到数据库里面
+                    SelectionCollection sc = new SelectionCollection();
+                    sc.setPicUrl(bean.getImageFeed());
+                    LiteTool.getInstance().insertOne(sc);
+
+                    List<SelectionCollection> list = LiteTool.getInstance().queryAll(SelectionCollection.class);
+                    for (SelectionCollection qq : list) {
+                        Log.d("SelectionDetailFragment", qq.getId() + "\n" +
+                                qq.getPicUrl()
+                        );
+                    }
+
+
 
                 } else {
+
                     String collStr = tvCollectionCount.getText().toString();
                     int collAgo = Integer.parseInt(collStr);
                     int collAfter = collAgo - 1;
                     tvCollectionCount.setText(collAfter + "");
-//333
-//                    SharedPreferences.Editor editor = getContext().getSharedPreferences("section_menu_d" , Context.MODE_PRIVATE).edit();
-//                    editor.putBoolean("isCollection" , b );
-//                    editor.putString("collectionCount" , collAfter+"" );
-//                    editor.commit();
+
+                    LiteTool.getInstance().deleteOne(SelectionCollection.class , "picUrl" , bean.getImageFeed());
+                    List<SelectionCollection> list = LiteTool.getInstance().queryAll(SelectionCollection.class);
+                    for (SelectionCollection qq : list) {
+                        Log.d("SelectionDetailFragment", qq.getId() + "\n" +
+                                qq.getPicUrl()
+                        );
+                    }
+
 
                 }
             }
@@ -198,12 +226,12 @@ public class SelectionDetailFragment extends BaseFragment {
     }
 
     private void initMyData() {
-        Bundle bundle = getArguments();
+        bundle = getArguments();
         bean = new SelctionDeatailBeanParcelable();
         bean = bundle.getParcelable("detail_data_bean_d");
-   //     Glide.with(getContext()).load(bean.getImageFeed()).into(ivFeed);
+        //     Glide.with(getContext()).load(bean.getImageFeed()).into(ivFeed);
 
-        ivFeed.setUp(bean.getPalyUrl(),ivFeed.SCREEN_LAYOUT_NORMAL,bean.getTitle());
+        ivFeed.setUp(bean.getPalyUrl(), ivFeed.SCREEN_LAYOUT_NORMAL, bean.getTitle());
 
         tvTitle.setText(bean.getTitle());
         tvCategor.setText("#" + bean.getCategory() + "  /");
