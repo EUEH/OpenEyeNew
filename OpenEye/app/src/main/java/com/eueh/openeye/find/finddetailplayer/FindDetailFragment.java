@@ -31,6 +31,8 @@ import com.eueh.openeye.selection.selection_detail.SelctionDeatailBeanParcelable
 import com.eueh.openeye.selection.selection_detail.SelectionDetailAdapter;
 import com.eueh.openeye.utils.LiteTool;
 
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
@@ -52,7 +54,7 @@ public class FindDetailFragment extends BaseFragment implements View.OnClickList
     private boolean isCollectionCount;
     private FindDeatailBeanParcelable bean;
 
-    private ImageView ivBackgroundGauss, ivDownLoad;
+    private ImageView ivBackgroundGauss, ivDownLoad,ivShare;
 
     @Override
     public int setLayout() {
@@ -68,6 +70,7 @@ public class FindDetailFragment extends BaseFragment implements View.OnClickList
         ivFeed = (JCVideoPlayerStandard) view.findViewById(R.id.iv_detail_fragment_feed_d);
 
 
+        ivShare = (ImageView) view.findViewById(R.id.iv_find_share);
         ivDownLoad = (ImageView) view.findViewById(R.id.iv_download);
         tvTitle = (TextView) view.findViewById(R.id.tv_detail_fragment_title_d);
         tvCategor = (TextView) view.findViewById(R.id.tv_detail_fragment_categor_d);
@@ -83,12 +86,15 @@ public class FindDetailFragment extends BaseFragment implements View.OnClickList
         ivBackgroundGauss = (ImageView) view.findViewById(R.id.selection_detail_background_d);
 
         ivDownLoad.setOnClickListener(this);
+        ivShare.setOnClickListener(this);
     }
 
 
     @Override
     public void initData() {
 
+        //分享
+        ShareSDK.initSDK(getContext());
 
         //第一次进入加载的数据
         initMyData();
@@ -445,14 +451,56 @@ public class FindDetailFragment extends BaseFragment implements View.OnClickList
     //下载的点击事件
     @Override
     public void onClick(View view) {
-        Toast.makeText(getContext(), "下载了奥", Toast.LENGTH_SHORT).show();
 
-        Intent intent = new Intent("MYBR");
+        switch (view.getId()){
+            case R.id.iv_download:
+                Toast.makeText(getContext(), "下载了奥", Toast.LENGTH_SHORT).show();
 
-        intent.putExtra("name", bean.getTitle());
-        intent.putExtra("url", bean.getPalyUrl());
+                Intent intent = new Intent("MYBR");
 
-        getContext().sendBroadcast(intent);
+                intent.putExtra("name", bean.getTitle());
+                intent.putExtra("url", bean.getPalyUrl());
+
+                getContext().sendBroadcast(intent);
+                break;
+
+            case R.id.iv_find_share:
+
+                showShare();
+
+                break;
+        }
+
+
+    }
+
+    //QQ分享
+    private void showShare() {
+
+        ShareSDK.initSDK(getContext());
+        OnekeyShare oks = new OnekeyShare();
+//关闭sso授权
+        oks.disableSSOWhenAuthorize();
+
+// title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
+        oks.setTitle("EUEH");
+// titleUrl是标题的网络链接，QQ和QQ空间等使用
+        oks.setTitleUrl(bean.getPalyUrl());
+// text是分享文本，所有平台都需要这个字段
+        oks.setText(bean.getTitle());
+// imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+//oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+// url仅在微信（包括好友和朋友圈）中使用
+        oks.setUrl("http://sharesdk.cn");
+// comment是我对这条分享的评论，仅在人人网和QQ空间使用
+        oks.setComment("See You Again");
+// site是分享此内容的网站名称，仅在QQ空间使用
+        oks.setSite(getString(R.string.app_name));
+// siteUrl是分享此内容的网站地址，仅在QQ空间使用
+        oks.setSiteUrl(bean.getPalyUrl());
+
+// 启动分享GUI
+        oks.show(getContext());
 
     }
 }
