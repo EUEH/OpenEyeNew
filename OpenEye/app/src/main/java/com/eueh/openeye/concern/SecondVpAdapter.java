@@ -69,7 +69,7 @@ public class SecondVpAdapter extends PagerAdapter implements ViewPager.OnPageCha
         String min = TimeConversion.conversionTime(list.get(position % list.size()).getData().getReleaseTime()).substring(14, 19);
         tvReleaseTimeF.setText(min);
         container.addView(view);
-        viewPager.addOnPageChangeListener(this);
+//        viewPager.addOnPageChangeListener(this);
         return view;
     }
 

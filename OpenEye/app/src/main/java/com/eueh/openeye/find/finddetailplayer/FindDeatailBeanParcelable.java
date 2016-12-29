@@ -1,4 +1,4 @@
-package com.eueh.openeye.selection.selection_detail;
+package com.eueh.openeye.find.finddetailplayer;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by 陈焕栋 on 16/12/22.
  */
 
-public class SelctionDeatailBeanParcelable implements Parcelable {
+public class FindDeatailBeanParcelable implements Parcelable {
     private String imageFeed;
     private String title;
     private String description;
@@ -20,24 +20,11 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
     private String authorDescription;
     private String blurred ;
 
-    //以后复用最好把pos传过去!!!
-    private int pos ;
-
-
-    public int getPos() {
-        return pos;
-    }
-
-    public SelctionDeatailBeanParcelable setPos(int pos) {
-        this.pos = pos;
-        return this;
-    }
-
     public String getBlurred() {
         return blurred;
     }
 
-    public SelctionDeatailBeanParcelable setBlurred(String blurred) {
+    public FindDeatailBeanParcelable setBlurred(String blurred) {
         this.blurred = blurred;
         return this;
     }
@@ -46,7 +33,7 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
         return authorName;
     }
 
-    public SelctionDeatailBeanParcelable setAuthorName(String authorName) {
+    public FindDeatailBeanParcelable setAuthorName(String authorName) {
         this.authorName = authorName;
         return this;
     }
@@ -55,7 +42,7 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
         return authorIcon;
     }
 
-    public SelctionDeatailBeanParcelable setAuthorIcon(String authorIcon) {
+    public FindDeatailBeanParcelable setAuthorIcon(String authorIcon) {
         this.authorIcon = authorIcon;
         return this;
     }
@@ -64,12 +51,12 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
         return authorDescription;
     }
 
-    public SelctionDeatailBeanParcelable setAuthorDescription(String authorDescription) {
+    public FindDeatailBeanParcelable setAuthorDescription(String authorDescription) {
         this.authorDescription = authorDescription;
         return this;
     }
 
-    protected SelctionDeatailBeanParcelable(Parcel in) {
+    protected FindDeatailBeanParcelable(Parcel in) {
         imageFeed = in.readString();
         title = in.readString();
         description = in.readString();
@@ -83,21 +70,20 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
         authorDescription = in.readString();
         authorIcon = in.readString();
         blurred = in.readString();
-        pos = in.readInt();
     }
 
-    public SelctionDeatailBeanParcelable() {
+    public FindDeatailBeanParcelable() {
     }
 
-    public static final Creator<SelctionDeatailBeanParcelable> CREATOR = new Creator<SelctionDeatailBeanParcelable>() {
+    public static final Creator<FindDeatailBeanParcelable> CREATOR = new Creator<FindDeatailBeanParcelable>() {
         @Override
-        public SelctionDeatailBeanParcelable createFromParcel(Parcel in) {
-            return new SelctionDeatailBeanParcelable(in);
+        public FindDeatailBeanParcelable createFromParcel(Parcel in) {
+            return new FindDeatailBeanParcelable(in);
         }
 
         @Override
-        public SelctionDeatailBeanParcelable[] newArray(int size) {
-            return new SelctionDeatailBeanParcelable[size];
+        public FindDeatailBeanParcelable[] newArray(int size) {
+            return new FindDeatailBeanParcelable[size];
         }
     };
 
@@ -105,7 +91,7 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
         return imageFeed;
     }
 
-    public SelctionDeatailBeanParcelable setImageFeed(String imageFeed) {
+    public FindDeatailBeanParcelable setImageFeed(String imageFeed) {
         this.imageFeed = imageFeed;
         return this;
     }
@@ -114,7 +100,7 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
         return title;
     }
 
-    public SelctionDeatailBeanParcelable setTitle(String title) {
+    public FindDeatailBeanParcelable setTitle(String title) {
         this.title = title;
         return this;
     }
@@ -123,7 +109,7 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
         return description;
     }
 
-    public SelctionDeatailBeanParcelable setDescription(String description) {
+    public FindDeatailBeanParcelable setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -132,7 +118,7 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
         return category;
     }
 
-    public SelctionDeatailBeanParcelable setCategory(String category) {
+    public FindDeatailBeanParcelable setCategory(String category) {
         this.category = category;
         return this;
     }
@@ -141,7 +127,7 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
         return palyUrl;
     }
 
-    public SelctionDeatailBeanParcelable setPalyUrl(String palyUrl) {
+    public FindDeatailBeanParcelable setPalyUrl(String palyUrl) {
         this.palyUrl = palyUrl;
         return this;
     }
@@ -150,7 +136,7 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
         return releaseTime;
     }
 
-    public SelctionDeatailBeanParcelable setReleaseTime(int releaseTime) {
+    public FindDeatailBeanParcelable setReleaseTime(int releaseTime) {
         this.releaseTime = releaseTime;
         return this;
     }
@@ -159,7 +145,7 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
         return collectionCount;
     }
 
-    public SelctionDeatailBeanParcelable setCollectionCount(int collectionCount) {
+    public FindDeatailBeanParcelable setCollectionCount(int collectionCount) {
         this.collectionCount = collectionCount;
         return this;
     }
@@ -168,7 +154,7 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
         return shareCount;
     }
 
-    public SelctionDeatailBeanParcelable setShareCount(int shareCount) {
+    public FindDeatailBeanParcelable setShareCount(int shareCount) {
         this.shareCount = shareCount;
         return this;
     }
@@ -177,7 +163,7 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
         return replyCount;
     }
 
-    public SelctionDeatailBeanParcelable setReplyCount(int replyCount) {
+    public FindDeatailBeanParcelable setReplyCount(int replyCount) {
         this.replyCount = replyCount;
         return this;
     }
@@ -206,6 +192,5 @@ public class SelctionDeatailBeanParcelable implements Parcelable {
         parcel.writeString(authorDescription);
         parcel.writeString(authorIcon);
         parcel.writeString(blurred);
-        parcel.writeInt(pos);
     }
 }

@@ -26,6 +26,7 @@
             android:background="@mipmap/search_g_discover" />
 
         <ImageView
+            android:id="@+id/iv_find_search"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.8"

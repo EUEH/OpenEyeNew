@@ -1,6 +1,7 @@
 package com.eueh.openeye.concern.concerndetails.concerntitle;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -23,6 +24,8 @@ public class ConcernTimeFragment extends BaseFragment{
     private String FRONT_URL = "http://baobab.kaiyanapp.com/api/v3/pgc/videos?pgcId=";
     private String BACK_URL = "&strategy=date&udid=67c75fadad7140dd8d3d3c40cf87685971fd4523&vc=152&vn=3.0.1&deviceModel=Google%20Nexus%205%20-%205.1.0%20-%20API%2022%20-%201080x1920&first_channel=eyepetizer_wandoujia_market&last_channel=eyepetizer_wandoujia_market&system_version_code=22";
     private String url;
+    private List<ConcernItemBean.ItemListBean> list;
+    private int a;
 
     @Override
     public int setLayout() {
@@ -34,14 +37,20 @@ public class ConcernTimeFragment extends BaseFragment{
         lvF = (ListView) view.findViewById(R.id.lv_time_f);
         lvAdapter = new ConcernTimeLvAdapter(getActivity());
         final Intent intent = getActivity().getIntent();
-        int a = intent.getIntExtra("id", 200);
+        a = intent.getIntExtra("id", 200);
         url = FRONT_URL + a + BACK_URL;
+        Log.d("ConcernTimeFragment11", url);
+
 
         lvF.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
                 Intent intent1 = new Intent(getActivity(), ConcernImageActivity.class);
-                intent.putExtra("url", url);
+
+                intent1.putExtra("urlMe",url);
+                Log.d("ConcernTimeFragment", url);
                 startActivity(intent1);
             }
         });
@@ -49,10 +58,10 @@ public class ConcernTimeFragment extends BaseFragment{
 
     @Override
     public void initData() {
-        NetTool.getInstance().startRequest(ConcernTitleActivity.url, ConcernTitleBean.class, new onHttpCallback<ConcernTitleBean>() {
+        NetTool.getInstance().startRequest(url, ConcernItemBean.class, new onHttpCallback<ConcernItemBean>() {
             @Override
-            public void onSuccess(ConcernTitleBean response) {
-                List<ConcernTitleBean.ItemListBean> list = response.getItemList();
+            public void onSuccess(ConcernItemBean response) {
+                list = response.getItemList();
                 ConcernTimeLvAdapter lvAdapter = new ConcernTimeLvAdapter(getActivity());
                 lvAdapter.setList(list);
                 lvF.setAdapter(lvAdapter);

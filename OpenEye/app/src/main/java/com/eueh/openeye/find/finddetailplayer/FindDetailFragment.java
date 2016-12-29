@@ -1,12 +1,10 @@
-package com.eueh.openeye.selection.selection_detail;
+package com.eueh.openeye.find.finddetailplayer;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
+import android.app.FragmentManager;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -14,48 +12,34 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.eueh.openeye.R;
 import com.eueh.openeye.base.BaseFragment;
-import com.eueh.openeye.find.toolg.ToolG;
-import com.eueh.openeye.utils.LiteTool;
-import com.litesuits.orm.LiteOrm;
-import com.litesuits.orm.db.assit.QueryBuilder;
-import com.litesuits.orm.db.assit.WhereBuilder;
-
-import org.w3c.dom.ls.LSException;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.eueh.openeye.selection.selection_detail.SelctionDeatailBeanParcelable;
+import com.eueh.openeye.selection.selection_detail.SelectionDetailAdapter;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 import static android.content.Context.SENSOR_SERVICE;
 
-/**
- * Created by 陈焕栋 on 16/12/22.
- */
 
-public class SelectionDetailFragment extends BaseFragment {
-    // private ImageView ivFeed;
+public class FindDetailFragment extends BaseFragment {
     private JCVideoPlayerStandard ivFeed;
-
-    private JCVideoPlayer.JCAutoFullscreenListener sensorEventListener;
-    private SensorManager sensorManager;
-
     private TextView tvTitle, tvCategor, tvReleaseTime, tvDescription,
             tvCollectionCount, tvShareCount, tvReplyCount;
+    private JCVideoPlayer.JCAutoFullscreenListener sensorEventListener;
+    private SensorManager sensorManager;
 
     private Handler handler;
     private boolean isPlay;
@@ -63,13 +47,9 @@ public class SelectionDetailFragment extends BaseFragment {
     private Button btnBack;
     private CheckBox btnCollectionCount;
     private boolean isCollectionCount;
-    private SelctionDeatailBeanParcelable bean;
+    private FindDeatailBeanParcelable bean;
 
     private ImageView ivBackgroundGauss;
-    private Bundle bundle;
-
-    private int a = 0;
-
 
     @Override
     public int setLayout() {
@@ -82,9 +62,11 @@ public class SelectionDetailFragment extends BaseFragment {
         sensorManager = (SensorManager) getContext().getSystemService(SENSOR_SERVICE);
         sensorEventListener = new JCVideoPlayer.JCAutoFullscreenListener();
 
-        //    ivFeed = (ImageView) view.findViewById(R.id.iv_detail_fragment_feed_d);
-
         ivFeed = (JCVideoPlayerStandard) view.findViewById(R.id.iv_detail_fragment_feed_d);
+    //    Glide.with(getContext()).load(bean.getImageFeed()).into(ivFeed.thumbImageView);
+
+
+
         tvTitle = (TextView) view.findViewById(R.id.tv_detail_fragment_title_d);
         tvCategor = (TextView) view.findViewById(R.id.tv_detail_fragment_categor_d);
         tvReleaseTime = (TextView) view.findViewById(R.id.tv_detail_fragment_releaseTime_d);
@@ -99,6 +81,9 @@ public class SelectionDetailFragment extends BaseFragment {
         ivBackgroundGauss = (ImageView) view.findViewById(R.id.selection_detail_background_d);
     }
 
+
+
+
     @Override
     public void initData() {
 
@@ -107,38 +92,42 @@ public class SelectionDetailFragment extends BaseFragment {
         initMyData();
         //背景高斯模糊---毛玻璃效果 ----  在上面那个方法里面写了----因为Glide需要网络解析需要时间
         //给图片设置动画
-        animatethepicture();
+       // animatethepicture();
         //点击左上角退出
-        cliBack();
-        //点赞赞数量+1   收藏数据库
+        //cliBack();
+        //点赞赞数量+1
         clifavouraddone();
 
 
     }
 
 
-    private void clifavouraddone() {
-        //设置默认的是否收藏
 
+    private void clifavouraddone() {
+
+//111    用数据库存  这样可以有一个id  这样就不会用户重复了
+//        SharedPreferences sp = getContext().getSharedPreferences("section_menu_d" , Context.MODE_PRIVATE);
+//        boolean iscoll = sp.getBoolean("isCollection" , false ) ;
+//        tvCollectionCount.setText(sp.getString("collectionCount" , bean.getCollectionCount() + ""));
+//        btnCollectionCount.setChecked(iscoll);
 
         btnCollectionCount.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 //b最开始是ture   ture------没收藏   false-----收藏
-
                 if (b) {
                     String collStr = tvCollectionCount.getText().toString();
                     int collAgo = Integer.parseInt(collStr);
                     int collAfter = collAgo + 1;
                     tvCollectionCount.setText(collAfter + "");
-                    //点击收藏把数据存到数据库里面
+
 
                 } else {
-
                     String collStr = tvCollectionCount.getText().toString();
                     int collAgo = Integer.parseInt(collStr);
                     int collAfter = collAgo - 1;
                     tvCollectionCount.setText(collAfter + "");
+
 
                 }
             }
@@ -146,7 +135,7 @@ public class SelectionDetailFragment extends BaseFragment {
 
     }
 
-    private void cliBack() {
+//    private void cliBack() {
 //        btnBack.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -156,7 +145,7 @@ public class SelectionDetailFragment extends BaseFragment {
 //
 //            }
 //        });
-    }
+//    }
 
     private void animatethepicture() {
 
@@ -201,12 +190,11 @@ public class SelectionDetailFragment extends BaseFragment {
     }
 
     private void initMyData() {
-        bundle = getArguments();
-        bean = new SelctionDeatailBeanParcelable();
+        Bundle bundle = getArguments();
+        bean = new FindDeatailBeanParcelable();
         bean = bundle.getParcelable("detail_data_bean_d");
-        //     Glide.with(getContext()).load(bean.getImageFeed()).into(ivFeed);
 
-        ivFeed.setUp(bean.getPalyUrl(), ivFeed.SCREEN_LAYOUT_NORMAL, bean.getTitle());
+       ivFeed.setUp(bean.getPalyUrl(),ivFeed.SCREEN_LAYOUT_NORMAL,bean.getTitle());
 
         tvTitle.setText(bean.getTitle());
         tvCategor.setText("#" + bean.getCategory() + "  /");
@@ -215,14 +203,6 @@ public class SelectionDetailFragment extends BaseFragment {
         tvCollectionCount.setText(bean.getCollectionCount() + "");
         tvShareCount.setText(bean.getShareCount() + "");
         tvReplyCount.setText(bean.getReplyCount() + "");
-        //Gilde.asBiemap.into(new Sim)  里面的resource就是那个结果
-//        Glide.with(getContext()).load(bean.getBlurred())
-//                .asBitmap().into(new SimpleTarget<Bitmap>() {
-//            @Override
-//            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-//                ivBackgroundGauss.setImageBitmap(fastblur(getContext(), resource, 50));
-//             }
-//        });
 
         Glide.with(getContext()).load(bean.getBlurred()).into(ivBackgroundGauss);
 
@@ -231,13 +211,12 @@ public class SelectionDetailFragment extends BaseFragment {
 
     }
 
-
-    public static SelectionDetailFragment newInstance(int pos) {
+    public static FindDetailFragment newInstance(int pos) {
 
         Bundle args = new Bundle();
-        args.putParcelable("detail_data_bean_d", SelectionDetailAdapter.getDetailData(pos));
+        args.putParcelable("detail_data_bean_d", FindDetailAdapter.getDetailData(pos));
 
-        SelectionDetailFragment fragment = new SelectionDetailFragment();
+        FindDetailFragment fragment = new FindDetailFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -445,7 +424,6 @@ public class SelectionDetailFragment extends BaseFragment {
         return (bitmap);
     }
 
-
     @Override
     public void onPause() {
         super.onPause();
@@ -459,5 +437,4 @@ public class SelectionDetailFragment extends BaseFragment {
         Sensor accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sensorManager.registerListener(sensorEventListener, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
-
 }

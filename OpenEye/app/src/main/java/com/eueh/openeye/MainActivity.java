@@ -17,6 +17,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private FrameLayout frameLayout;
     private RadioButton rbtSelection, rbtFind, rbtConcern, rbtMine;
 
+
+
     @Override
     public int setLayout() {
         return R.layout.activity_main;

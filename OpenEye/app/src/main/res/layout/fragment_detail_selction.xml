@@ -1,39 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="match_parent">
 
-        <ImageView
+        <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
             android:id="@+id/iv_detail_fragment_feed_d"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY" />
-
-        <Button
-            android:id="@+id/btn_detail_fragment_back_d"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/selection_detail_back_d"
-            android:text="0"
-            android:textColor="#000000"
-            android:textSize="15dp" />
-
-        <Button
-            android:layout_centerInParent="true"
-            android:background="@mipmap/action_start"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            />
+             />
 
 
     </RelativeLayout>
+
+    <FrameLayout
+        android:layout_marginTop="205dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -104,8 +93,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@null"
-            android:text=">"
-            android:textSize="30dp" />
+            android:text="Eueh"
+            android:textSize="20sp" />
 
 
     </LinearLayout>
@@ -211,5 +200,6 @@
 
 
     </RelativeLayout>
+    </FrameLayout>
 
-</LinearLayout>
+</FrameLayout>
