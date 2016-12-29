@@ -113,16 +113,7 @@ public class SelectionAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
-        if (!data.get(i).getType().equals("video")){
-            dataCount = new ArrayList<>();
-            dataCount.clear();
-        }else {
-            dataCount.add(i);
-        }
 
-        for (int i1 = 0; i1 < dataCount.size(); i1++) {
-            Log.d("SelectionAdapter", "dataCount.get(i1):" + dataCount.get(i1));
-        }
 
         holderVideo = null;
         ViewHolderNewElse holderNewElse = null;

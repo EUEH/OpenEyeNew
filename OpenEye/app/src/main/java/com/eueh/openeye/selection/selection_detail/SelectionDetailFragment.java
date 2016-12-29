@@ -19,6 +19,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,6 +68,8 @@ public class SelectionDetailFragment extends BaseFragment {
 
     private ImageView ivBackgroundGauss;
     private Bundle bundle;
+
+
 
     private int a = 0;
 
@@ -119,7 +122,8 @@ public class SelectionDetailFragment extends BaseFragment {
 
     private void clifavouraddone() {
         //设置默认的是否收藏
-
+        boolean qq = LiteTool.getInstance().queryOne(SelectionCollection.class , "picUrl" , bean.getImageFeed());
+        btnCollectionCount.setChecked(qq);
 
         btnCollectionCount.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -132,6 +136,18 @@ public class SelectionDetailFragment extends BaseFragment {
                     int collAfter = collAgo + 1;
                     tvCollectionCount.setText(collAfter + "");
                     //点击收藏把数据存到数据库里面
+                    SelectionCollection sc = new SelectionCollection();
+                    sc.setPicUrl(bean.getImageFeed());
+                    LiteTool.getInstance().insertOne(sc);
+
+                    List<SelectionCollection> list = LiteTool.getInstance().queryAll(SelectionCollection.class);
+                    for (SelectionCollection qq : list) {
+                        Log.d("SelectionDetailFragment", qq.getId() + "\n" +
+                                qq.getPicUrl()
+                        );
+                    }
+
+
 
                 } else {
 
@@ -139,6 +155,15 @@ public class SelectionDetailFragment extends BaseFragment {
                     int collAgo = Integer.parseInt(collStr);
                     int collAfter = collAgo - 1;
                     tvCollectionCount.setText(collAfter + "");
+
+                    LiteTool.getInstance().deleteOne(SelectionCollection.class , "picUrl" , bean.getImageFeed());
+                    List<SelectionCollection> list = LiteTool.getInstance().queryAll(SelectionCollection.class);
+                    for (SelectionCollection qq : list) {
+                        Log.d("SelectionDetailFragment", qq.getId() + "\n" +
+                                qq.getPicUrl()
+                        );
+                    }
+
 
                 }
             }
