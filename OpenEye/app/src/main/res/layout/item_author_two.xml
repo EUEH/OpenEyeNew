@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:id="@+id/ll_item_first_f">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/item_iv_author_two_icon_f"
+            android:layout_width="80dp"
+            android:layout_height="50dp" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/item_tv_author_two_title_f"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/item_tv_author_two_description_f"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:singleLine="true"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:text="+ 关注"
+            android:gravity="center"
+            android:textColor="#444444"
+            android:id="@+id/textView" />
+    </LinearLayout>
+</LinearLayout>

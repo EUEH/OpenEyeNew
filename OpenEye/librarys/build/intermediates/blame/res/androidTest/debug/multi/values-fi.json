@@ -1,10 +1,6 @@
 [
     {
-<<<<<<< HEAD
-        "outputFile": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-fi/values-fi.xml",
-=======
         "outputFile": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-fi/values-fi.xml",
->>>>>>> feature/AAAA陈小飞
         "map": [
             {
                 "to": {
@@ -15,11 +11,7 @@
                     "endOffset": 141
                 },
                 "from": {
-<<<<<<< HEAD
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-fi/values-fi.xml",
-=======
                     "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-fi/values-fi.xml",
->>>>>>> feature/AAAA陈小飞
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -38,11 +30,7 @@
                     "endOffset": 255
                 },
                 "from": {
-<<<<<<< HEAD
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-fi/values-fi.xml",
-=======
                     "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-fi/values-fi.xml",
->>>>>>> feature/AAAA陈小飞
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -61,11 +49,7 @@
                     "endOffset": 363
                 },
                 "from": {
-<<<<<<< HEAD
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-fi/values-fi.xml",
-=======
                     "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-fi/values-fi.xml",
->>>>>>> feature/AAAA陈小飞
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -84,11 +68,7 @@
                     "endOffset": 442
                 },
                 "from": {
-<<<<<<< HEAD
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-fi/values-fi.xml",
-=======
                     "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-fi/values-fi.xml",
->>>>>>> feature/AAAA陈小飞
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -107,11 +87,7 @@
                     "endOffset": 516
                 },
                 "from": {
-<<<<<<< HEAD
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-fi/values-fi.xml",
-=======
                     "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-fi/values-fi.xml",
->>>>>>> feature/AAAA陈小飞
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -130,11 +106,7 @@
                     "endOffset": 597
                 },
                 "from": {
-<<<<<<< HEAD
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-fi/values-fi.xml",
-=======
                     "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-fi/values-fi.xml",
->>>>>>> feature/AAAA陈小飞
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,

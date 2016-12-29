@@ -35,6 +35,7 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity android:name=".search.SearchActivity"></activity>
+        <activity android:name=".concern.author.ConcernAuthorActivity"/>
     </application>
 
 </manifest>

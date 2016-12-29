@@ -1,10 +1,6 @@
 [
     {
-<<<<<<< HEAD
-        "outputFile": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-fr/values-fr.xml",
-=======
         "outputFile": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-fr/values-fr.xml",
->>>>>>> feature/AAAA陈小飞
         "map": [
             {
                 "to": {
@@ -15,11 +11,7 @@
                     "endOffset": 128
                 },
                 "from": {
-<<<<<<< HEAD
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-fr/values-fr.xml",
-=======
                     "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-fr/values-fr.xml",
->>>>>>> feature/AAAA陈小飞
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -38,11 +30,7 @@
                     "endOffset": 201
                 },
                 "from": {
-<<<<<<< HEAD
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-fr/values-fr.xml",
-=======
                     "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-fr/values-fr.xml",
->>>>>>> feature/AAAA陈小飞
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -61,11 +49,7 @@
                     "endOffset": 285
                 },
                 "from": {
-<<<<<<< HEAD
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-fr/values-fr.xml",
-=======
                     "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-fr/values-fr.xml",
->>>>>>> feature/AAAA陈小飞
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,

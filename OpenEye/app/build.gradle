@@ -40,9 +40,8 @@ dependencies {
     compile 'com.github.jdsjlzx:LRecyclerView:1.2.8'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.Aspsine:SwipeToLoadLayout:1.0.3'
-
     compile project(path: ':librarys')
     compile 'fm.jiecao:jiecaovideoplayer:5.2.1'
     compile files('libs/lite-orm-1.9.2.jar')
-
+    compile 'org.greenrobot:eventbus:3.0.0'
 }
