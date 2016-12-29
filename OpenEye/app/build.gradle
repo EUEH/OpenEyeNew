@@ -44,4 +44,5 @@ dependencies {
     compile 'fm.jiecao:jiecaovideoplayer:5.2.1'
     compile files('libs/lite-orm-1.9.2.jar')
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.lai.weavey:dialog:1.1'
 }
