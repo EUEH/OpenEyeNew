@@ -1,5 +1,6 @@
 package com.eueh.openeye;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -9,6 +10,7 @@ import android.widget.RadioButton;
 
 import com.eueh.openeye.base.BaseActivity;
 import com.eueh.openeye.concern.ConcernFragment;
+import com.eueh.openeye.downloadservice.DownLoadService;
 import com.eueh.openeye.find.FindFragment;
 import com.eueh.openeye.mine.MineFragment;
 import com.eueh.openeye.selection.selection_main.SelectionFragment;
@@ -16,7 +18,7 @@ import com.eueh.openeye.selection.selection_main.SelectionFragment;
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private FrameLayout frameLayout;
     private RadioButton rbtSelection, rbtFind, rbtConcern, rbtMine;
-
+    private Intent intent;
 
 
     @Override
@@ -42,6 +44,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void initData() {
 
+        intent = new Intent(this, DownLoadService.class);
+        startService(intent);
+
     }
 
     public void replace(Fragment fragment) {
@@ -49,6 +54,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.fl, fragment);
         transaction.commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(intent);
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
@@ -19,6 +20,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -27,6 +29,7 @@ import com.eueh.openeye.R;
 import com.eueh.openeye.base.BaseFragment;
 import com.eueh.openeye.selection.selection_detail.SelctionDeatailBeanParcelable;
 import com.eueh.openeye.selection.selection_detail.SelectionDetailAdapter;
+import com.eueh.openeye.utils.LiteTool;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
@@ -34,7 +37,7 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 import static android.content.Context.SENSOR_SERVICE;
 
 
-public class FindDetailFragment extends BaseFragment {
+public class FindDetailFragment extends BaseFragment implements View.OnClickListener {
     private JCVideoPlayerStandard ivFeed;
     private TextView tvTitle, tvCategor, tvReleaseTime, tvDescription,
             tvCollectionCount, tvShareCount, tvReplyCount;
@@ -49,7 +52,7 @@ public class FindDetailFragment extends BaseFragment {
     private boolean isCollectionCount;
     private FindDeatailBeanParcelable bean;
 
-    private ImageView ivBackgroundGauss;
+    private ImageView ivBackgroundGauss, ivDownLoad;
 
     @Override
     public int setLayout() {
@@ -63,10 +66,9 @@ public class FindDetailFragment extends BaseFragment {
         sensorEventListener = new JCVideoPlayer.JCAutoFullscreenListener();
 
         ivFeed = (JCVideoPlayerStandard) view.findViewById(R.id.iv_detail_fragment_feed_d);
-    //    Glide.with(getContext()).load(bean.getImageFeed()).into(ivFeed.thumbImageView);
 
 
-
+        ivDownLoad = (ImageView) view.findViewById(R.id.iv_download);
         tvTitle = (TextView) view.findViewById(R.id.tv_detail_fragment_title_d);
         tvCategor = (TextView) view.findViewById(R.id.tv_detail_fragment_categor_d);
         tvReleaseTime = (TextView) view.findViewById(R.id.tv_detail_fragment_releaseTime_d);
@@ -79,9 +81,9 @@ public class FindDetailFragment extends BaseFragment {
         btnCollectionCount = (CheckBox) view.findViewById(R.id.btn_detail_fragment_collectionCount_d);
         isCollectionCount = false;
         ivBackgroundGauss = (ImageView) view.findViewById(R.id.selection_detail_background_d);
+
+        ivDownLoad.setOnClickListener(this);
     }
-
-
 
 
     @Override
@@ -92,7 +94,7 @@ public class FindDetailFragment extends BaseFragment {
         initMyData();
         //背景高斯模糊---毛玻璃效果 ----  在上面那个方法里面写了----因为Glide需要网络解析需要时间
         //给图片设置动画
-       // animatethepicture();
+        // animatethepicture();
         //点击左上角退出
         //cliBack();
         //点赞赞数量+1
@@ -100,7 +102,6 @@ public class FindDetailFragment extends BaseFragment {
 
 
     }
-
 
 
     private void clifavouraddone() {
@@ -120,6 +121,9 @@ public class FindDetailFragment extends BaseFragment {
                     int collAgo = Integer.parseInt(collStr);
                     int collAfter = collAgo + 1;
                     tvCollectionCount.setText(collAfter + "");
+
+//                    LiteTool.getInstance().insertOne();
+
 
 
                 } else {
@@ -194,7 +198,7 @@ public class FindDetailFragment extends BaseFragment {
         bean = new FindDeatailBeanParcelable();
         bean = bundle.getParcelable("detail_data_bean_d");
 
-       ivFeed.setUp(bean.getPalyUrl(),ivFeed.SCREEN_LAYOUT_NORMAL,bean.getTitle());
+        ivFeed.setUp(bean.getPalyUrl(), ivFeed.SCREEN_LAYOUT_NORMAL, bean.getTitle());
 
         tvTitle.setText(bean.getTitle());
         tvCategor.setText("#" + bean.getCategory() + "  /");
@@ -436,5 +440,19 @@ public class FindDetailFragment extends BaseFragment {
         super.onResume();
         Sensor accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sensorManager.registerListener(sensorEventListener, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    //下载的点击事件
+    @Override
+    public void onClick(View view) {
+        Toast.makeText(getContext(), "下载了奥", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent("MYBR");
+
+        intent.putExtra("name", bean.getTitle());
+        intent.putExtra("url", bean.getPalyUrl());
+
+        getContext().sendBroadcast(intent);
+
     }
 }
