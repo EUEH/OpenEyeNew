@@ -125,6 +125,7 @@
                 android:text="我的关注"/>
 
             <TextView
+                android:id="@+id/tv_mine_download"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
