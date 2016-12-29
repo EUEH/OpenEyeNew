@@ -1,12 +1,15 @@
 package com.eueh.openeye.concern;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
  * Created by 陈小飞 on 16/12/20.
  */
 
-public class ConcernBean {
+public class ConcernBean implements Parcelable{
 
 
 
@@ -15,6 +18,25 @@ public class ConcernBean {
     private String nextPageUrl;
     private Object updateTime;
     private List<ItemListBeanX> itemList;
+
+    protected ConcernBean(Parcel in) {
+        count = in.readInt();
+        total = in.readInt();
+        nextPageUrl = in.readString();
+        itemList = in.createTypedArrayList(ItemListBeanX.CREATOR);
+    }
+
+    public static final Creator<ConcernBean> CREATOR = new Creator<ConcernBean>() {
+        @Override
+        public ConcernBean createFromParcel(Parcel in) {
+            return new ConcernBean(in);
+        }
+
+        @Override
+        public ConcernBean[] newArray(int size) {
+            return new ConcernBean[size];
+        }
+    };
 
     public int getCount() {
         return count;
@@ -56,14 +78,41 @@ public class ConcernBean {
         this.itemList = itemList;
     }
 
-    public static class ItemListBeanX {
-        /**
-         * type : videoCollectionWithBrief
-         * data : {"dataType":"ItemCollection","header":{"id":170,"icon":"http://img.kaiyanapp.com/d4164990b1328ce8ce41bfab7085f9e1.jpeg","iconType":"round","title":"一条视频","subTitle":null,"description":"每天一条3分钟原创视频，精选人间美物。生活丨潮流丨文艺","actionUrl":"eyepetizer://pgc/detail/170/?title=%E4%B8%80%E6%9D%A1%E8%A7%86%E9%A2%91","adTrack":null,"follow":{"itemType":"author","itemId":170,"followed":false}},"itemList":[{"type":"video","data":{"dataType":"VideoBeanForClient","id":11755,"title":"如何过一个有仪式感的圣诞节","description":"圣诞节就要到了，美女甜点师Snow教你用空气凤梨和小甜点，布置一个温馨甜蜜的节日餐桌。操作简单，所有道具都可以在花鸟市场和网上买到，现在赶紧准备起来，今年在家就能过一个有仪式感的圣诞节！","provider":{"name":"PGC","alias":"PGC","icon":""},"category":"生活","author":{"id":170,"icon":"http://img.kaiyanapp.com/d4164990b1328ce8ce41bfab7085f9e1.jpeg","name":"一条视频","description":"每天一条3分钟原创视频，精选人间美物。生活丨潮流丨文艺","link":"","latestReleaseTime":1482129350000,"videoNum":85,"adTrack":null,"follow":{"itemType":"author","itemId":170,"followed":false}},"cover":{"feed":"http://img.kaiyanapp.com/494bacbee1efe5d547ec126af0fa6a18.jpeg?imageMogr2/quality/60","detail":"http://img.kaiyanapp.com/494bacbee1efe5d547ec126af0fa6a18.jpeg?imageMogr2/quality/60","blurred":"","sharing":null},"playUrl":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11755&editionType=default","duration":153,"webUrl":{"raw":"http://www.eyepetizer.net/detail.html?vid=11755","forWeibo":"http://wandou.im/3inchv"},"releaseTime":1482129350000,"playInfo":[{"height":270,"width":480,"name":"流畅","type":"low","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11755&editionType=low"},{"height":480,"width":854,"name":"标清","type":"normal","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11755&editionType=normal"},{"height":720,"width":1280,"name":"高清","type":"high","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11755&editionType=high"}],"consumption":{"collectionCount":37,"shareCount":53,"replyCount":0},"campaign":null,"waterMarks":null,"adTrack":null,"tags":[],"type":"NORMAL","idx":0,"shareAdTrack":null,"favoriteAdTrack":null,"webAdTrack":null,"date":1482129350000,"promotion":null,"label":null,"collected":false,"played":false}},{"type":"video","data":{"dataType":"VideoBeanForClient","id":11707,"title":"张艺谋的「长城」，是惊喜还是惊吓？","description":"「美国英雄为什么一定要跟中国女人滚床单，中国的女将军你能追到手？不可能！」「饕餮跟哥斯拉打，谁赢？我认为饕餮赢。」谈起新片「长城」，导演张艺谋的吐槽功力也是飙升到极点，段子频出，全程高能！","provider":{"name":"PGC","alias":"PGC","icon":""},"category":"记录","author":{"id":170,"icon":"http://img.kaiyanapp.com/d4164990b1328ce8ce41bfab7085f9e1.jpeg","name":"一条视频","description":"每天一条3分钟原创视频，精选人间美物。生活丨潮流丨文艺","link":"","latestReleaseTime":1482129350000,"videoNum":85,"adTrack":null,"follow":{"itemType":"author","itemId":170,"followed":false}},"cover":{"feed":"http://img.kaiyanapp.com/ab8f2b3dd1747b31fe2afc359318c6a2.jpeg?imageMogr2/quality/60","detail":"http://img.kaiyanapp.com/ab8f2b3dd1747b31fe2afc359318c6a2.jpeg?imageMogr2/quality/60","blurred":"1","sharing":null},"playUrl":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11707&editionType=default","duration":459,"webUrl":{"raw":"http://www.eyepetizer.net/detail.html?vid=11707","forWeibo":"http://wandou.im/3i366l"},"releaseTime":1481866724000,"playInfo":[{"height":270,"width":480,"name":"流畅","type":"low","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11707&editionType=low"},{"height":480,"width":854,"name":"标清","type":"normal","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11707&editionType=normal"},{"height":720,"width":1280,"name":"高清","type":"high","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11707&editionType=high"}],"consumption":{"collectionCount":2377,"shareCount":5829,"replyCount":132},"campaign":null,"waterMarks":null,"adTrack":null,"tags":[{"id":598,"name":"访谈","actionUrl":"eyepetizer://tag/598/?title=%E8%AE%BF%E8%B0%88","adTrack":null},{"id":24,"name":"记录","actionUrl":"eyepetizer://tag/24/?title=%E8%AE%B0%E5%BD%95","adTrack":null},{"id":570,"name":"电影相关","actionUrl":"eyepetizer://tag/570/?title=%E7%94%B5%E5%BD%B1%E7%9B%B8%E5%85%B3","adTrack":null},{"id":656,"name":"幕后","actionUrl":"eyepetizer://tag/656/?title=%E5%B9%95%E5%90%8E","adTrack":null}],"type":"NORMAL","idx":0,"shareAdTrack":null,"favoriteAdTrack":null,"webAdTrack":null,"date":1481866724000,"promotion":null,"label":null,"collected":false,"played":false}},{"type":"video","data":{"dataType":"VideoBeanForClient","id":11695,"title":"孤独图书馆后，他又改造了家美术馆","description":"董功，是一名建筑师，曾刷爆互联网的\u201c全中国最孤独的图书馆\u201d就是他的作品。去年，他接受了一项挑战：在42天内改建2000平米的木木美术馆。时间紧迫，董功还是接受了这项挑战！","provider":{"name":"PGC","alias":"PGC","icon":""},"category":"记录","author":{"id":170,"icon":"http://img.kaiyanapp.com/d4164990b1328ce8ce41bfab7085f9e1.jpeg","name":"一条视频","description":"每天一条3分钟原创视频，精选人间美物。生活丨潮流丨文艺","link":"","latestReleaseTime":1482129350000,"videoNum":85,"adTrack":null,"follow":{"itemType":"author","itemId":170,"followed":false}},"cover":{"feed":"http://img.kaiyanapp.com/8f86e2c83bef54057c703ecf28b6c399.png","detail":"http://img.kaiyanapp.com/8f86e2c83bef54057c703ecf28b6c399.png","blurred":"http://img.kaiyanapp.com/7f91edaf6ddf27c9d312fa1bdd69ff79.png","sharing":null},"playUrl":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11695&editionType=default","duration":234,"webUrl":{"raw":"http://www.eyepetizer.net/detail.html?vid=11695","forWeibo":"http://wandou.im/3hxmlh"},"releaseTime":1481793417000,"playInfo":[{"height":270,"width":480,"name":"流畅","type":"low","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11695&editionType=low"},{"height":480,"width":854,"name":"标清","type":"normal","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11695&editionType=normal"},{"height":720,"width":1280,"name":"高清","type":"high","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11695&editionType=high"}],"consumption":{"collectionCount":235,"shareCount":120,"replyCount":1},"campaign":null,"waterMarks":null,"adTrack":null,"tags":[],"type":"NORMAL","idx":0,"shareAdTrack":null,"favoriteAdTrack":null,"webAdTrack":null,"date":1481793417000,"promotion":null,"label":null,"collected":false,"played":false}},{"type":"video","data":{"dataType":"VideoBeanForClient","id":11626,"title":"特条丨一生需要住一次荒野酒店","description":"原始荒野、滚滚黄沙，野生动物在帐篷外探头探脑\u2026\u2026这里不是西部片的片场，而是澳大利亚南部的康阿路纳帐篷营地。14 年前，营地主人 Geoff 在此开了个只有 4 顶帐篷的酒店，远离城市，但这里的银河亮得不可思议。","provider":{"name":"PGC","alias":"PGC","icon":""},"category":"旅行","author":{"id":170,"icon":"http://img.kaiyanapp.com/d4164990b1328ce8ce41bfab7085f9e1.jpeg","name":"一条视频","description":"每天一条3分钟原创视频，精选人间美物。生活丨潮流丨文艺","link":"","latestReleaseTime":1482129350000,"videoNum":85,"adTrack":null,"follow":{"itemType":"author","itemId":170,"followed":false}},"cover":{"feed":"http://img.kaiyanapp.com/0c22882788a4044dca12323fc93e6271.jpeg?imageMogr2/quality/60","detail":"http://img.kaiyanapp.com/0c22882788a4044dca12323fc93e6271.jpeg?imageMogr2/quality/60","blurred":"http://img.kaiyanapp.com/9bf74b9bf73aeb21d97e67611d8e09f5.jpeg?imageMogr2/quality/60","sharing":null},"playUrl":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11626&editionType=default","duration":283,"webUrl":{"raw":"http://www.eyepetizer.net/detail.html?vid=11626","forWeibo":"http://wandou.im/3hol72"},"releaseTime":1481685220000,"playInfo":[{"height":270,"width":480,"name":"流畅","type":"low","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11626&editionType=low"},{"height":480,"width":854,"name":"标清","type":"normal","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11626&editionType=normal"},{"height":720,"width":1280,"name":"高清","type":"high","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11626&editionType=high"}],"consumption":{"collectionCount":1478,"shareCount":1506,"replyCount":21},"campaign":null,"waterMarks":null,"adTrack":null,"tags":[{"id":548,"name":"星空","actionUrl":"eyepetizer://tag/548/?title=%E6%98%9F%E7%A9%BA","adTrack":null},{"id":10,"name":"旅行","actionUrl":"eyepetizer://tag/10/?title=%E6%97%85%E8%A1%8C","adTrack":null},{"id":666,"name":"生活","actionUrl":"eyepetizer://tag/666/?title=%E7%94%9F%E6%B4%BB","adTrack":null},{"id":16,"name":"广告","actionUrl":"eyepetizer://tag/16/?title=%E5%B9%BF%E5%91%8A","adTrack":null}],"type":"NORMAL","idx":0,"shareAdTrack":null,"favoriteAdTrack":null,"webAdTrack":null,"date":1481685220000,"promotion":null,"label":null,"collected":false,"played":false}},{"type":"video","data":{"dataType":"VideoBeanForClient","id":11610,"title":"这位老炮儿，是京城潮人心目中最牛的！","description":"北京人郭宇因喜欢电影《霹雳舞》里演员穿的球鞋，从此和鞋结下不解之缘，30多年收集了1000多双限量球鞋，包括几乎全套的Jordan系列签名球鞋，他开的东四北大街\u201c亚新\u201d鞋店，更成为时髦青年的潮流地标。","provider":{"name":"PGC","alias":"PGC","icon":""},"category":"记录","author":{"id":170,"icon":"http://img.kaiyanapp.com/d4164990b1328ce8ce41bfab7085f9e1.jpeg","name":"一条视频","description":"每天一条3分钟原创视频，精选人间美物。生活丨潮流丨文艺","link":"","latestReleaseTime":1482129350000,"videoNum":85,"adTrack":null,"follow":{"itemType":"author","itemId":170,"followed":false}},"cover":{"feed":"http://img.kaiyanapp.com/c50d2ce98ac113578b843d814472f7e4.jpeg?imageMogr2/quality/60","detail":"http://img.kaiyanapp.com/c50d2ce98ac113578b843d814472f7e4.jpeg?imageMogr2/quality/60","blurred":"http://img.kaiyanapp.com/676f4b8c1be182764072e04bdf8c1ac4.jpeg?imageMogr2/quality/60","sharing":null},"playUrl":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11610&editionType=default","duration":278,"webUrl":{"raw":"http://www.eyepetizer.net/detail.html?vid=11610","forWeibo":"http://wandou.im/3hkb2u"},"releaseTime":1481625200000,"playInfo":[{"height":270,"width":480,"name":"流畅","type":"low","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11610&editionType=low"},{"height":480,"width":854,"name":"标清","type":"normal","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11610&editionType=normal"},{"height":720,"width":1280,"name":"高清","type":"high","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11610&editionType=high"}],"consumption":{"collectionCount":312,"shareCount":689,"replyCount":9},"campaign":null,"waterMarks":null,"adTrack":null,"tags":[],"type":"NORMAL","idx":0,"shareAdTrack":null,"favoriteAdTrack":null,"webAdTrack":null,"date":1481625200000,"promotion":null,"label":null,"collected":false,"played":false}}],"count":5,"adTrack":null}
-         */
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(count);
+        parcel.writeInt(total);
+        parcel.writeString(nextPageUrl);
+        parcel.writeTypedList(itemList);
+    }
+
+    public static class ItemListBeanX implements Parcelable {
+
 
         private String type;
         private DataBeanX data;
+
+        protected ItemListBeanX(Parcel in) {
+            type = in.readString();
+            data = in.readParcelable(DataBeanX.class.getClassLoader());
+        }
+
+        public static final Creator<ItemListBeanX> CREATOR = new Creator<ItemListBeanX>() {
+            @Override
+            public ItemListBeanX createFromParcel(Parcel in) {
+                return new ItemListBeanX(in);
+            }
+
+            @Override
+            public ItemListBeanX[] newArray(int size) {
+                return new ItemListBeanX[size];
+            }
+        };
 
         public String getType() {
             return type;
@@ -81,20 +130,44 @@ public class ConcernBean {
             this.data = data;
         }
 
-        public static class DataBeanX {
-            /**
-             * dataType : ItemCollection
-             * header : {"id":170,"icon":"http://img.kaiyanapp.com/d4164990b1328ce8ce41bfab7085f9e1.jpeg","iconType":"round","title":"一条视频","subTitle":null,"description":"每天一条3分钟原创视频，精选人间美物。生活丨潮流丨文艺","actionUrl":"eyepetizer://pgc/detail/170/?title=%E4%B8%80%E6%9D%A1%E8%A7%86%E9%A2%91","adTrack":null,"follow":{"itemType":"author","itemId":170,"followed":false}}
-             * itemList : [{"type":"video","data":{"dataType":"VideoBeanForClient","id":11755,"title":"如何过一个有仪式感的圣诞节","description":"圣诞节就要到了，美女甜点师Snow教你用空气凤梨和小甜点，布置一个温馨甜蜜的节日餐桌。操作简单，所有道具都可以在花鸟市场和网上买到，现在赶紧准备起来，今年在家就能过一个有仪式感的圣诞节！","provider":{"name":"PGC","alias":"PGC","icon":""},"category":"生活","author":{"id":170,"icon":"http://img.kaiyanapp.com/d4164990b1328ce8ce41bfab7085f9e1.jpeg","name":"一条视频","description":"每天一条3分钟原创视频，精选人间美物。生活丨潮流丨文艺","link":"","latestReleaseTime":1482129350000,"videoNum":85,"adTrack":null,"follow":{"itemType":"author","itemId":170,"followed":false}},"cover":{"feed":"http://img.kaiyanapp.com/494bacbee1efe5d547ec126af0fa6a18.jpeg?imageMogr2/quality/60","detail":"http://img.kaiyanapp.com/494bacbee1efe5d547ec126af0fa6a18.jpeg?imageMogr2/quality/60","blurred":"","sharing":null},"playUrl":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11755&editionType=default","duration":153,"webUrl":{"raw":"http://www.eyepetizer.net/detail.html?vid=11755","forWeibo":"http://wandou.im/3inchv"},"releaseTime":1482129350000,"playInfo":[{"height":270,"width":480,"name":"流畅","type":"low","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11755&editionType=low"},{"height":480,"width":854,"name":"标清","type":"normal","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11755&editionType=normal"},{"height":720,"width":1280,"name":"高清","type":"high","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11755&editionType=high"}],"consumption":{"collectionCount":37,"shareCount":53,"replyCount":0},"campaign":null,"waterMarks":null,"adTrack":null,"tags":[],"type":"NORMAL","idx":0,"shareAdTrack":null,"favoriteAdTrack":null,"webAdTrack":null,"date":1482129350000,"promotion":null,"label":null,"collected":false,"played":false}},{"type":"video","data":{"dataType":"VideoBeanForClient","id":11707,"title":"张艺谋的「长城」，是惊喜还是惊吓？","description":"「美国英雄为什么一定要跟中国女人滚床单，中国的女将军你能追到手？不可能！」「饕餮跟哥斯拉打，谁赢？我认为饕餮赢。」谈起新片「长城」，导演张艺谋的吐槽功力也是飙升到极点，段子频出，全程高能！","provider":{"name":"PGC","alias":"PGC","icon":""},"category":"记录","author":{"id":170,"icon":"http://img.kaiyanapp.com/d4164990b1328ce8ce41bfab7085f9e1.jpeg","name":"一条视频","description":"每天一条3分钟原创视频，精选人间美物。生活丨潮流丨文艺","link":"","latestReleaseTime":1482129350000,"videoNum":85,"adTrack":null,"follow":{"itemType":"author","itemId":170,"followed":false}},"cover":{"feed":"http://img.kaiyanapp.com/ab8f2b3dd1747b31fe2afc359318c6a2.jpeg?imageMogr2/quality/60","detail":"http://img.kaiyanapp.com/ab8f2b3dd1747b31fe2afc359318c6a2.jpeg?imageMogr2/quality/60","blurred":"1","sharing":null},"playUrl":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11707&editionType=default","duration":459,"webUrl":{"raw":"http://www.eyepetizer.net/detail.html?vid=11707","forWeibo":"http://wandou.im/3i366l"},"releaseTime":1481866724000,"playInfo":[{"height":270,"width":480,"name":"流畅","type":"low","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11707&editionType=low"},{"height":480,"width":854,"name":"标清","type":"normal","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11707&editionType=normal"},{"height":720,"width":1280,"name":"高清","type":"high","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11707&editionType=high"}],"consumption":{"collectionCount":2377,"shareCount":5829,"replyCount":132},"campaign":null,"waterMarks":null,"adTrack":null,"tags":[{"id":598,"name":"访谈","actionUrl":"eyepetizer://tag/598/?title=%E8%AE%BF%E8%B0%88","adTrack":null},{"id":24,"name":"记录","actionUrl":"eyepetizer://tag/24/?title=%E8%AE%B0%E5%BD%95","adTrack":null},{"id":570,"name":"电影相关","actionUrl":"eyepetizer://tag/570/?title=%E7%94%B5%E5%BD%B1%E7%9B%B8%E5%85%B3","adTrack":null},{"id":656,"name":"幕后","actionUrl":"eyepetizer://tag/656/?title=%E5%B9%95%E5%90%8E","adTrack":null}],"type":"NORMAL","idx":0,"shareAdTrack":null,"favoriteAdTrack":null,"webAdTrack":null,"date":1481866724000,"promotion":null,"label":null,"collected":false,"played":false}},{"type":"video","data":{"dataType":"VideoBeanForClient","id":11695,"title":"孤独图书馆后，他又改造了家美术馆","description":"董功，是一名建筑师，曾刷爆互联网的\u201c全中国最孤独的图书馆\u201d就是他的作品。去年，他接受了一项挑战：在42天内改建2000平米的木木美术馆。时间紧迫，董功还是接受了这项挑战！","provider":{"name":"PGC","alias":"PGC","icon":""},"category":"记录","author":{"id":170,"icon":"http://img.kaiyanapp.com/d4164990b1328ce8ce41bfab7085f9e1.jpeg","name":"一条视频","description":"每天一条3分钟原创视频，精选人间美物。生活丨潮流丨文艺","link":"","latestReleaseTime":1482129350000,"videoNum":85,"adTrack":null,"follow":{"itemType":"author","itemId":170,"followed":false}},"cover":{"feed":"http://img.kaiyanapp.com/8f86e2c83bef54057c703ecf28b6c399.png","detail":"http://img.kaiyanapp.com/8f86e2c83bef54057c703ecf28b6c399.png","blurred":"http://img.kaiyanapp.com/7f91edaf6ddf27c9d312fa1bdd69ff79.png","sharing":null},"playUrl":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11695&editionType=default","duration":234,"webUrl":{"raw":"http://www.eyepetizer.net/detail.html?vid=11695","forWeibo":"http://wandou.im/3hxmlh"},"releaseTime":1481793417000,"playInfo":[{"height":270,"width":480,"name":"流畅","type":"low","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11695&editionType=low"},{"height":480,"width":854,"name":"标清","type":"normal","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11695&editionType=normal"},{"height":720,"width":1280,"name":"高清","type":"high","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11695&editionType=high"}],"consumption":{"collectionCount":235,"shareCount":120,"replyCount":1},"campaign":null,"waterMarks":null,"adTrack":null,"tags":[],"type":"NORMAL","idx":0,"shareAdTrack":null,"favoriteAdTrack":null,"webAdTrack":null,"date":1481793417000,"promotion":null,"label":null,"collected":false,"played":false}},{"type":"video","data":{"dataType":"VideoBeanForClient","id":11626,"title":"特条丨一生需要住一次荒野酒店","description":"原始荒野、滚滚黄沙，野生动物在帐篷外探头探脑\u2026\u2026这里不是西部片的片场，而是澳大利亚南部的康阿路纳帐篷营地。14 年前，营地主人 Geoff 在此开了个只有 4 顶帐篷的酒店，远离城市，但这里的银河亮得不可思议。","provider":{"name":"PGC","alias":"PGC","icon":""},"category":"旅行","author":{"id":170,"icon":"http://img.kaiyanapp.com/d4164990b1328ce8ce41bfab7085f9e1.jpeg","name":"一条视频","description":"每天一条3分钟原创视频，精选人间美物。生活丨潮流丨文艺","link":"","latestReleaseTime":1482129350000,"videoNum":85,"adTrack":null,"follow":{"itemType":"author","itemId":170,"followed":false}},"cover":{"feed":"http://img.kaiyanapp.com/0c22882788a4044dca12323fc93e6271.jpeg?imageMogr2/quality/60","detail":"http://img.kaiyanapp.com/0c22882788a4044dca12323fc93e6271.jpeg?imageMogr2/quality/60","blurred":"http://img.kaiyanapp.com/9bf74b9bf73aeb21d97e67611d8e09f5.jpeg?imageMogr2/quality/60","sharing":null},"playUrl":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11626&editionType=default","duration":283,"webUrl":{"raw":"http://www.eyepetizer.net/detail.html?vid=11626","forWeibo":"http://wandou.im/3hol72"},"releaseTime":1481685220000,"playInfo":[{"height":270,"width":480,"name":"流畅","type":"low","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11626&editionType=low"},{"height":480,"width":854,"name":"标清","type":"normal","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11626&editionType=normal"},{"height":720,"width":1280,"name":"高清","type":"high","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11626&editionType=high"}],"consumption":{"collectionCount":1478,"shareCount":1506,"replyCount":21},"campaign":null,"waterMarks":null,"adTrack":null,"tags":[{"id":548,"name":"星空","actionUrl":"eyepetizer://tag/548/?title=%E6%98%9F%E7%A9%BA","adTrack":null},{"id":10,"name":"旅行","actionUrl":"eyepetizer://tag/10/?title=%E6%97%85%E8%A1%8C","adTrack":null},{"id":666,"name":"生活","actionUrl":"eyepetizer://tag/666/?title=%E7%94%9F%E6%B4%BB","adTrack":null},{"id":16,"name":"广告","actionUrl":"eyepetizer://tag/16/?title=%E5%B9%BF%E5%91%8A","adTrack":null}],"type":"NORMAL","idx":0,"shareAdTrack":null,"favoriteAdTrack":null,"webAdTrack":null,"date":1481685220000,"promotion":null,"label":null,"collected":false,"played":false}},{"type":"video","data":{"dataType":"VideoBeanForClient","id":11610,"title":"这位老炮儿，是京城潮人心目中最牛的！","description":"北京人郭宇因喜欢电影《霹雳舞》里演员穿的球鞋，从此和鞋结下不解之缘，30多年收集了1000多双限量球鞋，包括几乎全套的Jordan系列签名球鞋，他开的东四北大街\u201c亚新\u201d鞋店，更成为时髦青年的潮流地标。","provider":{"name":"PGC","alias":"PGC","icon":""},"category":"记录","author":{"id":170,"icon":"http://img.kaiyanapp.com/d4164990b1328ce8ce41bfab7085f9e1.jpeg","name":"一条视频","description":"每天一条3分钟原创视频，精选人间美物。生活丨潮流丨文艺","link":"","latestReleaseTime":1482129350000,"videoNum":85,"adTrack":null,"follow":{"itemType":"author","itemId":170,"followed":false}},"cover":{"feed":"http://img.kaiyanapp.com/c50d2ce98ac113578b843d814472f7e4.jpeg?imageMogr2/quality/60","detail":"http://img.kaiyanapp.com/c50d2ce98ac113578b843d814472f7e4.jpeg?imageMogr2/quality/60","blurred":"http://img.kaiyanapp.com/676f4b8c1be182764072e04bdf8c1ac4.jpeg?imageMogr2/quality/60","sharing":null},"playUrl":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11610&editionType=default","duration":278,"webUrl":{"raw":"http://www.eyepetizer.net/detail.html?vid=11610","forWeibo":"http://wandou.im/3hkb2u"},"releaseTime":1481625200000,"playInfo":[{"height":270,"width":480,"name":"流畅","type":"low","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11610&editionType=low"},{"height":480,"width":854,"name":"标清","type":"normal","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11610&editionType=normal"},{"height":720,"width":1280,"name":"高清","type":"high","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11610&editionType=high"}],"consumption":{"collectionCount":312,"shareCount":689,"replyCount":9},"campaign":null,"waterMarks":null,"adTrack":null,"tags":[],"type":"NORMAL","idx":0,"shareAdTrack":null,"favoriteAdTrack":null,"webAdTrack":null,"date":1481625200000,"promotion":null,"label":null,"collected":false,"played":false}}]
-             * count : 5
-             * adTrack : null
-             */
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel parcel, int i) {
+            parcel.writeString(type);
+            parcel.writeParcelable(data, i);
+        }
+
+        public static class DataBeanX implements Parcelable {
+
 
             private String dataType;
             private HeaderBean header;
             private int count;
             private Object adTrack;
             private List<ItemListBean> itemList;
+
+            protected DataBeanX(Parcel in) {
+                dataType = in.readString();
+                header = in.readParcelable(HeaderBean.class.getClassLoader());
+                count = in.readInt();
+                itemList = in.createTypedArrayList(ItemListBean.CREATOR);
+            }
+
+            public static final Creator<DataBeanX> CREATOR = new Creator<DataBeanX>() {
+                @Override
+                public DataBeanX createFromParcel(Parcel in) {
+                    return new DataBeanX(in);
+                }
+
+                @Override
+                public DataBeanX[] newArray(int size) {
+                    return new DataBeanX[size];
+                }
+            };
 
             public String getDataType() {
                 return dataType;
@@ -136,18 +209,21 @@ public class ConcernBean {
                 this.itemList = itemList;
             }
 
-            public static class HeaderBean {
-                /**
-                 * id : 170
-                 * icon : http://img.kaiyanapp.com/d4164990b1328ce8ce41bfab7085f9e1.jpeg
-                 * iconType : round
-                 * title : 一条视频
-                 * subTitle : null
-                 * description : 每天一条3分钟原创视频，精选人间美物。生活丨潮流丨文艺
-                 * actionUrl : eyepetizer://pgc/detail/170/?title=%E4%B8%80%E6%9D%A1%E8%A7%86%E9%A2%91
-                 * adTrack : null
-                 * follow : {"itemType":"author","itemId":170,"followed":false}
-                 */
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel parcel, int i) {
+                parcel.writeString(dataType);
+                parcel.writeParcelable(header, i);
+                parcel.writeInt(count);
+                parcel.writeTypedList(itemList);
+            }
+
+            public static class HeaderBean implements Parcelable {
+
 
                 private int id;
                 private String icon;
@@ -158,6 +234,28 @@ public class ConcernBean {
                 private String actionUrl;
                 private Object adTrack;
                 private FollowBean follow;
+
+                protected HeaderBean(Parcel in) {
+                    id = in.readInt();
+                    icon = in.readString();
+                    iconType = in.readString();
+                    title = in.readString();
+                    description = in.readString();
+                    actionUrl = in.readString();
+                    follow = in.readParcelable(FollowBean.class.getClassLoader());
+                }
+
+                public static final Creator<HeaderBean> CREATOR = new Creator<HeaderBean>() {
+                    @Override
+                    public HeaderBean createFromParcel(Parcel in) {
+                        return new HeaderBean(in);
+                    }
+
+                    @Override
+                    public HeaderBean[] newArray(int size) {
+                        return new HeaderBean[size];
+                    }
+                };
 
                 public int getId() {
                     return id;
@@ -231,16 +329,46 @@ public class ConcernBean {
                     this.follow = follow;
                 }
 
-                public static class FollowBean {
-                    /**
-                     * itemType : author
-                     * itemId : 170
-                     * followed : false
-                     */
+                @Override
+                public int describeContents() {
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel parcel, int i) {
+                    parcel.writeInt(id);
+                    parcel.writeString(icon);
+                    parcel.writeString(iconType);
+                    parcel.writeString(title);
+                    parcel.writeString(description);
+                    parcel.writeString(actionUrl);
+                    parcel.writeParcelable(follow, i);
+                }
+
+                public static class FollowBean implements Parcelable {
+
 
                     private String itemType;
                     private int itemId;
                     private boolean followed;
+
+                    protected FollowBean(Parcel in) {
+                        itemType = in.readString();
+                        itemId = in.readInt();
+                        followed = in.readByte() != 0;
+                    }
+
+                    public static final Creator<FollowBean> CREATOR = new Creator<FollowBean>() {
+                        @Override
+                        public FollowBean createFromParcel(Parcel in) {
+                            return new FollowBean(in);
+                        }
+
+                        @Override
+                        public FollowBean[] newArray(int size) {
+                            return new FollowBean[size];
+                        }
+                    };
 
                     public String getItemType() {
                         return itemType;
@@ -265,17 +393,43 @@ public class ConcernBean {
                     public void setFollowed(boolean followed) {
                         this.followed = followed;
                     }
+
+                    @Override
+                    public int describeContents() {
+                        return 0;
+                    }
+
+                    @Override
+                    public void writeToParcel(Parcel parcel, int i) {
+                        parcel.writeString(itemType);
+                        parcel.writeInt(itemId);
+                        parcel.writeByte((byte) (followed ? 1 : 0));
+                    }
                 }
             }
 
-            public static class ItemListBean {
-                /**
-                 * type : video
-                 * data : {"dataType":"VideoBeanForClient","id":11755,"title":"如何过一个有仪式感的圣诞节","description":"圣诞节就要到了，美女甜点师Snow教你用空气凤梨和小甜点，布置一个温馨甜蜜的节日餐桌。操作简单，所有道具都可以在花鸟市场和网上买到，现在赶紧准备起来，今年在家就能过一个有仪式感的圣诞节！","provider":{"name":"PGC","alias":"PGC","icon":""},"category":"生活","author":{"id":170,"icon":"http://img.kaiyanapp.com/d4164990b1328ce8ce41bfab7085f9e1.jpeg","name":"一条视频","description":"每天一条3分钟原创视频，精选人间美物。生活丨潮流丨文艺","link":"","latestReleaseTime":1482129350000,"videoNum":85,"adTrack":null,"follow":{"itemType":"author","itemId":170,"followed":false}},"cover":{"feed":"http://img.kaiyanapp.com/494bacbee1efe5d547ec126af0fa6a18.jpeg?imageMogr2/quality/60","detail":"http://img.kaiyanapp.com/494bacbee1efe5d547ec126af0fa6a18.jpeg?imageMogr2/quality/60","blurred":"","sharing":null},"playUrl":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11755&editionType=default","duration":153,"webUrl":{"raw":"http://www.eyepetizer.net/detail.html?vid=11755","forWeibo":"http://wandou.im/3inchv"},"releaseTime":1482129350000,"playInfo":[{"height":270,"width":480,"name":"流畅","type":"low","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11755&editionType=low"},{"height":480,"width":854,"name":"标清","type":"normal","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11755&editionType=normal"},{"height":720,"width":1280,"name":"高清","type":"high","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11755&editionType=high"}],"consumption":{"collectionCount":37,"shareCount":53,"replyCount":0},"campaign":null,"waterMarks":null,"adTrack":null,"tags":[],"type":"NORMAL","idx":0,"shareAdTrack":null,"favoriteAdTrack":null,"webAdTrack":null,"date":1482129350000,"promotion":null,"label":null,"collected":false,"played":false}
-                 */
+            public static class ItemListBean implements Parcelable {
+
 
                 private String type;
                 private DataBean data;
+
+                protected ItemListBean(Parcel in) {
+                    type = in.readString();
+                    data = in.readParcelable(DataBean.class.getClassLoader());
+                }
+
+                public static final Creator<ItemListBean> CREATOR = new Creator<ItemListBean>() {
+                    @Override
+                    public ItemListBean createFromParcel(Parcel in) {
+                        return new ItemListBean(in);
+                    }
+
+                    @Override
+                    public ItemListBean[] newArray(int size) {
+                        return new ItemListBean[size];
+                    }
+                };
 
                 public String getType() {
                     return type;
@@ -293,37 +447,19 @@ public class ConcernBean {
                     this.data = data;
                 }
 
-                public static class DataBean {
-                    /**
-                     * dataType : VideoBeanForClient
-                     * id : 11755
-                     * title : 如何过一个有仪式感的圣诞节
-                     * description : 圣诞节就要到了，美女甜点师Snow教你用空气凤梨和小甜点，布置一个温馨甜蜜的节日餐桌。操作简单，所有道具都可以在花鸟市场和网上买到，现在赶紧准备起来，今年在家就能过一个有仪式感的圣诞节！
-                     * provider : {"name":"PGC","alias":"PGC","icon":""}
-                     * category : 生活
-                     * author : {"id":170,"icon":"http://img.kaiyanapp.com/d4164990b1328ce8ce41bfab7085f9e1.jpeg","name":"一条视频","description":"每天一条3分钟原创视频，精选人间美物。生活丨潮流丨文艺","link":"","latestReleaseTime":1482129350000,"videoNum":85,"adTrack":null,"follow":{"itemType":"author","itemId":170,"followed":false}}
-                     * cover : {"feed":"http://img.kaiyanapp.com/494bacbee1efe5d547ec126af0fa6a18.jpeg?imageMogr2/quality/60","detail":"http://img.kaiyanapp.com/494bacbee1efe5d547ec126af0fa6a18.jpeg?imageMogr2/quality/60","blurred":"","sharing":null}
-                     * playUrl : http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11755&editionType=default
-                     * duration : 153
-                     * webUrl : {"raw":"http://www.eyepetizer.net/detail.html?vid=11755","forWeibo":"http://wandou.im/3inchv"}
-                     * releaseTime : 1482129350000
-                     * playInfo : [{"height":270,"width":480,"name":"流畅","type":"low","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11755&editionType=low"},{"height":480,"width":854,"name":"标清","type":"normal","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11755&editionType=normal"},{"height":720,"width":1280,"name":"高清","type":"high","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=11755&editionType=high"}]
-                     * consumption : {"collectionCount":37,"shareCount":53,"replyCount":0}
-                     * campaign : null
-                     * waterMarks : null
-                     * adTrack : null
-                     * tags : []
-                     * type : NORMAL
-                     * idx : 0
-                     * shareAdTrack : null
-                     * favoriteAdTrack : null
-                     * webAdTrack : null
-                     * date : 1482129350000
-                     * promotion : null
-                     * label : null
-                     * collected : false
-                     * played : false
-                     */
+                @Override
+                public int describeContents() {
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel parcel, int i) {
+                    parcel.writeString(type);
+                    parcel.writeParcelable(data, i);
+                }
+
+                public static class DataBean implements Parcelable {
+
 
                     private String dataType;
                     private int id;
@@ -353,6 +489,40 @@ public class ConcernBean {
                     private boolean played;
                     private List<PlayInfoBean> playInfo;
                     private List<?> tags;
+
+                    protected DataBean(Parcel in) {
+                        dataType = in.readString();
+                        id = in.readInt();
+                        title = in.readString();
+                        description = in.readString();
+                        provider = in.readParcelable(ProviderBean.class.getClassLoader());
+                        category = in.readString();
+                        author = in.readParcelable(AuthorBean.class.getClassLoader());
+                        cover = in.readParcelable(CoverBean.class.getClassLoader());
+                        playUrl = in.readString();
+                        duration = in.readInt();
+                        webUrl = in.readParcelable(WebUrlBean.class.getClassLoader());
+                        releaseTime = in.readLong();
+                        consumption = in.readParcelable(ConsumptionBean.class.getClassLoader());
+                        type = in.readString();
+                        idx = in.readInt();
+                        date = in.readLong();
+                        collected = in.readByte() != 0;
+                        played = in.readByte() != 0;
+                        playInfo = in.createTypedArrayList(PlayInfoBean.CREATOR);
+                    }
+
+                    public static final Creator<DataBean> CREATOR = new Creator<DataBean>() {
+                        @Override
+                        public DataBean createFromParcel(Parcel in) {
+                            return new DataBean(in);
+                        }
+
+                        @Override
+                        public DataBean[] newArray(int size) {
+                            return new DataBean[size];
+                        }
+                    };
 
                     public String getDataType() {
                         return dataType;
@@ -578,16 +748,58 @@ public class ConcernBean {
                         this.tags = tags;
                     }
 
-                    public static class ProviderBean {
-                        /**
-                         * name : PGC
-                         * alias : PGC
-                         * icon :
-                         */
+                    @Override
+                    public int describeContents() {
+                        return 0;
+                    }
+
+                    @Override
+                    public void writeToParcel(Parcel parcel, int i) {
+                        parcel.writeString(dataType);
+                        parcel.writeInt(id);
+                        parcel.writeString(title);
+                        parcel.writeString(description);
+                        parcel.writeParcelable(provider, i);
+                        parcel.writeString(category);
+                        parcel.writeParcelable(author, i);
+                        parcel.writeParcelable(cover, i);
+                        parcel.writeString(playUrl);
+                        parcel.writeInt(duration);
+                        parcel.writeParcelable(webUrl, i);
+                        parcel.writeLong(releaseTime);
+                        parcel.writeParcelable(consumption, i);
+                        parcel.writeString(type);
+                        parcel.writeInt(idx);
+                        parcel.writeLong(date);
+                        parcel.writeByte((byte) (collected ? 1 : 0));
+                        parcel.writeByte((byte) (played ? 1 : 0));
+                        parcel.writeTypedList(playInfo);
+                    }
+
+                    public static class ProviderBean implements Parcelable {
+
 
                         private String name;
                         private String alias;
                         private String icon;
+
+                        protected ProviderBean(Parcel in) {
+                            name = in.readString();
+                            alias = in.readString();
+                            icon = in.readString();
+                        }
+
+                        public static final Creator<ProviderBean> CREATOR = new Creator<ProviderBean>() {
+                            @Override
+                            public ProviderBean createFromParcel(Parcel in) {
+                                return new ProviderBean(in);
+                            }
+
+                            @Override
+                            public ProviderBean[] newArray(int size) {
+                                return new ProviderBean[size];
+                            }
+                        };
 
                         public String getName() {
                             return name;
@@ -612,20 +824,22 @@ public class ConcernBean {
                         public void setIcon(String icon) {
                             this.icon = icon;
                         }
+
+                        @Override
+                        public int describeContents() {
+                            return 0;
+                        }
+
+                        @Override
+                        public void writeToParcel(Parcel parcel, int i) {
+                            parcel.writeString(name);
+                            parcel.writeString(alias);
+                            parcel.writeString(icon);
+                        }
                     }
 
-                    public static class AuthorBean {
-                        /**
-                         * id : 170
-                         * icon : http://img.kaiyanapp.com/d4164990b1328ce8ce41bfab7085f9e1.jpeg
-                         * name : 一条视频
-                         * description : 每天一条3分钟原创视频，精选人间美物。生活丨潮流丨文艺
-                         * link :
-                         * latestReleaseTime : 1482129350000
-                         * videoNum : 85
-                         * adTrack : null
-                         * follow : {"itemType":"author","itemId":170,"followed":false}
-                         */
+                    public static class AuthorBean implements Parcelable {
+
 
                         private int id;
                         private String icon;
@@ -636,6 +850,29 @@ public class ConcernBean {
                         private int videoNum;
                         private Object adTrack;
                         private FollowBeanX follow;
+
+                        protected AuthorBean(Parcel in) {
+                            id = in.readInt();
+                            icon = in.readString();
+                            name = in.readString();
+                            description = in.readString();
+                            link = in.readString();
+                            latestReleaseTime = in.readLong();
+                            videoNum = in.readInt();
+                            follow = in.readParcelable(FollowBeanX.class.getClassLoader());
+                        }
+
+                        public static final Creator<AuthorBean> CREATOR = new Creator<AuthorBean>() {
+                            @Override
+                            public AuthorBean createFromParcel(Parcel in) {
+                                return new AuthorBean(in);
+                            }
+
+                            @Override
+                            public AuthorBean[] newArray(int size) {
+                                return new AuthorBean[size];
+                            }
+                        };
 
                         public int getId() {
                             return id;
@@ -709,16 +946,47 @@ public class ConcernBean {
                             this.follow = follow;
                         }
 
-                        public static class FollowBeanX {
-                            /**
-                             * itemType : author
-                             * itemId : 170
-                             * followed : false
-                             */
+                        @Override
+                        public int describeContents() {
+                            return 0;
+                        }
+
+                        @Override
+                        public void writeToParcel(Parcel parcel, int i) {
+                            parcel.writeInt(id);
+                            parcel.writeString(icon);
+                            parcel.writeString(name);
+                            parcel.writeString(description);
+                            parcel.writeString(link);
+                            parcel.writeLong(latestReleaseTime);
+                            parcel.writeInt(videoNum);
+                            parcel.writeParcelable(follow, i);
+                        }
+
+                        public static class FollowBeanX implements Parcelable {
+
 
                             private String itemType;
                             private int itemId;
                             private boolean followed;
+
+                            protected FollowBeanX(Parcel in) {
+                                itemType = in.readString();
+                                itemId = in.readInt();
+                                followed = in.readByte() != 0;
+                            }
+
+                            public static final Creator<FollowBeanX> CREATOR = new Creator<FollowBeanX>() {
+                                @Override
+                                public FollowBeanX createFromParcel(Parcel in) {
+                                    return new FollowBeanX(in);
+                                }
+
+                                @Override
+                                public FollowBeanX[] newArray(int size) {
+                                    return new FollowBeanX[size];
+                                }
+                            };
 
                             public String getItemType() {
                                 return itemType;
@@ -743,21 +1011,46 @@ public class ConcernBean {
                             public void setFollowed(boolean followed) {
                                 this.followed = followed;
                             }
+
+                            @Override
+                            public int describeContents() {
+                                return 0;
+                            }
+
+                            @Override
+                            public void writeToParcel(Parcel parcel, int i) {
+                                parcel.writeString(itemType);
+                                parcel.writeInt(itemId);
+                                parcel.writeByte((byte) (followed ? 1 : 0));
+                            }
                         }
                     }
 
-                    public static class CoverBean {
-                        /**
-                         * feed : http://img.kaiyanapp.com/494bacbee1efe5d547ec126af0fa6a18.jpeg?imageMogr2/quality/60
-                         * detail : http://img.kaiyanapp.com/494bacbee1efe5d547ec126af0fa6a18.jpeg?imageMogr2/quality/60
-                         * blurred :
-                         * sharing : null
-                         */
+                    public static class CoverBean implements Parcelable {
+
 
                         private String feed;
                         private String detail;
                         private String blurred;
                         private Object sharing;
+
+                        protected CoverBean(Parcel in) {
+                            feed = in.readString();
+                            detail = in.readString();
+                            blurred = in.readString();
+                        }
+
+                        public static final Creator<CoverBean> CREATOR = new Creator<CoverBean>() {
+                            @Override
+                            public CoverBean createFromParcel(Parcel in) {
+                                return new CoverBean(in);
+                            }
+
+                            @Override
+                            public CoverBean[] newArray(int size) {
+                                return new CoverBean[size];
+                            }
+                        };
 
                         public String getFeed() {
                             return feed;
@@ -790,9 +1083,21 @@ public class ConcernBean {
                         public void setSharing(Object sharing) {
                             this.sharing = sharing;
                         }
+
+                        @Override
+                        public int describeContents() {
+                            return 0;
+                        }
+
+                        @Override
+                        public void writeToParcel(Parcel parcel, int i) {
+                            parcel.writeString(feed);
+                            parcel.writeString(detail);
+                            parcel.writeString(blurred);
+                        }
                     }
 
-                    public static class WebUrlBean {
+                    public static class WebUrlBean implements Parcelable {
                         /**
                          * raw : http://www.eyepetizer.net/detail.html?vid=11755
                          * forWeibo : http://wandou.im/3inchv
@@ -800,6 +1105,23 @@ public class ConcernBean {
 
                         private String raw;
                         private String forWeibo;
+
+                        protected WebUrlBean(Parcel in) {
+                            raw = in.readString();
+                            forWeibo = in.readString();
+                        }
+
+                        public static final Creator<WebUrlBean> CREATOR = new Creator<WebUrlBean>() {
+                            @Override
+                            public WebUrlBean createFromParcel(Parcel in) {
+                                return new WebUrlBean(in);
+                            }
+
+                            @Override
+                            public WebUrlBean[] newArray(int size) {
+                                return new WebUrlBean[size];
+                            }
+                        };
 
                         public String getRaw() {
                             return raw;
@@ -816,9 +1138,20 @@ public class ConcernBean {
                         public void setForWeibo(String forWeibo) {
                             this.forWeibo = forWeibo;
                         }
+
+                        @Override
+                        public int describeContents() {
+                            return 0;
+                        }
+
+                        @Override
+                        public void writeToParcel(Parcel parcel, int i) {
+                            parcel.writeString(raw);
+                            parcel.writeString(forWeibo);
+                        }
                     }
 
-                    public static class ConsumptionBean {
+                    public static class ConsumptionBean implements Parcelable {
                         /**
                          * collectionCount : 37
                          * shareCount : 53
@@ -828,6 +1161,24 @@ public class ConcernBean {
                         private int collectionCount;
                         private int shareCount;
                         private int replyCount;
+
+                        protected ConsumptionBean(Parcel in) {
+                            collectionCount = in.readInt();
+                            shareCount = in.readInt();
+                            replyCount = in.readInt();
+                        }
+
+                        public static final Creator<ConsumptionBean> CREATOR = new Creator<ConsumptionBean>() {
+                            @Override
+                            public ConsumptionBean createFromParcel(Parcel in) {
+                                return new ConsumptionBean(in);
+                            }
+
+                            @Override
+                            public ConsumptionBean[] newArray(int size) {
+                                return new ConsumptionBean[size];
+                            }
+                        };
 
                         public int getCollectionCount() {
                             return collectionCount;
@@ -852,9 +1203,21 @@ public class ConcernBean {
                         public void setReplyCount(int replyCount) {
                             this.replyCount = replyCount;
                         }
+
+                        @Override
+                        public int describeContents() {
+                            return 0;
+                        }
+
+                        @Override
+                        public void writeToParcel(Parcel parcel, int i) {
+                            parcel.writeInt(collectionCount);
+                            parcel.writeInt(shareCount);
+                            parcel.writeInt(replyCount);
+                        }
                     }
 
-                    public static class PlayInfoBean {
+                    public static class PlayInfoBean implements Parcelable {
                         /**
                          * height : 270
                          * width : 480
@@ -868,6 +1231,26 @@ public class ConcernBean {
                         private String name;
                         private String type;
                         private String url;
+
+                        protected PlayInfoBean(Parcel in) {
+                            height = in.readInt();
+                            width = in.readInt();
+                            name = in.readString();
+                            type = in.readString();
+                            url = in.readString();
+                        }
+
+                        public static final Creator<PlayInfoBean> CREATOR = new Creator<PlayInfoBean>() {
+                            @Override
+                            public PlayInfoBean createFromParcel(Parcel in) {
+                                return new PlayInfoBean(in);
+                            }
+
+                            @Override
+                            public PlayInfoBean[] newArray(int size) {
+                                return new PlayInfoBean[size];
+                            }
+                        };
 
                         public int getHeight() {
                             return height;
@@ -907,6 +1290,20 @@ public class ConcernBean {
 
                         public void setUrl(String url) {
                             this.url = url;
+                        }
+
+                        @Override
+                        public int describeContents() {
+                            return 0;
+                        }
+
+                        @Override
+                        public void writeToParcel(Parcel parcel, int i) {
+                            parcel.writeInt(height);
+                            parcel.writeInt(width);
+                            parcel.writeString(name);
+                            parcel.writeString(type);
+                            parcel.writeString(url);
                         }
                     }
                 }

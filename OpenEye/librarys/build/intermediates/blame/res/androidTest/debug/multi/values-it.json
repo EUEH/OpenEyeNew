@@ -49,11 +49,7 @@
                     "endOffset": 282
                 },
                 "from": {
-<<<<<<< HEAD
-                    "file": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-it/values-it.xml",
-=======
                     "file": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/values-it/values-it.xml",
->>>>>>> feature/AAAA陈小飞
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,

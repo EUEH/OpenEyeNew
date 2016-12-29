@@ -36,7 +36,11 @@
             android:screenOrientation="portrait" />
         <activity android:name=".search.SearchActivity"></activity>
 
+
         <service android:name=".downloadservice.DownLoadService" />
+
+        <activity android:name=".concern.author.ConcernAuthorActivity"/>
+
     </application>
 
 </manifest>

@@ -23,6 +23,16 @@ import java.util.List;
 public class ConcernRvAdapter extends RecyclerView.Adapter<ConcernRvAdapter.ConcernViewHolder>{
     Context context;
     List<ConcernBean.ItemListBeanX.DataBeanX.ItemListBean> list;
+    ConcernBean.ItemListBeanX.DataBeanX newList;
+
+    public ConcernRvAdapter setNewList(ConcernBean.ItemListBeanX.DataBeanX newList) {
+        this.newList = newList;
+        notifyDataSetChanged();
+        return this;
+    }
+
+    private static String rvUrl;
+
 
     public ConcernRvAdapter(Context context) {
         this.context = context;
@@ -30,6 +40,7 @@ public class ConcernRvAdapter extends RecyclerView.Adapter<ConcernRvAdapter.Conc
 
     public ConcernRvAdapter setList(List<ConcernBean.ItemListBeanX.DataBeanX.ItemListBean> list) {
         this.list = list;
+        notifyDataSetChanged();
         return this;
     }
 
@@ -51,8 +62,12 @@ public class ConcernRvAdapter extends RecyclerView.Adapter<ConcernRvAdapter.Conc
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, ConcernImageActivity.class);
-                intent.putExtra("position", position);
+                intent.putExtra("url", rvUrl);
+                intent.putExtra("第一层的pos",position);
+
+                intent.putExtra("data",newList);
                 context.startActivity(intent);
+
             }
         });
     }
@@ -80,4 +95,8 @@ public class ConcernRvAdapter extends RecyclerView.Adapter<ConcernRvAdapter.Conc
         }
     }
 
+    public static String getConcernUrl(String url){
+        rvUrl = url;
+        return url;
+    }
 }
