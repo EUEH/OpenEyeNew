@@ -41,6 +41,8 @@
 
         <activity android:name=".concern.author.ConcernAuthorActivity"/>
 
+        <activity android:name=".mine.MineCollectionActivity"/>
+
     </application>
 
 </manifest>

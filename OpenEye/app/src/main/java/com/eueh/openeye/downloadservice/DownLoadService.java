@@ -42,7 +42,6 @@ public class DownLoadService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(this, "启动下载服务", Toast.LENGTH_SHORT).show();
         initDownManager();
         return super.onStartCommand(intent, flags, startId);
     }

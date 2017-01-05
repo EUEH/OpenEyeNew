@@ -204,19 +204,15 @@ public class SelectionAdapter extends BaseAdapter {
                     @Override
                     public void onClick(View view) {
 
-                        if (i<9){
+
                             Intent intent = new Intent(context, SelectionDetailActivity.class);
 ////////////////////////把vp位置 传过去   1~7  ////////////////////////////////////
                             intent.putExtra("selection_viewpager_item_d", i);
+                        intent.putExtra("selection_releasetime" , data.get(i).getData().getReleaseTime()+"");
                             context.startActivity(intent);
-                        }else if (i < 18){
-                            Intent intent = new Intent(context, SelectionDetailActivity.class);
-////////////////////////把vp位置 传过去  11~16   ////////////////////////////////////
-                            intent.putExtra("selection_viewpager_item_d", i%11 );
-                            context.startActivity(intent);
-                        }else {
 
-                        }
+
+
 
 
 
