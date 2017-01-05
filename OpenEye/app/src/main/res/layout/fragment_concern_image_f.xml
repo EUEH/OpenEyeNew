@@ -14,13 +14,13 @@
             android:layout_height="30dp"
             android:src="@mipmap/ic_action_detail_back" />
 
-        <Button
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_centerInParent="true"
-            android:background="@mipmap/action_start" />
+        <!--<Button-->
+            <!--android:layout_width="130dp"-->
+            <!--android:layout_height="130dp"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:background="@mipmap/action_start" />-->
 
-        <ImageView
+        <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
             android:id="@+id/iv_concern_fragment_feed_f"
             android:layout_width="400dp"
             android:layout_height="400dp"
@@ -175,6 +175,7 @@
 
 
                 <ImageView
+                    android:id="@+id/iv_fragment_padding_f"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_marginLeft="15dp"

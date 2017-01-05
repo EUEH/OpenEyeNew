@@ -18,15 +18,16 @@ import com.eueh.openeye.concern.TimeConversion;
 import com.eueh.openeye.utils.NetTool;
 import com.eueh.openeye.utils.onHttpCallback;
 
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
+
 /**
  * Created by 陈小飞 on 16/12/24.
  */
 
 public class ConcernImageFragment extends BaseFragment implements View.OnClickListener {
 
-    private static String urlme;
-    private static String rvUrl;
-    private ImageView ivFeedF;
+    private static String urlMe;
+    //    private ImageView ivFeedF;
     private TextView tvTitleF;
     private TextView tvCategoryF;
     private TextView tvReleaseTimeF;
@@ -43,16 +44,19 @@ public class ConcernImageFragment extends BaseFragment implements View.OnClickLi
 
     private int a;
     private static ConcernBean.ItemListBeanX.DataBeanX.ItemListBean data;
+    private ImageView ivPaddingF;
+    private JCVideoPlayerStandard ivFeedF;
 
     @Override
     public int setLayout() {
-
         return R.layout.fragment_concern_image_f;
     }
 
     @Override
     public void initView(View view) {
-        ivFeedF = (ImageView) view.findViewById(R.id.iv_concern_fragment_feed_f);
+        ivPaddingF = (ImageView) view.findViewById(R.id.iv_fragment_padding_f);
+//        ivFeedF = (ImageView) view.findViewById(R.id.iv_concern_fragment_feed_f);
+        ivFeedF = (JCVideoPlayerStandard) view.findViewById(R.id.iv_concern_fragment_feed_f);
         ivBackF = (ImageView) view.findViewById(R.id.iv_concern_fragment_back_f);
         ivBackgroundF = (ImageView) view.findViewById(R.id.iv_concern_fragment_background_f);
         tvTitleF = (TextView) view.findViewById(R.id.tv_concern_fragment_title_f);
@@ -61,8 +65,9 @@ public class ConcernImageFragment extends BaseFragment implements View.OnClickLi
         tvDescriptionF = (TextView) view.findViewById(R.id.tv_concern_fragment_description_f);
         tvCollectionCountF = (TextView) view.findViewById(R.id.tv_concern_fragment_collectionCount_f);
         tvShareCountF = (TextView) view.findViewById(R.id.tv_concern_fragment_shareCount_f);
-        tvReplyCountF = (TextView)view.findViewById(R.id.tv_concern_fragment_replyCount_f);
+        tvReplyCountF = (TextView) view.findViewById(R.id.tv_concern_fragment_replyCount_f);
         ivBackF.setOnClickListener(this);
+        ivPaddingF.setOnClickListener(this);
     }
 
     @Override
@@ -73,23 +78,24 @@ public class ConcernImageFragment extends BaseFragment implements View.OnClickLi
 
         //图片变大变小
         getChange();
-        if (urlme == null){
+        if (urlMe == null) {
             setView();
-        }else {
+        } else {
             getData();
         }
     }
 
     private void setView() {
-        Glide.with(getContext()).load(data.getData().getCover().getFeed()).into(ivFeedF);
+//        Glide.with(getContext()).load(data.getData().getCover().getFeed()).into(ivFeedF);
+        ivFeedF.setUp(data.getData().getPlayUrl(), ivFeedF.SCREEN_LAYOUT_NORMAL, "你好");
         Glide.with(getActivity()).load(data.getData().getCover().getBlurred()).into(ivBackgroundF);
         tvTitleF.setText(data.getData().getTitle());
         tvCategoryF.setText("#" + data.getData().getCategory());
         tvReleaseTimeF.setText(TimeConversion.conversionTime(data.getData().getReleaseTime()).substring(14, 19));
         tvDescriptionF.setText(data.getData().getDescription());
-        tvCollectionCountF.setText(data.getData().getConsumption().getCollectionCount()+"");
-        tvShareCountF.setText(data.getData().getConsumption().getShareCount()+"");
-        tvReplyCountF.setText(data.getData().getConsumption().getReplyCount()+"");
+        tvCollectionCountF.setText(data.getData().getConsumption().getCollectionCount() + "");
+        tvShareCountF.setText(data.getData().getConsumption().getShareCount() + "");
+        tvReplyCountF.setText(data.getData().getConsumption().getReplyCount() + "");
     }
 
     private void getChange() {
@@ -134,27 +140,26 @@ public class ConcernImageFragment extends BaseFragment implements View.OnClickLi
 
     private void getData() {
 
+        NetTool.getInstance().startRequest(urlMe, ConcernImageBean.class, new onHttpCallback<ConcernImageBean>() {
+            @Override
+            public void onSuccess(ConcernImageBean response) {
+//                    Glide.with(getActivity()).load(response.getItemList().get(a).getData().getCover().getFeed()).into(ivFeedF);
+                ivFeedF.setUp(response.getItemList().get(a).getData().getPlayUrl(), ivFeedF.SCREEN_LAYOUT_NORMAL, "你好");
+                Glide.with(getActivity()).load(response.getItemList().get(a).getData().getCover().getBlurred()).into(ivBackgroundF);
+                tvTitleF.setText(response.getItemList().get(a).getData().getTitle());
+                tvCategoryF.setText("#" + response.getItemList().get(a).getData().getCategory());
+                tvReleaseTimeF.setText(TimeConversion.conversionTime(response.getItemList().get(a).getData().getReleaseTime()).substring(14, 19));
+                tvDescriptionF.setText(response.getItemList().get(a).getData().getDescription());
+                tvCollectionCountF.setText(response.getItemList().get(a).getData().getConsumption().getCollectionCount() + "");
+                tvShareCountF.setText(response.getItemList().get(a).getData().getConsumption().getShareCount() + "");
+                tvReplyCountF.setText(response.getItemList().get(a).getData().getConsumption().getReplyCount() + "");
+            }
 
+            @Override
+            public void onError(Throwable e) {
 
-            NetTool.getInstance().startRequest(urlme, ConcernImageBean.class, new onHttpCallback<ConcernImageBean>() {
-                @Override
-                public void onSuccess(ConcernImageBean response) {
-                    Glide.with(getActivity()).load(response.getItemList().get(a).getData().getCover().getFeed()).into(ivFeedF);
-                    Glide.with(getActivity()).load(response.getItemList().get(a).getData().getCover().getBlurred()).into(ivBackgroundF);
-                    tvTitleF.setText(response.getItemList().get(a).getData().getTitle());
-                    tvCategoryF.setText("#" + response.getItemList().get(a).getData().getCategory());
-                    tvReleaseTimeF.setText(TimeConversion.conversionTime(response.getItemList().get(a).getData().getReleaseTime()).substring(14, 19));
-                    tvDescriptionF.setText(response.getItemList().get(a).getData().getDescription());
-                    tvCollectionCountF.setText(response.getItemList().get(a).getData().getConsumption().getCollectionCount()+"");
-                    tvShareCountF.setText(response.getItemList().get(a).getData().getConsumption().getShareCount()+"");
-                    tvReplyCountF.setText(response.getItemList().get(a).getData().getConsumption().getReplyCount()+"");
-                }
-
-                @Override
-                public void onError(Throwable e) {
-
-                }
-            });
+            }
+        });
 
 
     }
@@ -166,30 +171,34 @@ public class ConcernImageFragment extends BaseFragment implements View.OnClickLi
         Log.d("ConcernImageFragment", data.getData().getCover().getFeed());
 
 
-        args.putParcelable("data",data);
+        args.putParcelable("data", data);
         ConcernImageFragment fragment = new ConcernImageFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
 
-    public static String Geturl(String url){
-        urlme = url;
+    public static String Geturl(String url) {
+        urlMe = url;
         return url;
     }
 
 
-
-
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.iv_concern_fragment_back_f:
                 getActivity().finish();
+                break;
+            case R.id.iv_fragment_padding_f:
+
                 break;
         }
     }
 
-
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        ivFeedF.releaseAllVideos();
+    }
 }

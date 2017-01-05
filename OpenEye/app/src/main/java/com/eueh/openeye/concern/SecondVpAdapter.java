@@ -33,6 +33,7 @@ public class SecondVpAdapter extends PagerAdapter implements ViewPager.OnPageCha
 
     public SecondVpAdapter setViewPager(ViewPager viewPager) {
         this.viewPager = viewPager;
+        notifyDataSetChanged();
         return this;
     }
 
@@ -69,7 +70,9 @@ public class SecondVpAdapter extends PagerAdapter implements ViewPager.OnPageCha
         String min = TimeConversion.conversionTime(list.get(position % list.size()).getData().getReleaseTime()).substring(14, 19);
         tvReleaseTimeF.setText(min);
         container.addView(view);
-//        viewPager.addOnPageChangeListener(this);
+        if(viewPager!=null) {
+            viewPager.addOnPageChangeListener(this);
+        }
         return view;
     }
 
@@ -87,13 +90,20 @@ public class SecondVpAdapter extends PagerAdapter implements ViewPager.OnPageCha
 
     @Override
     public void onPageSelected(int position) {
-        int a = position % list.size();
-        for (ConcernPointF point : points) {
-            point.setSelected(false);
+//        int a = position % list.size();
+        for (int i = 0; i < points.size(); i++) {
+            if(i == position % points.size()){
+                points.get(i).setSelected(true);
+            }else {
+                points.get(i).setSelected(false);
+            }
         }
-        if (a == position % points.size()){
-            points.get(a).setSelected(true);
-        }
+//        for (ConcernPointF point : points) {
+//            point.setSelected(false);
+//        }
+//        if (a == position % points.size()){
+//            points.get(a).setSelected(true);
+//        }
     }
 
     @Override

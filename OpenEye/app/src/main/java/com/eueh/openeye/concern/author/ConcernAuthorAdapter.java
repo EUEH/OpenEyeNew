@@ -93,6 +93,7 @@ public class ConcernAuthorAdapter extends BaseAdapter {
                 case THREE:
                     view = LayoutInflater.from(context).inflate(R.layout.item_author_three, viewGroup, false);
                     holderThree = new ConcernAuthorViewHolderThree(view);
+                    view.setTag(holderThree);
                     break;
             }
         }else {
