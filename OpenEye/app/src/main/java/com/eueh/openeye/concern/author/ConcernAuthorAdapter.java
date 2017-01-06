@@ -62,13 +62,13 @@ public class ConcernAuthorAdapter extends BaseAdapter {
     public int getItemViewType(int position) {
         //判断字符段要用equals
         String type = list.get(position).getType();
-        if (type.equals("briefCard") && !type.isEmpty()){
+        if (type.equals("briefCard") && !type.isEmpty()) {
             return TWO;
-        }else if (type.equals("leftAlignTextHeader")){
+        } else if (type.equals("leftAlignTextHeader")) {
             return ONE;
-        }else if (type.equals("videoCollectionWithBrief")){
+        } else if (type.equals("videoCollectionWithBrief")) {
             return THREE;
-        }else {
+        } else {
             return ONE;
         }
     }
@@ -93,10 +93,11 @@ public class ConcernAuthorAdapter extends BaseAdapter {
                 case THREE:
                     view = LayoutInflater.from(context).inflate(R.layout.item_author_three, viewGroup, false);
                     holderThree = new ConcernAuthorViewHolderThree(view);
+                    view.setTag(holderThree);
                     break;
             }
-        }else {
-            switch (getItemViewType(i)){
+        } else {
+            switch (getItemViewType(i)) {
                 case ONE:
                     holderOne = (ConcernAuthorViewHolderOne) view.getTag();
                     break;
@@ -108,7 +109,7 @@ public class ConcernAuthorAdapter extends BaseAdapter {
                     break;
             }
         }
-        switch (getItemViewType(i)){
+        switch (getItemViewType(i)) {
             case ONE:
                 holderOne.textF.setText(list.get(i).getData().getText());
                 break;

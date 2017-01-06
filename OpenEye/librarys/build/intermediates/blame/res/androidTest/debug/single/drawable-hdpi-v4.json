@@ -1,9 +1,5 @@
 [
     {
-        "merged": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/default_ptr_flip.png",
-        "source": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/drawable-hdpi-v4/default_ptr_flip.png"
-    },
-    {
         "merged": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/default_ptr_flip.png",
         "source": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/drawable-hdpi-v4/default_ptr_flip.png"
     },
@@ -12,15 +8,7 @@
         "source": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/drawable-hdpi-v4/default_ptr_rotate.png"
     },
     {
-        "merged": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/default_ptr_rotate.png",
-        "source": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/drawable-hdpi-v4/default_ptr_rotate.png"
-    },
-    {
         "merged": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/indicator_arrow.png",
         "source": "/Users/dllo/Desktop/GitEueh/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/drawable-hdpi-v4/indicator_arrow.png"
-    },
-    {
-        "merged": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/indicator_arrow.png",
-        "source": "/Users/dllo/Desktop/GitDemo/OpenEyeNew/OpenEye/librarys/build/intermediates/bundles/debug/res/drawable-hdpi-v4/indicator_arrow.png"
     }
 ]
