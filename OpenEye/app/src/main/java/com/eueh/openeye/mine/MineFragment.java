@@ -70,8 +70,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
     @Override
     public void initView(View view) {
 
-        Toast.makeText(getActivity(), "bvvvvvvv", Toast.LENGTH_SHORT).show();
-
         tvNameUser = (TextView) view.findViewById(R.id.tv_fragment_mine_text_f);
         tvDownLoad = (TextView) view.findViewById(R.id.tv_mine_download);
         ivLogin = (ImageView) view.findViewById(R.id.iv_fragment_mine_pgc_f);

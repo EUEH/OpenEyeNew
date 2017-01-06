@@ -2,6 +2,8 @@ package com.eueh.openeye.concern;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,11 +30,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ConcernAdapter extends BaseAdapter {
     Context context;
     List<ConcernBean.ItemListBeanX> list;
+    private Handler mHandler;
     public static final int ONE = 1;
     public static final int TWO = 2;
     public static final int COUNT = 3;
-    private ConcernViewHolderFirst first;
-    private ConcernViewHolderSecond second;
+
     private ArrayList<ConcernPointF> points;
     private boolean flag = false;
 
@@ -80,8 +82,8 @@ public class ConcernAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
-        first = null;
-        second = null;
+        ConcernViewHolderFirst first = null;
+        ConcernViewHolderSecond second = null;
         if (view == null) {
             switch (getItemViewType(i)) {
                 case ONE:
@@ -125,20 +127,42 @@ public class ConcernAdapter extends BaseAdapter {
             case TWO:
                 second.secondTitleF.setText(list.get(i).getData().getHeader().getTitle());
                 second.secondSubTitleF.setText(String.valueOf(list.get(i).getData().getHeader().getSubTitle()));
-                getViewPager(i);
+                getViewPager(second,i);
+                mHandler = new Handler(new MyCallBack(second));
                 break;
         }
         return view;
     }
 
+    class MyCallBack implements Handler.Callback{
+        public ConcernViewHolderSecond second;
+
+        public MyCallBack(ConcernViewHolderSecond second) {
+            this.second = second;
+        }
+
+        @Override
+        public boolean handleMessage(Message message) {
+            second.secondVpF.setCurrentItem(second.secondVpF.getCurrentItem() + 1);
+            return false;
+        }
+    }
+
     //viewPage
-    private void getViewPager(int p) {
+    private void getViewPager(ConcernViewHolderSecond second,int p) {
 
         SecondVpAdapter vpAdapter = new SecondVpAdapter(context);
+        vpAdapter.setViewPager(second.secondVpF);
         List<ConcernBean.ItemListBeanX.DataBeanX.ItemListBean> b = list.get(p).getData().getItemList();
         vpAdapter.setList(b);
         second.secondVpF.setAdapter(vpAdapter);
-        vpAdapter.setViewPager(second.secondVpF);
+        int childCount = second.secondLF.getChildCount();
+        //每次都刷新都往里面加点  所以把原来的请掉了就好了
+        for (int i = childCount - 1; i >=0; i--) {
+            if(second.secondLF.getChildAt(i) instanceof ConcernPointF){
+                second.secondLF.removeViewAt(i);
+            }
+        }
         for (int a = 0; a < b.size(); a++) {
             ConcernPointF concernPointF = new ConcernPointF(context);
             if (a == 0){
@@ -149,6 +173,7 @@ public class ConcernAdapter extends BaseAdapter {
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(30, 30);
             params.leftMargin = 20;
             params.rightMargin = 20;
+
             second.secondLF.addView(concernPointF, params);
         }
         vpAdapter.setPoints(points);

@@ -61,6 +61,8 @@ public class ConcernFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void initData() {
         //解析数据
+
+
         getData();
 
         ConcernRvAdapter.getConcernUrl(CONCERN_URL);
@@ -98,11 +100,10 @@ public class ConcernFragment extends BaseFragment implements View.OnClickListene
     }
 
 
-
     //刷新
     @Override
     public void onRefresh() {
-        //必须要写这个
+        //必须要写这个(刷新消失)
         swipeToLoadLayout.setRefreshing(false);
         NetTool.getInstance().startRequest(CONCERN_URL, ConcernBean.class, new onHttpCallback<ConcernBean>() {
             @Override
