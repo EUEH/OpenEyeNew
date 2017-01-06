@@ -13,11 +13,13 @@ public class SelectionCollection {
     @PrimaryKey(AssignType.AUTO_INCREMENT)
     int id ;
     String picUrl ;
+    String title ;
     String category ;
     int releaseTime ;
     boolean isCollect ;
+    int collectionCount ;
 
-    public SelectionCollection(String picUrl, String category, int releaseTime) {
+    public SelectionCollection(String picUrl, String category, int releaseTime , int collectionCount) {
         this.picUrl = picUrl;
         this.category = category;
         this.releaseTime = releaseTime;
@@ -69,6 +71,33 @@ public class SelectionCollection {
 
     public SelectionCollection setReleaseTime(int releaseTime) {
         this.releaseTime = releaseTime;
+        return this;
+    }
+
+    public boolean isCollect() {
+        return isCollect;
+    }
+
+    public SelectionCollection setCollect(boolean collect) {
+        isCollect = collect;
+        return this;
+    }
+
+    public int getCollectionCount() {
+        return collectionCount;
+    }
+
+    public SelectionCollection setCollectionCount(int collectionCount) {
+        this.collectionCount = collectionCount;
+        return this;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public SelectionCollection setTitle(String title) {
+        this.title = title;
         return this;
     }
 }

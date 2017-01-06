@@ -14,6 +14,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -29,6 +30,7 @@ import com.eueh.openeye.R;
 import com.eueh.openeye.base.BaseFragment;
 import com.eueh.openeye.selection.selection_detail.SelctionDeatailBeanParcelable;
 import com.eueh.openeye.selection.selection_detail.SelectionDetailAdapter;
+import com.eueh.openeye.selection.selectiontool.FadeInTextView;
 import com.eueh.openeye.utils.LiteTool;
 
 import cn.sharesdk.framework.ShareSDK;
@@ -41,10 +43,14 @@ import static android.content.Context.SENSOR_SERVICE;
 
 public class FindDetailFragment extends BaseFragment implements View.OnClickListener {
     private JCVideoPlayerStandard ivFeed;
-    private TextView tvTitle, tvCategor, tvReleaseTime, tvDescription,
+    private TextView tvReleaseTime, tvDescription,
             tvCollectionCount, tvShareCount, tvReplyCount;
     private JCVideoPlayer.JCAutoFullscreenListener sensorEventListener;
     private SensorManager sensorManager;
+
+
+    private FadeInTextView tvTitle,tvCategor;
+
 
     private Handler handler;
     private boolean isPlay;
@@ -72,8 +78,12 @@ public class FindDetailFragment extends BaseFragment implements View.OnClickList
 
         ivShare = (ImageView) view.findViewById(R.id.iv_find_share);
         ivDownLoad = (ImageView) view.findViewById(R.id.iv_download);
-        tvTitle = (TextView) view.findViewById(R.id.tv_detail_fragment_title_d);
-        tvCategor = (TextView) view.findViewById(R.id.tv_detail_fragment_categor_d);
+
+
+        tvTitle = (FadeInTextView) view.findViewById(R.id.tv_detail_fragment_title_d);
+        tvCategor = (FadeInTextView) view.findViewById(R.id.tv_detail_fragment_categor_d);
+
+
         tvReleaseTime = (TextView) view.findViewById(R.id.tv_detail_fragment_releaseTime_d);
         tvDescription = (TextView) view.findViewById(R.id.tv_detail_fragment_description_d);
         tvCollectionCount = (TextView) view.findViewById(R.id.tv_detail_fragment_collectionCount_d);
@@ -206,8 +216,9 @@ public class FindDetailFragment extends BaseFragment implements View.OnClickList
 
         ivFeed.setUp(bean.getPalyUrl(), ivFeed.SCREEN_LAYOUT_NORMAL, bean.getTitle());
 
-        tvTitle.setText(bean.getTitle());
-        tvCategor.setText("#" + bean.getCategory() + "  /");
+        tvTitle.setText(bean.getTitle(), AnimationUtils.loadAnimation(getContext(),R.anim.selection_tv_anim),200,12);
+        tvCategor.setText("#" + bean.getCategory() + "  /",AnimationUtils.loadAnimation(getContext(),R.anim.selection_tv_anim),200,12);
+
         tvReleaseTime.setText(bean.getReleaseTime() + "");
         tvDescription.setText(bean.getDescription());
         tvCollectionCount.setText(bean.getCollectionCount() + "");

@@ -82,6 +82,8 @@
 
 
 
+        <activity android:name=".mine.MineCollectionActivity"/>
+
     </application>
 
 </manifest>

@@ -65,6 +65,9 @@ public class LiteTool {
         return mLiteOrm.query(queryBuilder).size() > 0 ? true : false;
     }
 
+
+
+
     //把数据库删除 删除表  这样id就会再从1开始
     public void cleanTable () {
         mLiteOrm.deleteDatabase();

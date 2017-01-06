@@ -1,6 +1,7 @@
 package com.eueh.openeye.mine;
 
 import android.content.Intent;
+
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.bumptech.glide.Glide;
 import com.eueh.openeye.R;
@@ -29,18 +31,21 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
  * Created by dllo on 16/12/19.
  */
 
+
 public class MineFragment extends BaseFragment implements View.OnClickListener, PlatformActionListener {
-    private TextView tvDownLoad, tvNameUser,tvRegist;
+    private TextView tvDownLoad, tvNameUser, tvRegist;
     private String num;
     private ImageView ivLogin;
     private String name;
     private String icon;
-    private Handler mHandler=new Handler(new Handler.Callback() {
+    private TextView tvCollect;
+
+    private Handler mHandler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message message) {
 
-            if (message.what==1){
-                Platform platform= (Platform) message.obj;
+            if (message.what == 1) {
+                Platform platform = (Platform) message.obj;
                 PlatformDb platformDb = platform.getDb();
 
                 icon = platformDb.getUserIcon();
@@ -64,6 +69,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
 
     @Override
     public void initView(View view) {
+
         Toast.makeText(getActivity(), "bvvvvvvv", Toast.LENGTH_SHORT).show();
 
         tvNameUser = (TextView) view.findViewById(R.id.tv_fragment_mine_text_f);
@@ -74,12 +80,19 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
         tvDownLoad.setOnClickListener(this);
         ivLogin.setOnClickListener(this);
         tvRegist.setOnClickListener(this);
+
+        tvCollect = (TextView) view.findViewById(R.id.mine_collect_tv_d);
+
     }
 
 
     @Override
     public void initData() {
+
         ShareSDK.initSDK(getContext());
+
+        //点击我的收藏进入收藏页面
+        cliCollection();
 
         login();
 
@@ -117,17 +130,25 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
                 break;
 
 
+            case R.id.mine_collect_tv_d:
+                Intent intent3 = new Intent(getContext(), MineCollectionActivity.class);
+                startActivity(intent3);
+                getActivity().overridePendingTransition(R.anim.mine_collection_anim, R.anim.mine_collection_anim);
+                break;
         }
 
 
     }
 
+
+
+
     //QQ退出
     private void QQRegist() {
         Platform platform = ShareSDK.getPlatform(QQ.NAME);
-          Toast.makeText(getContext(), "退出登录", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "退出登录", Toast.LENGTH_SHORT).show();
 
-            platform.removeAccount(true);
+        platform.removeAccount(true);
 
 
     }
@@ -144,7 +165,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
 
 
         qq.setPlatformActionListener(this);
-        if (qq.isValid()){
+        if (qq.isValid()) {
 
             qq.removeAccount(true);
         }
@@ -174,47 +195,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
 
         }
 
-        //输出所有授权信息
-//                arg0.getDb().exportData();
-//                tvNameUser.setText("登录");
- //               ivLogin.setImageResource(R.mipmap.ic_launcher);
-//        platformActionListener = new PlatformActionListener() {
-//
-//            @Override
-//            public void onError(Platform arg0, int arg1, Throwable arg2) {
-//                arg2.printStackTrace();
-//                Toast.makeText(getContext(), "成功", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onComplete(final Platform arg0, int arg1, HashMap<String, Object> arg2) {
-//                //输出所有授权信息
-////                arg0.getDb().exportData();
-////                tvNameUser.setText("登录");
-////                ivLogin.setImageResource(R.mipmap.ic_launcher);
-//                Toast.makeText(getContext(), "成功", Toast.LENGTH_SHORT).show();
-//                new Handler().post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Message message=new Message();
-//                        message.what=1;
-//                        message.obj=arg0;
-//                        mHandler.sendMessage(message);
-//
-//
-//                    }
-//                });
-//
-//
-//
-//            }
-//
-//            @Override
-//            public void onCancel(Platform arg0, int arg1) {
-//                Toast.makeText(getContext(), "成功", Toast.LENGTH_SHORT).show();
-//            }
-//        };
-
     }
 
     @Override
@@ -231,5 +211,16 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
     @Override
     public void onCancel(Platform platform, int i) {
         Toast.makeText(getActivity(), "取消了", Toast.LENGTH_SHORT).show();
+
+        //点击我的收藏进入收藏页面
+        cliCollection();
+
     }
+
+    private void cliCollection() {
+        tvCollect.setOnClickListener(this);
+
+    }
+
+
 }

@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -29,6 +30,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.eueh.openeye.R;
 import com.eueh.openeye.base.BaseFragment;
 import com.eueh.openeye.find.toolg.ToolG;
+import com.eueh.openeye.selection.selectiontool.FadeInTextView;
 import com.eueh.openeye.utils.LiteTool;
 import com.litesuits.orm.LiteOrm;
 import com.litesuits.orm.db.assit.QueryBuilder;
@@ -55,8 +57,9 @@ public class SelectionDetailFragment extends BaseFragment {
     private JCVideoPlayer.JCAutoFullscreenListener sensorEventListener;
     private SensorManager sensorManager;
 
-    private TextView tvTitle, tvCategor, tvReleaseTime, tvDescription,
-            tvCollectionCount, tvShareCount, tvReplyCount;
+    private TextView tvCollectionCount, tvShareCount, tvReplyCount, tvDescription, tvReleaseTime;
+
+    private FadeInTextView tvTitle, tvCategor;
 
     private Handler handler;
     private boolean isPlay;
@@ -69,9 +72,10 @@ public class SelectionDetailFragment extends BaseFragment {
     private ImageView ivBackgroundGauss;
     private Bundle bundle;
 
+    private int collCount ;
 
 
-    private int a = 0;
+
 
 
     @Override
@@ -88,8 +92,8 @@ public class SelectionDetailFragment extends BaseFragment {
         //    ivFeed = (ImageView) view.findViewById(R.id.iv_detail_fragment_feed_d);
 
         ivFeed = (JCVideoPlayerStandard) view.findViewById(R.id.iv_detail_fragment_feed_d);
-        tvTitle = (TextView) view.findViewById(R.id.tv_detail_fragment_title_d);
-        tvCategor = (TextView) view.findViewById(R.id.tv_detail_fragment_categor_d);
+        tvTitle = (FadeInTextView) view.findViewById(R.id.tv_detail_fragment_title_d);
+        tvCategor = (FadeInTextView) view.findViewById(R.id.tv_detail_fragment_categor_d);
         tvReleaseTime = (TextView) view.findViewById(R.id.tv_detail_fragment_releaseTime_d);
         tvDescription = (TextView) view.findViewById(R.id.tv_detail_fragment_description_d);
         tvCollectionCount = (TextView) view.findViewById(R.id.tv_detail_fragment_collectionCount_d);
@@ -100,6 +104,8 @@ public class SelectionDetailFragment extends BaseFragment {
         btnCollectionCount = (CheckBox) view.findViewById(R.id.btn_detail_fragment_collectionCount_d);
         isCollectionCount = false;
         ivBackgroundGauss = (ImageView) view.findViewById(R.id.selection_detail_background_d);
+
+        collCount = 0  ;
     }
 
     @Override
@@ -122,8 +128,13 @@ public class SelectionDetailFragment extends BaseFragment {
 
     private void clifavouraddone() {
         //设置默认的是否收藏
-        boolean qq = LiteTool.getInstance().queryOne(SelectionCollection.class , "picUrl" , bean.getImageFeed());
+        boolean qq = LiteTool.getInstance().queryOne(SelectionCollection.class, "picUrl", bean.getImageFeed());
         btnCollectionCount.setChecked(qq);
+        if (qq){
+            tvCollectionCount.setText((collCount+1)+"");
+        }
+
+
 
         btnCollectionCount.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -138,7 +149,12 @@ public class SelectionDetailFragment extends BaseFragment {
                     //点击收藏把数据存到数据库里面
                     SelectionCollection sc = new SelectionCollection();
                     sc.setPicUrl(bean.getImageFeed());
+                    sc.setTitle(bean.getTitle());
+                    sc.setCategory(bean.getCategory());
+                    sc.setReleaseTime(bean.getReleaseTime());
+
                     LiteTool.getInstance().insertOne(sc);
+                    Toast.makeText(getContext(), "已加入收藏", Toast.LENGTH_SHORT).show();
 
                     List<SelectionCollection> list = LiteTool.getInstance().queryAll(SelectionCollection.class);
                     for (SelectionCollection qq : list) {
@@ -148,7 +164,6 @@ public class SelectionDetailFragment extends BaseFragment {
                     }
 
 
-
                 } else {
 
                     String collStr = tvCollectionCount.getText().toString();
@@ -156,7 +171,8 @@ public class SelectionDetailFragment extends BaseFragment {
                     int collAfter = collAgo - 1;
                     tvCollectionCount.setText(collAfter + "");
 
-                    LiteTool.getInstance().deleteOne(SelectionCollection.class , "picUrl" , bean.getImageFeed());
+                    LiteTool.getInstance().deleteOne(SelectionCollection.class, "picUrl", bean.getImageFeed());
+                    //查询
                     List<SelectionCollection> list = LiteTool.getInstance().queryAll(SelectionCollection.class);
                     for (SelectionCollection qq : list) {
                         Log.d("SelectionDetailFragment", qq.getId() + "\n" +
@@ -233,11 +249,27 @@ public class SelectionDetailFragment extends BaseFragment {
 
         ivFeed.setUp(bean.getPalyUrl(), ivFeed.SCREEN_LAYOUT_NORMAL, bean.getTitle());
 
-        tvTitle.setText(bean.getTitle());
-        tvCategor.setText("#" + bean.getCategory() + "  /");
+        tvTitle.setText(bean.getTitle(), AnimationUtils.loadAnimation(getContext()
+                , R.anim.selection_tv_anim), 200, 18);
+
+
+        //tvCategor.setText("#" + bean.getCategory() + "  /");
+        tvCategor.setText("#" + bean.getCategory() + "  /", AnimationUtils.loadAnimation(getContext()
+                , R.anim.selection_tv_anim), 200, 12);
+
         tvReleaseTime.setText(bean.getReleaseTime() + "");
+//        tvReleaseTime.setText(bean.getReleaseTime() + "", AnimationUtils.loadAnimation(getContext()
+//                , R.anim.selection_tv_anim), 200, 12);
+
+
         tvDescription.setText(bean.getDescription());
+//        tvDescription.setText(bean.getDescription() , AnimationUtils.loadAnimation(getContext()
+//            , R.anim.selection_tv_anim) , 200 , 12);
+
+
         tvCollectionCount.setText(bean.getCollectionCount() + "");
+        collCount = bean.getCollectionCount()  ;
+
         tvShareCount.setText(bean.getShareCount() + "");
         tvReplyCount.setText(bean.getReplyCount() + "");
         //Gilde.asBiemap.into(new Sim)  里面的resource就是那个结果
