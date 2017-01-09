@@ -29,7 +29,7 @@ public class SelectionHeadActivity extends BaseActivity {
         ivHead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SelectionHeadActivity.this , SelectionNothingShowActivity.class);
+                Intent intent = new Intent(SelectionHeadActivity.this , SelectionSupplementActivity.class);
                 startActivity(intent);
             }
         });

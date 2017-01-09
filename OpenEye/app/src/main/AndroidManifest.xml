@@ -43,7 +43,7 @@
 
         <activity android:name=".mine.MineCollectionActivity"/>
 
-        <activity android:name=".selection.SelectionNothingShowActivity"/>
+        <activity android:name=".selection.SelectionSupplementActivity"/>
 
     </application>
 
