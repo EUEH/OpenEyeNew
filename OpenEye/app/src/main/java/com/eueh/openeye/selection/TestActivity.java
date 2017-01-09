@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.eueh.openeye.R;
 import com.eueh.openeye.base.BaseActivity;
 
-public class SelectionDailySelectActivity extends BaseActivity {
+public class TestActivity extends BaseActivity {
 
 
     @Override

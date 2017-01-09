@@ -1,5 +1,7 @@
 package com.eueh.openeye.selection;
 
+import android.content.Intent;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.eueh.openeye.R;
@@ -24,5 +26,15 @@ public class SelectionHeadActivity extends BaseActivity {
     @Override
     public void initData() {
         myView.setIv(ivHead);
+        ivHead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SelectionHeadActivity.this , SelectionNothingShowActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
+
+
 }
