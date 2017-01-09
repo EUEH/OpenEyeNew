@@ -1,6 +1,7 @@
 package com.eueh.openeye;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -9,16 +10,19 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.eueh.openeye.base.BaseActivity;
 import com.eueh.openeye.concern.ConcernFragment;
 import com.eueh.openeye.downloadservice.DownLoadService;
 import com.eueh.openeye.find.FindFragment;
 import com.eueh.openeye.mine.MineFragment;
+import com.eueh.openeye.selection.SelectionSupplementActivity;
 import com.eueh.openeye.selection.selection_main.SelectionFragment;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
+import com.xys.libzxing.zxing.activity.CaptureActivity;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private FrameLayout frameLayout;
@@ -82,6 +86,26 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 .attachTo(actionButton)
                 .build();
 
+        //扫码功能
+        buttonFind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //打开扫描界面扫描条形码或二维码
+                Toast.makeText(MainActivity.this, "开始扫码", Toast.LENGTH_SHORT).show();
+                Intent openCameraIntent = new Intent(MainActivity.this, CaptureActivity.class);
+                startActivityForResult(openCameraIntent, 0);
+            }
+        });
+
+        //跳转到生成二维码的页面
+        buttonPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this , SelectionSupplementActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 
@@ -127,4 +151,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
         }
     }
+
+    //返回接收到扫码的结果
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            String scanResult = bundle.getString("result");
+            Toast.makeText(this, scanResult, Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
