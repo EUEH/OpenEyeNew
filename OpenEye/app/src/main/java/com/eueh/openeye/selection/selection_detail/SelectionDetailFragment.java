@@ -4,6 +4,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -50,7 +51,7 @@ import static android.content.Context.SENSOR_SERVICE;
  * Created by 陈焕栋 on 16/12/22.
  */
 
-public class SelectionDetailFragment extends BaseFragment {
+public class SelectionDetailFragment extends BaseFragment implements View.OnClickListener {
     // private ImageView ivFeed;
     private JCVideoPlayerStandard ivFeed;
 
@@ -69,7 +70,7 @@ public class SelectionDetailFragment extends BaseFragment {
     private boolean isCollectionCount;
     private SelctionDeatailBeanParcelable bean;
 
-    private ImageView ivBackgroundGauss;
+    private ImageView ivBackgroundGauss , iv_download;
     private Bundle bundle;
 
     private int collCount ;
@@ -106,6 +107,8 @@ public class SelectionDetailFragment extends BaseFragment {
         ivBackgroundGauss = (ImageView) view.findViewById(R.id.selection_detail_background_d);
 
         collCount = 0  ;
+        //下载的Imageview
+        iv_download = (ImageView) view.findViewById(R.id.iv_download);
     }
 
     @Override
@@ -121,6 +124,8 @@ public class SelectionDetailFragment extends BaseFragment {
         cliBack();
         //点赞赞数量+1   收藏数据库
         clifavouraddone();
+        //点击下载发送广播  开始下载
+        iv_download.setOnClickListener(this);
 
 
     }
@@ -517,4 +522,15 @@ public class SelectionDetailFragment extends BaseFragment {
         sensorManager.registerListener(sensorEventListener, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
+    @Override
+    public void onClick(View view) {
+        Toast.makeText(getContext(), "开始下载", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent("MYBR");
+
+        intent.putExtra("name", bean.getTitle());
+        intent.putExtra("url", bean.getPalyUrl());
+
+        getContext().sendBroadcast(intent);
+    }
 }
