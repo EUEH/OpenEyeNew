@@ -1,5 +1,7 @@
 package com.eueh.openeye.utils;
 
+import java.util.HashMap;
+
 /**
  * Created by FBD小组 on 16/12/20.
  */
@@ -40,6 +42,11 @@ public class NetTool implements NetInterface {
     @Override
     public <T> void startRequest(String url,String key,String value, final Class<T> tClass , onHttpCallback<T> callback){
         mInterface.startRequest(url , key , value , tClass , callback );
+    }
+
+    @Override
+    public <T> void startRequest(String url, HashMap<String, String> map, Class<T> tClass, onHttpCallback<T> callback) {
+        mInterface.startRequest(url , map , tClass , callback);
     }
 
 

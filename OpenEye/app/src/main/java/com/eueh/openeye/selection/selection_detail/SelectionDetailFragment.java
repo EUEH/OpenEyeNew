@@ -291,6 +291,9 @@ public class SelectionDetailFragment extends BaseFragment implements View.OnClic
         ivFeed.thumbImageView.setMaxWidth(LinearLayout.LayoutParams.MATCH_PARENT);
         Glide.with(getContext()).load(bean.getImageFeed()).into(ivFeed.thumbImageView);
 
+        Bundle b = getArguments();
+        
+
     }
 
 
@@ -533,4 +536,8 @@ public class SelectionDetailFragment extends BaseFragment implements View.OnClic
 
         getContext().sendBroadcast(intent);
     }
+
+
+
+
 }

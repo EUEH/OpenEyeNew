@@ -1,6 +1,7 @@
 package com.eueh.openeye.selection.selectiontool;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
  */
 
 public class TriangleView extends LinearLayout {
+
     public TriangleView(Context context) {
         super(context);
     }
@@ -19,5 +21,11 @@ public class TriangleView extends LinearLayout {
 
     public TriangleView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+
     }
 }
