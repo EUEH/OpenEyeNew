@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -106,7 +107,7 @@ public class OkTool implements NetInterface {
     }
 
     //Post请求的构造方法
-    @Override
+    @Override  //这种方法解决不了有很多组key  value  的情况
     public <T> void startRequest(String url,String key,String value, final Class<T> tClass, final onHttpCallback<T> callback) {
         FormBody formBody = new FormBody.Builder().add(key , value).build();
         Request request = new Request.Builder().url(url).post(formBody).build();
@@ -135,5 +136,45 @@ public class OkTool implements NetInterface {
             }
         });
     }
+
+
+    //new
+    @Override
+    public <T> void startRequest(String url, HashMap<String, String> map, final Class<T> tClass, final onHttpCallback<T> callback) {
+        FormBody.Builder builder = new FormBody.Builder();
+        for (String s : map.keySet()) {
+            builder.add(s , map.get(s) );
+        }
+        FormBody body = builder.build();
+        Request request = new Request.Builder().url(url).post(body).build();
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, final IOException e) {
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onError(e);
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String str = response.body().string();
+                final T result = mGson.fromJson(str, tClass);
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onSuccess(result);
+                    }
+                });
+            }
+        });
+
+    }
+
+
+
+
 
 }
