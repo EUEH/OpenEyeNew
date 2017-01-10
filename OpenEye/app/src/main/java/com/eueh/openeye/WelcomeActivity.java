@@ -21,7 +21,7 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     public void initView() {
         ivWelcome = (ImageView) findViewById(R.id.iv_welcome);
-        ivWelcome.setImageResource(R.mipmap.ic_launcher);
+        ivWelcome.setImageResource(R.mipmap.openeyewelcome);
 
     }
 

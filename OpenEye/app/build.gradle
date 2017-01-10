@@ -58,4 +58,6 @@ dependencies {
     compile files('libs/ShareSDK-Wechat-Favorite-2.8.0.jar')
     compile files('libs/ShareSDK-Wechat-Moments-2.8.0.jar')
     compile 'com.oguzdev:CircularFloatingActionMenu:1.0.2'
+    compile project(path: ':libzxing')
+    compile files('libs/VoiceRecognition-2.2.1027.jar')
 }

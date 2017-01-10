@@ -1,29 +1,38 @@
 package com.eueh.openeye;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RadioButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eueh.openeye.base.BaseActivity;
 import com.eueh.openeye.concern.ConcernFragment;
 import com.eueh.openeye.downloadservice.DownLoadService;
 import com.eueh.openeye.find.FindFragment;
 import com.eueh.openeye.mine.MineFragment;
+import com.eueh.openeye.selection.SelectionSupplementActivity;
 import com.eueh.openeye.selection.selection_main.SelectionFragment;
+import com.eueh.openeye.voice.*;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
+import com.xys.libzxing.zxing.activity.CaptureActivity;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private FrameLayout frameLayout;
     private RadioButton rbtSelection, rbtFind, rbtConcern, rbtMine;
     private Intent intent;
+    private FloatingActionButton actionButton;
 
 
     @Override
@@ -49,7 +58,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         ImageView icon = new ImageView(this);
         icon.setImageResource(R.mipmap.photome);
 
-        FloatingActionButton actionButton = new FloatingActionButton
+        actionButton = new FloatingActionButton
                 .Builder(this).setContentView(icon).build();
 
         actionButton.setScaleX(0.6f);
@@ -81,6 +90,34 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 .addSubActionView(buttonFind)
                 .attachTo(actionButton)
                 .build();
+
+        //扫码功能
+        buttonFind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //打开扫描界面扫描条形码或二维码
+                Toast.makeText(MainActivity.this, "开始扫码", Toast.LENGTH_SHORT).show();
+                Intent openCameraIntent = new Intent(MainActivity.this, CaptureActivity.class);
+                startActivityForResult(openCameraIntent, 0);
+            }
+        });
+
+        //跳转到生成二维码的页面
+        buttonPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this , SelectionSupplementActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonSay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, com.eueh.openeye.voice.VoiceActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
@@ -127,4 +164,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
         }
     }
+
+    //返回接收到扫码的结果
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            String scanResult = bundle.getString("result");
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(scanResult);
+            builder.setCancelable(true);
+            builder.show();
+
+            Toast.makeText(this, scanResult, Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
